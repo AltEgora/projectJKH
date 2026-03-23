@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Калькулятор ЖКХ — Тверь</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    padding: 30px;
+}
+
+.container {
+    background: white;
+    padding: 25px;
+    max-width: 420px;
+    margin: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+#result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f0f4f8;
+    border-radius: 8px;
+}
+
+.result-ok {
+    color: green;
+}
+
+.result-warn {
+    color: orange;
+}
+
+.result-bad {
+    color: red;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Калькулятор ЖКХ — Тверь</h2>
+
+<label>Холодная вода (м³)</label>
+<input id="cold" type="number" placeholder="Например: 10">
+
+<label>Канализация (м³)</label>
+<input id="sewer" type="number" placeholder="Например: 10">
+
+<label>Электричество (кВт⋅ч)</label>
+<input id="el" type="number" placeholder="Например: 100">
+
+<label>Отопление (Гкал)</label>
+<input id="heat" type="number" placeholder="Например: 1">
+
+<label>
+    <input type="checkbox" id="benefits">
+    Есть льготы
+</label>
+
+<br><br>
+
+<label>Сумма из квитанции (₽)</label>
+<input id="user_total" type="number" placeholder="Например: 5000">
+
+<button onclick="calc()">Рассчитать</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+async function calc() {
+
+    const data = {
+        coldWaterVolume: +document.getElementById("cold").value || 0,
+        sewerVolume: +document.getElementById("sewer").value || 0,
+        electricityVolume: +document.getElementById("el").value || 0,
+        heatingVolume: +document.getElementById("heat").value || 0,
+        hasBenefits: document.getElementById("benefits").checked,
+        userTotal: +document.getElementById("user_total").value || 0
+    };
+
+    const res = await fetch("/api/gkh/calculate", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    });
+
+    const r = await res.json();
+
+    const statusText = getStatusText(r.status);
+    const statusClass = getStatusClass(r.status);
+
+    document.getElementById("result").innerHTML = `
+        <h3>Результат расчёта</h3>
+
+        <b>Итого:</b> ${r.total.toFixed(2)} ₽ <br>
+        <b>Разница:</b> ${r.difference.toFixed(2)} ₽ <br>
+        <b class="${statusClass}">Статус: ${statusText}</b>
+
+        <hr>
+
+        <h4>Детализация:</h4>
+        Холодная вода: ${r.breakdown.coldWater.toFixed(2)} ₽<br>
+        Канализация: ${r.breakdown.sewer.toFixed(2)} ₽<br>
+        Электричество: ${r.breakdown.electricity.toFixed(2)} ₽<br>
+        Отопление: ${r.breakdown.heating.toFixed(2)} ₽
+    `;
+}
+
+function getStatusText(status) {
+    if (status === "ok") return "✅ Всё корректно";
+    if (status === "overpay") return "⚠️ Возможна переплата";
+    if (status === "underpay") return "⚠️ Возможна недоплата";
+    return status;
+}
+
+function getStatusClass(status) {
+    if (status === "ok") return "result-ok";
+    if (status === "overpay") return "result-warn";
+    if (status === "underpay") return "result-bad";
+    return "";
+}
+</script>
+
+</body>
+</html>
