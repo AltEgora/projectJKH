@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/mainPage/style.css"> 
+    </head>
+    <body>
+        <h1>Thi is main page!</h1>
+        <div>
+            <h3>NEWS:</h3>
+            <ul>
+                {{ range .News }}
+                    <li>
+                        <a href="{{ .URL }}">{{ .Header }}</a>
+                    </li>
+                {{ end }}
+            </ul>
+        </div>
+    </body>
+</html>

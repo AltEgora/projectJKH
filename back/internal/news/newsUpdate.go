@@ -1,8 +1,12 @@
 package news
 
 import (
+	"context"
 	"fmt"
 	"net/http"
+	"time"
+
+	"ConsultantBack/internal/db/domain"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -11,13 +15,8 @@ func main() {
 	UpdateNews()
 }
 
-type New struct {
-	Header string
-	Href   string
-}
-
-func UpdateNews() []New {
-	var mas []New
+func UpdateNews() []domain.New {
+	var mas []domain.New
 
 	resp, err := http.Get("https://tverigrad.ru/category/obshhestvo/main-030/")
 
@@ -36,12 +35,26 @@ func UpdateNews() []New {
 			header := a.Text()
 			href, _ := a.Attr("href")
 
-			mas = append(mas, New{
-				Header: header,
-				Href:   href,
+			mas = append(mas, domain.New{
+				Header:      header,
+				URL:         href,
+				DateUpdated: time.Now().Format("YYYY-MM-DD"),
 			})
 			//fmt.Printf("%s - %s\n", header, href)
 		})
 
 	return mas
+}
+
+func StartUpdate(repo domain.NewRepository) {
+	ticker := time.NewTicker(1 * time.Minute)
+	defer ticker.Stop()
+
+	for range ticker.C {
+		fmt.Println("Updating")
+		for _, new := range UpdateNews() {
+			repo.Create(context.Background(), new)
+		}
+	}
+
 }

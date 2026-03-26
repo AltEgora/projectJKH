@@ -1,17 +1,20 @@
 package handlers
 
 import (
-	"ConsultantBack/back/internal/news"
+	"ConsultantBack/internal/db/domain"
+	"ConsultantBack/internal/news"
 	"fmt"
 	"html/template"
 	"net/http"
 )
 
 type data struct {
-	News []news.New
+	News []domain.New
 }
 
 func MainHandler(w http.ResponseWriter, req *http.Request) {
+	fmt.Println("Got request on main page")
+
 	tmpl, err := template.ParseFiles("./static/mainPage/index.html")
 
 	if err != nil {

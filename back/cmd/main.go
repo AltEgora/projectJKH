@@ -1,12 +1,30 @@
 package main
 
 import (
-	"ConsultantBack/back/internal/server"
+	"ConsultantBack/internal/db/domain"
+	"ConsultantBack/internal/db/repository"
+	"ConsultantBack/internal/db/tools"
+	"ConsultantBack/internal/server"
+	"ConsultantBack/internal/settings"
+	"fmt"
 	"log"
 )
 
+var PRepo domain.NewRepository
+
 func main() {
-	app := server.NewApp("127.0.0.1:8081")
+	settings.LoadEnv()
+
+	postgres, err := tools.ConnectDb()
+	if err != nil {
+		fmt.Printf("Cant connect to Postgres: %s", err)
+	}
+
+	PRepo = repository.NewPostRepo(postgres)
+
+	app := server.NewApp("0.0.0.0:8081")
+
+	fmt.Println("Server started")
 
 	log.Fatal(app.ListenAndServe())
 }

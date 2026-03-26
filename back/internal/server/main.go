@@ -1,7 +1,7 @@
 package server
 
 import (
-	"ConsultantBack/back/internal/handlers"
+	"ConsultantBack/internal/handlers"
 	"net/http"
 
 	"github.com/gorilla/mux"
