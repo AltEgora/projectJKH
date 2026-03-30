@@ -4,6 +4,7 @@ import (
 	"ConsultantBack/internal/db/domain"
 	"context"
 	"database/sql"
+	"strings"
 )
 
 type PostRepo struct {
@@ -19,7 +20,7 @@ func (r *PostRepo) GetList(ctx context.Context, start int, count int) ([]domain.
 
 	query := `
 		SELECT * FROM News
-		ORDER BY DateUpdated
+		ORDER BY updated_at
 		OFFSET $1 LIMIT $2
 	`
 
@@ -30,7 +31,9 @@ func (r *PostRepo) GetList(ctx context.Context, start int, count int) ([]domain.
 
 	for rows.Next() {
 		var row domain.New
-		rows.Scan(row.ID, row.Header, row.URL, row.DatePublished, row.DateUpdated)
+		rows.Scan(&row.ID, &row.Header, &row.Content, &row.Is_emergency, &row.DatePublished, &row.DateUpdated, &row.Preview)
+		row.DatePublished = strings.Clone(row.DatePublished[:10])
+		row.DateUpdated = strings.Clone(row.DateUpdated[:10])
 
 		news = append(news, row)
 	}
@@ -39,7 +42,8 @@ func (r *PostRepo) GetList(ctx context.Context, start int, count int) ([]domain.
 }
 
 func (r *PostRepo) Create(ctx context.Context, new domain.New) error {
-	_, err := r.db.Exec("INSERT INTO News VALUES (default, $1, $2, $3)", new.Header, new.URL, new.DatePublished, new.DateUpdated)
+	_, err := r.db.Exec("INSERT INTO News VALUES (default, $1, $2, $3, $4, $5, $6)",
+		new.Header, new.Content, new.Is_emergency, new.DatePublished, new.DateUpdated, new.Preview)
 	return err
 }
 

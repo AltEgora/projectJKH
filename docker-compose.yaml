@@ -10,9 +10,13 @@ services:
       - db
   db:
     image: postgres:latest
+    volumes:
+      - ./bd/init:/docker-entrypoint-initdb.d
+      - ./bd/data:/var/lib/postgresql
     ports:
       - "5435:5432"
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
+    user: root

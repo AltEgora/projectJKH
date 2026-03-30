@@ -121,8 +121,6 @@ body { font-family: 'Inter', sans-serif; }
         <div class="space-y-6">
 
             <!-- новость -->
-            {{ range .News }}
-            {{ if .Is_emergency}}
             <div>
                 <div style="border-left: 4px solid var(--danger); padding-left: 12px;">
 
@@ -130,33 +128,30 @@ body { font-family: 'Inter', sans-serif; }
                         <span style="background: var(--danger-light); color: var(--danger); padding: 2px 6px; border-radius: 6px;">
                             Экстренно
                         </span>
-                        <span style="color: gray;">{{ .DateUpdated }}</span>
+                        <span style="color: gray;">24.05.2024</span>
                     </div>
 
                     <h3 class="font-bold text-lg mb-2">
-                        {{ .Header }}
+                        Отключение воды
                     </h3>
 
                     <p style="color: gray;">
-                        {{ .Preview }}
+                        В связи с работами будет ограничение...
                     </p>
 
                 </div>
             </div>
-            {{ else }}
 
             <!-- новость -->
             <div>
-                <div class="text-sm mb-2" style="color: gray;">{{ .DateUpdated }}</div>
+                <div class="text-sm mb-2" style="color: gray;">22.05.2024</div>
                 <h3 class="font-bold text-lg mb-2">
-                    {{ .Header }}
+                    Изменение тарифов
                 </h3>
                 <p style="color: gray;">
-                    {{ .Preview }}
+                    Новые тарифы вступают в силу...
                 </p>
             </div>
-            {{ end }}
-            {{ end }}
 
         </div>
 

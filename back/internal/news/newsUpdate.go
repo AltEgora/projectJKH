@@ -1,20 +1,6 @@
 package news
 
-import (
-	"context"
-	"fmt"
-	"net/http"
-	"time"
-
-	"ConsultantBack/internal/db/domain"
-
-	"github.com/PuerkitoBio/goquery"
-)
-
-func main() {
-	UpdateNews()
-}
-
+/*
 func UpdateNews() []domain.New {
 	var mas []domain.New
 
@@ -58,3 +44,4 @@ func StartUpdate(repo domain.NewRepository) {
 	}
 
 }
+*/

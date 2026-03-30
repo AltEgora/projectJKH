@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"ConsultantBack/internal/db/domain"
-	"ConsultantBack/internal/news"
+	"context"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -21,11 +21,15 @@ func MainHandler(w http.ResponseWriter, req *http.Request) {
 		fmt.Printf("Error while templating: %s\n", err)
 	}
 
-	d := data{
-		News: news.UpdateNews(),
+	newsList, err := domain.PRepo.GetList(context.Background(), 0, 10)
+	if err != nil {
+		fmt.Printf("Error while getting news from bd: %s", err)
 	}
 
-	err = tmpl.Execute(w, d)
+	err = tmpl.Execute(w, data{
+		News: newsList,
+	})
+
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)
 	}

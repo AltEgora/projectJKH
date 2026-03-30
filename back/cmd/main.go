@@ -10,8 +10,6 @@ import (
 	"log"
 )
 
-var PRepo domain.NewRepository
-
 func main() {
 	settings.LoadEnv()
 
@@ -20,7 +18,7 @@ func main() {
 		fmt.Printf("Cant connect to Postgres: %s", err)
 	}
 
-	PRepo = repository.NewPostRepo(postgres)
+	domain.PRepo = repository.NewPostRepo(postgres)
 
 	app := server.NewApp("0.0.0.0:8081")
 

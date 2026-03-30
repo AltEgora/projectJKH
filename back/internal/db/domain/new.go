@@ -5,10 +5,14 @@ import "context"
 type New struct {
 	ID            int
 	Header        string
-	URL           string
+	Content       string
+	Is_emergency  bool
 	DatePublished string
 	DateUpdated   string
+	Preview       string
 }
+
+var PRepo NewRepository
 
 type NewRepository interface {
 	GetList(ctx context.Context, start int, count int) ([]New, error)
