@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЖКХ Тверь — Помощь и ответы</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+
+        :root {
+            --primary: #da822a;
+            --primary-light: #ecb726;
+            --button: #722982; /* Фиолетовый из вашего стиля */
+            --bg: #f8fafc;
+            --text: #400a2e;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --accent-soft: #fff7ed;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: 0.2s;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            transition: 0.2s;
+        }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-item:hover { background-color: var(--accent-soft); border-radius: 8px; padding-left: 10px; }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 4px rgba(218, 130, 42, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-[var(--bg)] text-[var(--text)]">
+
+<nav class="bg-[var(--card)] border-b sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div class="font-bold text-[var(--primary)] text-xl">ЖКХ Тверь</div>
+        <div class="flex gap-6 text-sm font-semibold">
+            <a href="/main" class="hover:text-[var(--primary)]">Главная</a>
+            <a href="/tariffs"  class="hover:text-[var(--primary)]">Тарифы</a>
+            <a href="/faq" class="text-[var(--primary)] flex items-center gap-1">
+                <!-- <i data-lucide="help-circle" class="w-4 h-4"></i>  -->
+                Вопрос-ответ
+            </a>
+            <a href="/complaints"  class="hover:text-[var(--primary)]">Подать жалобу</a>
+            <a href="#"  class="hover:text-[var(--primary)]">Проверить начисления</a>
+            <a href="#"  class="hover:text-[var(--primary)]">Контакты служб</a>
+        </div>
+    </div>
+</nav>
+
+<header class="py-12 px-4 bg-white border-b">
+    <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-3xl font-extrabold mb-8 text-[var(--text)]">Помощь и ответы на вопросы</h1>
+        <div class="relative">
+            <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+            <input 
+                type="text" 
+                placeholder="Поиск по ключевым словам (например, квитанция, счетчики...)" 
+                class="search-input w-full py-4 pl-12 pr-6 rounded-xl border border-[var(--border)] outline-none text-lg"
+            >
+        </div>
+    </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 py-12">
+    <div class="grid lg:grid-cols-3 gap-8">
+        
+        <section class="lg:col-span-2">
+            <div class="flex items-center gap-2 mb-6">
+                <i data-lucide="message-circle" class="text-[var(--primary)]"></i>
+                <h2 class="text-xl font-bold">Часто задаваемые вопросы</h2>
+            </div>
+
+            <div class="card space-y-2">
+                <div class="faq-item cursor-pointer">
+                    <h3 class="font-bold text-lg mb-2">Как оспорить начисления в квитанции?</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Вам необходимо обратиться в Вашу управляющую компанию с письменным заявлением о перерасчете. Если УК отказывает — подавайте жалобу в ГЖИ через наш раздел «Пожаловаться».
+                    </p>
+                </div>
+
+                <div class="faq-item cursor-pointer">
+                    <h3 class="font-bold text-lg mb-2">Что делать, если в квартире холодно?</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Температура в жилых помещениях должна быть не ниже +18°C (+20°C в угловых комнатах). Вызовите представителя УК для замера температуры и составления акта.
+                    </p>
+                </div>
+
+                <div class="faq-item cursor-pointer">
+                    <h3 class="font-bold text-lg mb-2">Кто должен менять счетчики воды?</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Счетчики являются собственностью жильца, поэтому их поверка и замена производятся за счет собственника помещения.
+                    </p>
+                </div>
+
+                <div class="faq-item cursor-pointer">
+                    <h3 class="font-bold text-lg mb-2">Как получить льготы на оплату ЖКХ?</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Льготы предоставляются ветеранам, инвалидам, многодетным семьям и другим категориям граждан. Оформить их можно через МФЦ или портал Госуслуг.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <aside class="space-y-6">
+            
+            <div class="p-8 rounded-2xl text-white relative overflow-hidden group cursor-pointer" 
+                 style="background: linear-gradient(135deg, var(--button), #7228558e);">
+                <div class="relative z-10">
+                    <div class="bg-white/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="shield-check" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Мои права</h3>
+                    <p class="text-white/80 text-sm mb-6">Официальные документы, законы и советы для собственников жилья.</p>
+                    <div class="flex items-center gap-2 font-bold group-hover:gap-4 transition-all">
+                        Перейти в раздел <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </div>
+                </div>
+                <i data-lucide="gavel" class="absolute -bottom-4 -right-4 w-32 h-32 opacity-10 rotate-12"></i>
+            </div>
+
+            <div class="card">
+                <div class="flex items-center gap-2 mb-6 border-b pb-4">
+                    <i data-lucide="book-open" class="text-[var(--primary)] w-5 h-5"></i>
+                    <h3 class="font-bold">Важные справочники</h3>
+                </div>
+                <div class="space-y-1">
+                    <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 group transition-colors">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="file-text" class="w-4 h-4 text-gray-400"></i>
+                            <span class="text-sm">Жилищный кодекс РФ</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-[var(--primary)]"></i>
+                    </a>
+                    <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 group transition-colors">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="file-text" class="w-4 h-4 text-gray-400"></i>
+                            <span class="text-sm">Постановление №354</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-[var(--primary)]"></i>
+                    </a>
+                    <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 group transition-colors">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="scale" class="w-4 h-4 text-gray-400"></i>
+                            <span class="text-sm">Права потребителей услуг ЖКХ</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-[var(--primary)]"></i>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+    </div>
+</main>
+
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>
