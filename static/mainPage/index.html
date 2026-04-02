@@ -145,13 +145,13 @@ body { font-family: 'Inter', sans-serif; }
         <!-- 🔶 КНОПКИ (справа) -->
         <aside class="space-y-6">
 
-            <a href="#" class="card flex justify-between items-center"
+            <a href="/consumer" class="card flex justify-between items-center"
                style="background: var(--button); color: white;">
                 <span>Справочник потребителя</span>
                 <i data-lucide="chevron-right"></i>
             </a>
 
-            <a href="#" class="card flex justify-between items-center"
+            <a href="/complaints" class="card flex justify-between items-center"
                style="background: var(--button); color: white;">
                 <span>Сформировать жалобу</span>
                 <i data-lucide="chevron-right"></i>
@@ -189,7 +189,7 @@ body { font-family: 'Inter', sans-serif; }
                             <span style="background: var(--danger-light); color: var(--danger); padding: 2px 6px; border-radius: 6px;">
                                 Экстренно
                             </span>
-                            <span style="color: gray;">24.05.2024</span>
+                            <span style="color: gray;">{{.DateUpdated}}</span>
                         </div>
 
                         <h3 class="font-bold text-lg mb-2">
@@ -204,7 +204,7 @@ body { font-family: 'Inter', sans-serif; }
                 </div>
                 {{else}}
                 <div>
-                    <div class="text-sm mb-2" style="color: gray;">22.05.2024</div>
+                    <div class="text-sm mb-2" style="color: gray;">{{.DateUpdated}}</div>
                     <h3 class="font-bold text-lg mb-2">
                         {{.Header}}
                     </h3>

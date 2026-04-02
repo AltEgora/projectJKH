@@ -29,6 +29,8 @@ func NewApp(addr string) *http.Server {
 	rout.HandleFunc("/accruals", handlers.AccrualsHandler).Methods("GET")
 	rout.HandleFunc("/contacts", handlers.ContactsHandler).Methods("GET")
 	rout.HandleFunc("/news", handlers.NewsHandler).Methods("GET")
+	rout.HandleFunc("/consumer", handlers.ConsumerHandler).Methods("GET")
+	rout.HandleFunc("/consumer/epd", handlers.EpdHandler).Methods("GET")
 
 	return &http.Server{
 		Handler: rout,

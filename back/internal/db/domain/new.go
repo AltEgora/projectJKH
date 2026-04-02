@@ -1,11 +1,14 @@
 package domain
 
-import "context"
+import (
+	"context"
+	"html/template"
+)
 
 type New struct {
 	ID            int
 	Header        string
-	Content       string
+	Content       template.HTML
 	Is_emergency  bool
 	DatePublished string
 	DateUpdated   string
