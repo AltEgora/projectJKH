@@ -17,7 +17,7 @@ body { font-family: 'Inter', sans-serif; }
     --primary: #da822a;
     --primary-light: #ecb726;
 
-    --button: #601f449c;
+    --button: #601f5fb6;
 
     --bg: #f8fafc;
     --text: #400a2e;
@@ -63,15 +63,15 @@ body { font-family: 'Inter', sans-serif; }
             ЖКХ Тверь
         </div>
 
-        <div class="flex gap-6 text-sm">
+        <div class="flex gap-6 text-sm font-semibold"></div>
             <a href="#" class="text-[var(--primary)] flex items-center gap-1">
                 <i data-lucide="house"></i> Главная
             </a>
-            <a href="#">Тарифы</a>
-            <a href="#">Вопрос-ответ</a>
-            <a href="#">Подать жалобу</a>
-            <a href="#">Проверить начисления</a>
-            <a href="#">Контакты экстренных служб</a>
+            <a href="#"  class="hover:text-[var(--primary)]">Тарифы</a>
+            <a href="#"  class="hover:text-[var(--primary)]">Вопрос-ответ</a>
+            <a href="#"  class="hover:text-[var(--primary)]">Подать жалобу</a>
+            <a href="#"  class="hover:text-[var(--primary)]">Проверить начисления</a>
+            <a href="#"  class="hover:text-[var(--primary)]">Контакты служб</a>
         </div>
     </div>
 </nav>
@@ -98,118 +98,126 @@ body { font-family: 'Inter', sans-serif; }
 </header>
 
 <!-- MAIN -->
-<main class="max-w-7xl mx-auto px-4 py-12 grid lg:grid-cols-3 gap-8">
+<main class="max-w-7xl mx-auto px-4 py-12 space-y-8">
 
-<!-- НОВОСТИ (как отдельное окно) -->
-<section class="lg:col-span-2">
+    <!-- 🔷 ВЕРХ: район + кнопки -->
+    <div class="grid lg:grid-cols-3 gap-8">
 
-    <div class="card">
+        <!-- 🟪 ДАННЫЕ О РАЙОНЕ (слева) -->
+        <section class="lg:col-span-2">
 
-        <div class="flex justify-between mb-6">
-            <h2 class="text-2xl font-bold flex gap-2 items-center">
-                <i data-lucide="newspaper" style="color: var(--primary)"></i>
-                Новости ЖКХ
-            </h2>
+            <div class="card">
 
-            <!-- переход на отдельную страницу -->
-            <a href="/news.html" target="_blank" 
-            class="text-[var(--primary)] text-sm hover:underline">
-                Все новости
-            </a>
-        </div>
+                <h3 class="font-bold mb-4">
+                    Данные для экстренной связи по районам
+                </h3>
 
-        <div class="space-y-6">
+                <div class="flex gap-6">
 
-            <!-- новость -->
-            <div>
-                <div style="border-left: 4px solid var(--danger); padding-left: 12px;">
+                    <!-- список -->
+                    <div class="flex flex-col gap-2 w-1/2">
 
-                    <div class="flex gap-2 mb-2 text-sm">
-                        <span style="background: var(--danger-light); color: var(--danger); padding: 2px 6px; border-radius: 6px;">
-                            Экстренно
-                        </span>
-                        <span style="color: gray;">24.05.2024</span>
+                        <div class="region-item cursor-pointer" data-region="central">
+                            Центральный
+                        </div>
+
+                        <div class="region-item cursor-pointer" data-region="north">
+                            Северный
+                        </div>
+
+                        <div class="region-item cursor-pointer" data-region="south">
+                            Южный
+                        </div>
+
                     </div>
 
-                    <h3 class="font-bold text-lg mb-2">
-                        Отключение воды
-                    </h3>
-
-                    <p style="color: gray;">
-                        В связи с работами будет ограничение...
-                    </p>
+                    <!-- инфо -->
+                    <div class="w-1/2 text-sm" id="region-info">
+                        Наведите на район
+                    </div>
 
                 </div>
+
             </div>
 
-            <!-- новость -->
-            <div>
-                <div class="text-sm mb-2" style="color: gray;">22.05.2024</div>
-                <h3 class="font-bold text-lg mb-2">
-                    Изменение тарифов
-                </h3>
-                <p style="color: gray;">
-                    Новые тарифы вступают в силу...
-                </p>
+        </section>
+
+        <!-- 🔶 КНОПКИ (справа) -->
+        <aside class="space-y-6">
+
+            <a href="#" class="card flex justify-between items-center"
+               style="background: var(--button); color: white;">
+                <span>Справочник потребителя</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+            <a href="#" class="card flex justify-between items-center"
+               style="background: var(--button); color: white;">
+                <span>Сформировать жалобу</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+        </aside>
+
+    </div>
+
+    <!-- 🟦 НОВОСТИ (снизу) -->
+    <section>
+
+        <div class="card">
+
+            <div class="flex justify-between mb-6">
+                <h2 class="text-2xl font-bold flex gap-2 items-center">
+                    <i data-lucide="newspaper" style="color: var(--primary)"></i>
+                    Новости ЖКХ
+                </h2>
+
+                <a href="/news.html" target="_blank"
+                   class="text-[var(--primary)] text-sm">
+                    Все новости
+                </a>
+            </div>
+
+            <div class="space-y-6">
+
+                <div>
+                    <div style="border-left: 4px solid var(--danger); padding-left: 12px;">
+
+                        <div class="flex gap-2 mb-2 text-sm">
+                            <span style="background: var(--danger-light); color: var(--danger); padding: 2px 6px; border-radius: 6px;">
+                                Экстренно
+                            </span>
+                            <span style="color: gray;">24.05.2024</span>
+                        </div>
+
+                        <h3 class="font-bold text-lg mb-2">
+                            Отключение воды
+                        </h3>
+
+                        <p style="color: gray;">
+                            В связи с работами будет ограничение...
+                        </p>
+
+                    </div>
+                </div>
+
+                <div>
+                    <div class="text-sm mb-2" style="color: gray;">22.05.2024</div>
+                    <h3 class="font-bold text-lg mb-2">
+                        Изменение тарифов
+                    </h3>
+                    <p style="color: gray;">
+                        Новые тарифы вступают в силу...
+                    </p>
+                </div>
+
             </div>
 
         </div>
 
-    </div>
-</section>
-
-<!-- SIDEBAR -->
-<aside class="space-y-6">
-
-    <!-- ДЕЙСТВИЯ (теперь сверху и с новым цветом) -->
-    <a href="#" class="card flex justify-between items-center group"
-       style="background: var(--button); color: white;">
-        <span>Мои права</span>
-        <i data-lucide="chevron-right"></i>
-    </a>
-
-    <a href="#" class="card flex justify-between items-center group"
-       style="background: var(--button); color: white;">
-        <span>Сформировать жалобу</span>
-        <i data-lucide="chevron-right"></i>
-    </a>
-</aside>
+    </section>
 
 </main>
-
-<section class="max-w-7xl mx-auto px-4 py-10 border-t" style="border-color: var(--border);">
-
-    <div class="grid md:grid-cols-2 gap-8">
-
-        <!-- список районов -->
-        <div class="space-y-3">
-
-            <h3 class="font-bold text-lg mb-4">
-                Данные о моем районе
-            </h3>
-
-            <div class="region-item cursor-pointer" data-region="central">
-                Центральный район
-            </div>
-
-            <div class="region-item cursor-pointer" data-region="north">
-                Северный район
-            </div>
-
-            <div class="region-item cursor-pointer" data-region="south">
-                Южный район
-            </div>
-
-        </div>
-
-        <!-- инфо -->
-        <div id="region-info" class="text-sm">
-            Наведите на район, чтобы увидеть информацию
-        </div>
-
-    </div>
-
-</section>
 
 <script>
 lucide.createIcons();
