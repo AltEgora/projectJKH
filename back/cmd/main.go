@@ -20,7 +20,7 @@ func main() {
 
 	domain.PRepo = repository.NewPostRepo(postgres)
 
-	app := server.NewApp("0.0.0.0:8081")
+	app := server.NewApp("0.0.0.0:" + settings.AppPort)
 
 	fmt.Println("Server started")
 

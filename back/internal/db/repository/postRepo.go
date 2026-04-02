@@ -47,6 +47,31 @@ func (r *PostRepo) Create(ctx context.Context, new domain.New) error {
 	return err
 }
 
+func (r *PostRepo) GetShortList(ctx context.Context, start int, count int) ([]domain.ShortNew, error) {
+	news := []domain.ShortNew{}
+
+	query := `
+		SELECT id, header, is_emergency, updated_at, preview FROM News
+		ORDER BY updated_at
+		OFFSET $1 LIMIT $2
+	`
+
+	rows, err := r.db.Query(query, start, count)
+	if err != nil {
+		return nil, err
+	}
+
+	for rows.Next() {
+		var row domain.ShortNew
+		rows.Scan(&row.ID, &row.Header, &row.Is_emergency, &row.DateUpdated, &row.Preview)
+		row.DateUpdated = strings.Clone(row.DateUpdated[:10])
+
+		news = append(news, row)
+	}
+
+	return news, nil
+}
+
 // TODO
 func (r *PostRepo) DeleteOld(ctw context.Context, date string) error {
 	return nil

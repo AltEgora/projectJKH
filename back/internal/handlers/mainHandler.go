@@ -9,7 +9,7 @@ import (
 )
 
 type data struct {
-	News []domain.New
+	News []domain.ShortNew
 }
 
 func MainHandler(w http.ResponseWriter, req *http.Request) {
@@ -21,7 +21,7 @@ func MainHandler(w http.ResponseWriter, req *http.Request) {
 		fmt.Printf("Error while templating: %s\n", err)
 	}
 
-	newsList, err := domain.PRepo.GetList(context.Background(), 0, 10)
+	newsList, err := domain.PRepo.GetShortList(context.Background(), 0, 10)
 	if err != nil {
 		fmt.Printf("Error while getting news from bd: %s", err)
 	}
