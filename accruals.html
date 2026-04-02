@@ -1,59 +1,63 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЖКХ Тверь — Проверка начислений</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ЖКХ Тверь — Проверка начислений</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+body { font-family: 'Inter', sans-serif; }
 
-        :root {
-            --primary: #da822a;
-            --primary-light: #ecb726;
-            --button: #601f5fb6;
-            --bg: #f8fafc;
-            --text: #400a2e;
-            --card: #ffffff;
-            --border: #e2e8f0;
-            --dark: #722982;
-        }
+:root {
+    --primary: #da822a;
+    --primary-light: #ecb726;
+    --button: #b302b6;
+    --bg: #f8fafc;
+    --text: #400a2e;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --dark: #722982;
+}
 
-        .card-upload {
-            background: var(--card);
-            border: 2px solid var(--border);
-            border-radius: 24px;
-            padding: 40px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            height: 100%;
-        }
+.card-upload {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 24px;
+    padding: 40px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
 
-        .card-upload:hover {
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(218, 130, 42, 0.1);
-            transform: translateY(-5px);
-        }
+.card-upload:hover {
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(218, 130, 42, 0.1);
+    transform: translateY(-5px);
+}
 
-        .icon-box {
-            width: 80px;
-            height: 80px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-        }
+/* Все иконки одного цвета */
+i[data-lucide] {
+    stroke: var(--button) !important;
+}
 
-    </style>
+.icon-box {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+</style>
 </head>
 
 <body class="bg-[var(--bg)] text-[var(--text)] flex flex-col min-h-screen">
@@ -61,16 +65,16 @@
 <nav class="bg-[var(--card)] border-b sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <div class="font-bold text-[var(--primary)] text-xl flex items-center gap-2">
-            <i data-lucide="search" class="w-6 h-6"></i> ЖКХ Тверь
+            ЖКХ Тверь
         </div>
 
         <div class="hidden md:flex gap-6 text-sm font-semibold">
             <a href="#" class="hover:text-[var(--primary)]">Главная</a>
             <a href="#" class="hover:text-[var(--primary)]">Тарифы</a>
-            <a href="#" class="hover:text-[var(--primary)]">FAQ</a>
-            <a href="#" class="hover:text-[var(--primary)]">Пожаловаться</a>
-            <a href="#" class="text-[var(--primary)]">Начисления</a>
-            <a href="#" class="hover:text-[var(--primary)]">Контакты</a>
+            <a href="#" class="hover:text-[var(--primary)]">Вопрос-ответ</a>
+            <a href="#" class="hover:text-[var(--primary)]">Подать жалобу</a>
+            <a href="#" class="text-[var(--primary)]">Проверить начисления</a>
+            <a href="#" class="hover:text-[var(--primary)]">Контакты служб</a>
         </div>
     </div>
 </nav>
@@ -78,7 +82,7 @@
 <main class="max-w-[1600px] mx-auto px-4 sm:px-8 py-12">
     
     <div class="text-center mb-12">
-        <h1 class="text-3xl md:text-5xl font-extrabold mb-4 text-[var(--dark)]">
+        <h1 class="text-3xl md:text-4xl font-extrabold mb-4 text-[var(--text)]">
             Проверка начислений в квитанции
         </h1>
         <p class="text-gray-500 text-lg max-w-3xl mx-auto">
@@ -86,11 +90,13 @@
         </p>
     </div>
 
-    <div class="flex flex-col xl:flex-row gap-6 items-stretch">
+    <div class="flex flex-col xl:flex-row gap-12 items-stretch">
         
-        <div class="flex flex-col gap-4 w-full xl:w-1/4">
+        <!-- левая колонка -->
+        <div class="flex flex-col gap-6 w-full xl:w-1/3">
+
             <div class="card-upload flex-1 !p-6 justify-center min-h-[200px]">
-                <div class="icon-box !w-14 !h-14 !mb-4 bg-blue-50 text-blue-500">
+                <div class="icon-box !w-14 !h-14 !mb-4 bg-blue-50">
                     <i data-lucide="upload-cloud" class="w-7 h-7"></i>
                 </div>
                 <h3 class="text-xl font-bold mb-1">Загрузить квитанцию</h3>
@@ -98,80 +104,59 @@
             </div>
 
             <div class="card-upload flex-1 !p-6 justify-center min-h-[200px]">
-                <div class="icon-box !w-14 !h-14 !mb-4 bg-green-50 text-green-500">
+                <div class="icon-box !w-14 !h-14 !mb-4 bg-green-50">
                     <i data-lucide="calculator" class="w-7 h-7"></i>
                 </div>
                 <h3 class="text-xl font-bold mb-1">Ввести вручную</h3>
                 <p class="text-gray-400 text-xs italic text-center">Заполните данные сами</p>
             </div>
+
         </div>
 
-        <div class="w-full xl:w-3/4 grid grid-cols-1 md:grid-cols-2 gap-4">
-            
-            <div class="bg-white border-2 border-gray-100 rounded-2xl p-6 flex flex-col hover:border-[var(--primary)] transition-all cursor-pointer group shadow-sm hover:shadow-md">
-                <div class="flex items-start gap-4 mb-3">
-                    <div class="text-teal-500 shrink-0">
+       <!-- правая колонка — объединённые калькуляторы -->
+        <div class="w-full xl:w-2/3 bg-white border-2 border-gray-100 rounded-2xl p-6 shadow-sm">
+            <h2 class="text-2xl font-extrabold mb-6 text-[var(--text)]">Калькулятор тарифов</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="flex flex-col hover:border-[var(--primary)] border rounded-2xl p-6 cursor-pointer transition-all w-full h-full justify-center items-start">
+                    <div class="flex items-center gap-4 mb-3">
                         <i data-lucide="thermometer-snowflake" class="w-10 h-10"></i>
+                        <span class="font-bold text-base">Отопление</span>
                     </div>
-                    <div>
-                        <h4 class="font-extrabold uppercase text-sm md:text-base tracking-tight leading-tight mb-2">Калькулятор расчета размера платы за отопление</h4>
-                        <p class="text-xs text-gray-400 leading-relaxed">
-                            Расчет размера платы за отопление в многоквартирном доме, жилом доме (домовладении)
-                        </p>
-                    </div>
+                    <p class="text-sm text-gray-400">Расчет платы за отопление</p>
                 </div>
-            </div>
 
-            <div class="bg-white border-2 border-gray-100 rounded-2xl p-6 flex flex-col hover:border-[var(--primary)] transition-all cursor-pointer group shadow-sm hover:shadow-md">
-                <div class="flex items-start gap-4 mb-3">
-                    <div class="text-teal-500 shrink-0">
+                <div class="flex flex-col hover:border-[var(--primary)] border rounded-2xl p-6 cursor-pointer transition-all w-full h-full justify-center items-start">
+                    <div class="flex items-center gap-4 mb-3">
                         <i data-lucide="lightbulb" class="w-10 h-10"></i>
+                        <span class="font-bold text-base">Электроснабжение</span>
                     </div>
-                    <div>
-                        <h4 class="font-extrabold uppercase text-sm md:text-base tracking-tight leading-tight mb-2">Калькулятор расчета размера платы за электроснабжение</h4>
-                        <p class="text-xs text-gray-400 leading-relaxed">
-                            Расчет платы за электрическую энергию в многоквартирном доме, жилом доме (домовладении)
-                        </p>
-                    </div>
+                    <p class="text-sm text-gray-400">Расчет платы за электричество</p>
                 </div>
-            </div>
 
-            <div class="bg-white border-2 border-gray-100 rounded-2xl p-6 flex flex-col hover:border-[var(--primary)] transition-all cursor-pointer group shadow-sm hover:shadow-md">
-                <div class="flex items-start gap-4 mb-3">
-                    <div class="text-teal-500 shrink-0">
+                <div class="flex flex-col hover:border-[var(--primary)] border rounded-2xl p-6 cursor-pointer transition-all w-full h-full justify-center items-start">
+                    <div class="flex items-center gap-4 mb-3">
                         <i data-lucide="droplets" class="w-10 h-10"></i>
+                        <span class="font-bold text-base">Горячая вода</span>
                     </div>
-                    <div>
-                        <h4 class="font-extrabold uppercase text-sm md:text-base tracking-tight leading-tight mb-2">Калькулятор расчета платы за горячее водоснабжение</h4>
-                        <p class="text-xs text-gray-400 leading-relaxed">
-                            Расчет размера платы за горячую воду в многоквартирном доме, жилом доме (домовладении)
-                        </p>
-                    </div>
+                    <p class="text-sm text-gray-400">Расчет платы за ГВС</p>
                 </div>
-            </div>
 
-            <div class="bg-white border-2 border-gray-100 rounded-2xl p-6 flex flex-col hover:border-[var(--primary)] transition-all cursor-pointer group shadow-sm hover:shadow-md">
-                <div class="flex items-start gap-4 mb-3">
-                    <div class="text-teal-500 shrink-0">
+                <div class="flex flex-col hover:border-[var(--primary)] border rounded-2xl p-6 cursor-pointer transition-all w-full h-full justify-center items-start">
+                    <div class="flex items-center gap-4 mb-3">
                         <i data-lucide="droplet" class="w-10 h-10"></i>
+                        <span class="font-bold text-base">Холодная вода</span>
                     </div>
-                    <div>
-                        <h4 class="font-extrabold uppercase text-sm md:text-base tracking-tight leading-tight mb-2">Калькулятор расчета платы за холодное водоснабжение</h4>
-                        <p class="text-xs text-gray-400 leading-relaxed">
-                            Расчет платы за холодную воду в многоквартирном доме, жилом доме (домовладении)
-                        </p>
-                    </div>
+                    <p class="text-sm text-gray-400">Расчет платы за ХВС</p>
                 </div>
-            </div>
 
+            </div>
         </div>
+
     </div>
 </main>
 
-
-
 <script>
-    // Инициализация иконок
     lucide.createIcons();
 </script>
 

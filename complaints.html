@@ -1,163 +1,170 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ЖКХ Тверь — Проверка начислений</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЖКХ Тверь — Конструктор жалоб</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-body { font-family: 'Inter', sans-serif; }
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
 
-:root {
-    --primary: #da822a;
-    --primary-light: #ecb726;
-    --button: #b302b6;
-    --bg: #f8fafc;
-    --text: #400a2e;
-    --card: #ffffff;
-    --border: #e2e8f0;
-    --dark: #722982;
-}
+        :root {
+            --primary: #da822a;
+            --primary-light: #ecb726;
+            --button-purple: #722982;
+            --bg: #f8fafc;
+            --text: #400a2e;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --dark-header: #1e293b;
+        }
 
-.card-upload {
-    background: var(--card);
-    border: 2px solid var(--border);
-    border-radius: 24px;
-    padding: 40px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    height: 100%;
-}
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            transition: 0.2s;
+        }
 
-.card-upload:hover {
-    border-color: var(--primary);
-    box-shadow: 0 10px 30px rgba(218, 130, 42, 0.1);
-    transform: translateY(-5px);
-}
-
-/* Все иконки одного цвета */
-i[data-lucide] {
-    stroke: var(--button) !important;
-}
-
-.icon-box {
-    width: 80px;
-    height: 80px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 24px;
-}
-</style>
+        .category-badge {
+            background: #eff6ff;
+            color: #3b82f6;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 
-<body class="bg-[var(--bg)] text-[var(--text)] flex flex-col min-h-screen">
+<body class="bg-[var(--bg)] text-[var(--text)]">
 
 <nav class="bg-[var(--card)] border-b sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <div class="font-bold text-[var(--primary)] text-xl flex items-center gap-2">
-            ЖКХ Тверь
-        </div>
-
-        <div class="hidden md:flex gap-6 text-sm font-semibold">
+        <div class="font-bold text-[var(--primary)] text-xl">ЖКХ Тверь</div>
+        <div class="flex gap-6 text-sm font-semibold">
             <a href="#" class="hover:text-[var(--primary)]">Главная</a>
             <a href="#" class="hover:text-[var(--primary)]">Тарифы</a>
             <a href="#" class="hover:text-[var(--primary)]">Вопрос-ответ</a>
-            <a href="#" class="hover:text-[var(--primary)]">Подать жалобу</a>
-            <a href="#" class="text-[var(--primary)]">Проверить начисления</a>
+            <a href="#" class="text-[var(--primary)] flex items-center gap-1">Подать жалобу</a>
+            <a href="#" class="hover:text-[var(--primary)]">Проверить начисления</a>
             <a href="#" class="hover:text-[var(--primary)]">Контакты служб</a>
         </div>
     </div>
 </nav>
 
-<main class="max-w-[1600px] mx-auto px-4 sm:px-8 py-12">
+<header class="py-12 px-4 text-center">
+    <h1 class="text-4xl font-extrabold mb-2">Конструктор жалоб и обращений</h1>
+    <p class="text-gray-500 mb-8">Выберите проблему, и мы сформируем юридически грамотный документ в формате PDF</p>
     
-    <div class="text-center mb-12">
-        <h1 class="text-3xl md:text-4xl font-extrabold mb-4 text-[var(--text)]">
-            Проверка начислений в квитанции
-        </h1>
-        <p class="text-gray-500 text-lg max-w-3xl mx-auto">
-            Мы сверим ваши данные с актуальными тарифами региона и проверим корректность итоговой суммы
-        </p>
+    <div class="max-w-2xl mx-auto relative">
+        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+        <input type="text" placeholder="Поиск проблемы..." 
+               class="w-full py-4 pl-12 pr-6 rounded-xl border border-[var(--border)] outline-none focus:border-[var(--primary)]">
     </div>
+</header>
 
-    <div class="flex flex-col xl:flex-row gap-12 items-stretch">
-        
-        <!-- левая колонка -->
-        <div class="flex flex-col gap-6 w-full xl:w-1/3">
+<main class="max-w-7xl mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 gap-4 items-start">
 
-            <div class="card-upload flex-1 !p-6 justify-center min-h-[200px]">
-                <div class="icon-box !w-14 !h-14 !mb-4 bg-blue-50">
-                    <i data-lucide="upload-cloud" class="w-7 h-7"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-1">Загрузить квитанцию</h3>
-                <p class="text-gray-400 text-xs italic text-center">Автоматическое распознавание</p>
-            </div>
+        <section class="space-y-4">
 
-            <div class="card-upload flex-1 !p-6 justify-center min-h-[200px]">
-                <div class="icon-box !w-14 !h-14 !mb-4 bg-green-50">
-                    <i data-lucide="calculator" class="w-7 h-7"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-1">Ввести вручную</h3>
-                <p class="text-gray-400 text-xs italic text-center">Заполните данные сами</p>
-            </div>
+    <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 text-center lg:text-left">
+        Категории проблем
+    </h2>
 
+    <!-- ОТОПЛЕНИЕ -->
+    <div class="card">
+        <div class="flex justify-between items-center cursor-pointer category-header">
+            <span class="font-bold text-lg">Отопление</span>
+            <i data-lucide="chevron-down"></i>
         </div>
 
-       <!-- правая колонка — объединённые калькуляторы -->
-        <div class="w-full xl:w-2/3 bg-white border-2 border-gray-100 rounded-2xl p-6 shadow-sm">
-            <h2 class="text-2xl font-extrabold mb-6 text-[var(--text)]">Калькулятор тарифов</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                <div class="flex flex-col hover:border-[var(--primary)] border rounded-2xl p-6 cursor-pointer transition-all w-full h-full justify-center items-start">
-                    <div class="flex items-center gap-4 mb-3">
-                        <i data-lucide="thermometer-snowflake" class="w-10 h-10"></i>
-                        <span class="font-bold text-base">Отопление</span>
-                    </div>
-                    <p class="text-sm text-gray-400">Расчет платы за отопление</p>
-                </div>
-
-                <div class="flex flex-col hover:border-[var(--primary)] border rounded-2xl p-6 cursor-pointer transition-all w-full h-full justify-center items-start">
-                    <div class="flex items-center gap-4 mb-3">
-                        <i data-lucide="lightbulb" class="w-10 h-10"></i>
-                        <span class="font-bold text-base">Электроснабжение</span>
-                    </div>
-                    <p class="text-sm text-gray-400">Расчет платы за электричество</p>
-                </div>
-
-                <div class="flex flex-col hover:border-[var(--primary)] border rounded-2xl p-6 cursor-pointer transition-all w-full h-full justify-center items-start">
-                    <div class="flex items-center gap-4 mb-3">
-                        <i data-lucide="droplets" class="w-10 h-10"></i>
-                        <span class="font-bold text-base">Горячая вода</span>
-                    </div>
-                    <p class="text-sm text-gray-400">Расчет платы за ГВС</p>
-                </div>
-
-                <div class="flex flex-col hover:border-[var(--primary)] border rounded-2xl p-6 cursor-pointer transition-all w-full h-full justify-center items-start">
-                    <div class="flex items-center gap-4 mb-3">
-                        <i data-lucide="droplet" class="w-10 h-10"></i>
-                        <span class="font-bold text-base">Холодная вода</span>
-                    </div>
-                    <p class="text-sm text-gray-400">Расчет платы за ХВС</p>
-                </div>
-
+        <div class="mt-4 space-y-2 hidden category-content">
+            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
+                Отсутствие отопления
             </div>
         </div>
-
     </div>
+
+    <!-- ВОДОСНАБЖЕНИЕ -->
+    <div class="card">
+        <div class="flex justify-between items-center cursor-pointer category-header">
+            <span class="font-bold text-lg">Водоснабжение</span>
+            <i data-lucide="chevron-down"></i>
+        </div>
+
+        <div class="mt-4 space-y-2 hidden category-content">
+            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
+                Грязная вода из крана
+            </div>
+            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
+                Засор канализации
+            </div>
+        </div>
+    </div>
+
+    <!-- ЭЛЕКТРИЧЕСТВО -->
+    <div class="card">
+        <div class="flex justify-between items-center cursor-pointer category-header">
+            <span class="font-bold text-lg">Электричество</span>
+            <i data-lucide="chevron-down"></i>
+        </div>
+
+        <div class="mt-4 space-y-2 hidden category-content">
+            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
+                Отсутствие электричества
+            </div>
+        </div>
+    </div>
+
+    <!-- ОБЩЕЕ ИМУЩЕСТВО -->
+    <div class="card">
+        <div class="flex justify-between items-center cursor-pointer category-header">
+            <span class="font-bold text-lg">Общее имущество</span>
+            <i data-lucide="chevron-down"></i>
+        </div>
+
+        <div class="mt-4 space-y-2 hidden category-content">
+            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
+                Ненадлежащая уборка подъезда и территории
+            </div>
+            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
+                Затопление (соседи или крыша)
+            </div>
+            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
+                Неисправность лифта
+            </div>
+        </div>
+    </div>
+
+</section>
+</div>
 </main>
 
 <script>
-    lucide.createIcons();
+lucide.createIcons();
+
+// аккордеон
+document.querySelectorAll('.category-header').forEach(header => {
+    header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+
+        // закрыть все остальные (по желанию — можно убрать)
+        document.querySelectorAll('.category-content').forEach(c => {
+            if (c !== content) c.classList.add('hidden');
+        });
+
+        // переключить текущий
+        content.classList.toggle('hidden');
+    });
+});
 </script>
 
 </body>
