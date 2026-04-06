@@ -1,0 +1,9 @@
+services:
+  gkh-calculator:
+    build:
+      context: ./GkhCalculator
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
