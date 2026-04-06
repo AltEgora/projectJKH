@@ -56,22 +56,17 @@ body { font-family: 'Inter', sans-serif; }
 <body class="bg-[var(--bg)] text-[var(--text)]">
 
 <!-- NAVBAR -->
-<nav class="bg-[var(--card)] border-b sticky top-0 z-50">
+<nav class="bg-white border-b sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-
-        <div class="font-bold text-[var(--primary)] text-xl">
-            ЖКХ Тверь
-        </div>
-
-        <div class="flex gap-6 text-sm font-semibold"></div>
-            <a href="#" class="text-[var(--primary)] flex items-center gap-1">
-                <i data-lucide="house"></i> Главная
-            </a>
-            <a href="#"  class="hover:text-[var(--primary)]">Тарифы</a>
-            <a href="#"  class="hover:text-[var(--primary)]">Вопрос-ответ</a>
-            <a href="#"  class="hover:text-[var(--primary)]">Подать жалобу</a>
-            <a href="#"  class="hover:text-[var(--primary)]">Проверить начисления</a>
-            <a href="#"  class="hover:text-[var(--primary)]">Контакты служб</a>
+        <a href="/" class="block">
+    <div class="font-bold text-[var(--primary)] text-xl tracking-tight">ПроЖКХ</div></a>
+        <div class="flex gap-6 text-sm font-semibold text-slate-600">
+            <a href="#" class="text-[var(--primary)] flex items-center gap-1">Главная</a>
+            <a href="#" class="hover:text-[var(--primary)]">Тарифы</a>
+            <a href="#" class="hover:text-[var(--primary)]">Вопрос-ответ</a>
+            <a href="#" class="hover:text-[var(--primary)]">Подать жалобу</a>
+            <a href="#" class="hover:text-[var(--primary)]">Проверить начисления</a>
+            <a href="#" class="hover:text-[var(--primary)]">Контакты служб</a>
         </div>
     </div>
 </nav>
@@ -100,64 +95,112 @@ body { font-family: 'Inter', sans-serif; }
 <!-- MAIN -->
 <main class="max-w-7xl mx-auto px-4 py-12 space-y-8">
 
-    <!-- 🔷 ВЕРХ: район + кнопки -->
+    <!-- ВЕРХ: район + кнопки -->
     <div class="grid lg:grid-cols-3 gap-8">
 
-        <!-- 🟪 ДАННЫЕ О РАЙОНЕ (слева) -->
+        <!-- ДАННЫЕ О РАЙОНЕ  -->
         <section class="lg:col-span-2">
 
-            <div class="card">
-
-                <h3 class="font-bold mb-4">
-                    Данные для экстренной связи по районам
-                </h3>
-
-                <div class="flex gap-6">
-
-                    <!-- список -->
-                    <div class="flex flex-col gap-2 w-1/2">
-
-                        <div class="region-item cursor-pointer" data-region="central">
-                            Центральный
+          <div class="card !p-8 shadow-sm">
+                <div class="flex items-center gap-3 mb-6 text-[var(--danger)]">
+                    <i data-lucide="shield-alert" class="w-6 h-6"></i>
+                    <h3 class="text-xl font-bold text-[var(--text)]">Экстренные номера</h3>
+                </div>
+                
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center p-4 bg-[var(--danger)]/5 rounded-xl border border-[var(--danger)]/10">
+                        <div>
+                            <div class="font-bold text-[var(--text)]">Служба спасения</div>
+                            <div class="text-[10px] uppercase tracking-wider text-gray-500">Единый номер</div>
                         </div>
-
-                        <div class="region-item cursor-pointer" data-region="north">
-                            Северный
-                        </div>
-
-                        <div class="region-item cursor-pointer" data-region="south">
-                            Южный
-                        </div>
-
+                        <div class="text-2xl font-black text-[var(--danger)]">112</div>
                     </div>
 
-                    <!-- инфо -->
-                    <div class="w-1/2 text-sm" id="region-info">
-                        Наведите на район
+                    <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div>
+                            <div class="font-bold text-[var(--text)]">Единая дежурно-диспетчерская служба (ЕДДС)</div>
+                            <div class="text-xs text-gray-500">Круглосуточный прием сообщений о ЧС</div>
+                        </div>
+                        <div class="font-bold text-[var(--danger)] text-lg">48-00-00</div>
+                    </div>
+
+                    <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div>
+                            <div class="font-bold text-[var(--text)]">Аварийная газовая служба</div>
+                            <div class="text-xs text-gray-500">Единый номер аварийной газовой службы в России</div>
+                        </div>
+                        <div class="font-bold text-[var(--danger)] text-lg">104</div>
+                    </div>
+                  
+                  <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div>
+                            <div class="font-bold text-[var(--text)]">Отопление и горячая вода</div>
+                            <div class="text-xs text-gray-500">ООО «Тверская генерация»</div>
+                        </div>
+                        <div class="font-bold text-[var(--danger)] text-lg">78-00-00</div>
+                    </div>
+                  
+                  <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div>
+                            <div class="font-bold text-[var(--text)]"> Холодная вода и канализация</div>
+                            <div class="text-xs text-gray-500">ООО «Тверь Водоканал»</div>
+                        </div>
+                        <div class="font-bold text-[var(--danger)] text-lg">333-555</div>
+                    </div>
+                  
+                  <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div>
+                            <div class="font-bold text-[var(--text)]"> Электроснабжение</div>
+                            <div class="text-xs text-gray-500">АтомЭнергоСбыт</div>
+                        </div>
+                        <div class="font-bold text-[var(--danger)] text-lg">48-30-13</div>
+                    </div>
+                  
+                  <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div>
+                            <div class="font-bold text-[var(--text)]">Региональный оператор по вывозу мусора</div>
+                            <div class="text-xs text-gray-500">ООО «Тверьспецавтохозяйство»</div>
+                        </div>
+                        <div class="font-bold text-[var(--danger)] text-lg">8-800-250-99-48</div>
+                    </div>
+                  
+                  <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div>
+                            <div class="font-bold text-[var(--text)]">Аварийно-спасательный отряд МЧС</div>
+                            <div class="text-xs text-gray-500">Единый номер аварийной газовой службы в России</div>
+                        </div>
+                        <div class="font-bold text-[var(--danger)] text-lg">290-54-60, 287-54-60</div>
+                    </div>
+                  
+                  <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div>
+                            <div class="font-bold text-[var(--text)]">ЕДДС города</div>
+                            <div class="text-xs text-gray-500">Если нет точных контактов УК</div>
+                        </div>
+                        <div class="font-bold text-[var(--danger)] text-lg">48-00-00</div>
                     </div>
 
                 </div>
-
             </div>
 
         </section>
 
-        <!-- 🔶 КНОПКИ (справа) -->
-        <aside class="space-y-6">
+        <!-- СПРАВА: кнопки -->
+    <aside class="space-y-6 sticky top-24 h-fit">
 
-            <a href="#" class="card flex justify-between items-center"
-               style="background: var(--button); color: white;">
-                <span>Справочник потребителя</span>
-                <i data-lucide="chevron-right"></i>
-            </a>
+        <a href="#" class="card flex justify-between items-center"
+           style="background: var(--button); color: white;">
+            <span>Справочник потребителя</span>
+            <i data-lucide="chevron-right"></i>
+        </a>
 
-            <a href="#" class="card flex justify-between items-center"
-               style="background: var(--button); color: white;">
-                <span>Сформировать жалобу</span>
-                <i data-lucide="chevron-right"></i>
-            </a>
+        <a href="#" class="card flex justify-between items-center"
+           style="background: var(--button); color: white;">
+            <span>Сформировать жалобу</span>
+            <i data-lucide="chevron-right"></i>
+        </a>
 
-        </aside>
+    </aside>
 
     </div>
 
@@ -184,32 +227,33 @@ body { font-family: 'Inter', sans-serif; }
                     <div style="border-left: 4px solid var(--danger); padding-left: 12px;">
 
                         <div class="flex gap-2 mb-2 text-sm">
-                            <span style="background: var(--danger-light); color: var(--danger); padding: 2px 6px; border-radius: 6px;">
-                                Экстренно
-                            </span>
-                            <span style="color: gray;">24.05.2024</span>
+                            <span style="color: gray;">01.04.2026</span>
                         </div>
 
                         <h3 class="font-bold text-lg mb-2">
-                            Отключение воды
+                            Отключение электроэнергии
                         </h3>
 
                         <p style="color: gray;">
-                            В связи с работами будет ограничение...
+                            АО «Тверьгорэлектро» информирует жителей областного центра о проведении плановых ремонтных работ на электросетях...
                         </p>
 
                     </div>
                 </div>
 
                 <div>
-                    <div class="text-sm mb-2" style="color: gray;">22.05.2024</div>
+                  <div style="border-left: 4px solid var(--danger); padding-left: 12px;">
+                    <div class="text-sm mb-2" style="color: gray;">
+                      <span style="color: gray;">30.03.2026</span>
+                    </div>
                     <h3 class="font-bold text-lg mb-2">
-                        Изменение тарифов
+                        Александр Новак и Виталий Королев обсудили модернизацию теплоснабжения Твери и газификацию Верхневолжья
                     </h3>
                     <p style="color: gray;">
-                        Новые тарифы вступают в силу...
+                        Главные темы: повышение надёжности теплоснабжения областной столицы, газификация Верхневолжья и модернизация объектов ЖКХ...
                     </p>
                 </div>
+              </div>
 
             </div>
 
@@ -221,35 +265,6 @@ body { font-family: 'Inter', sans-serif; }
 
 <script>
 lucide.createIcons();
-
-const data = {
-    central: {
-        head: "Иванов И.И.",
-        phone: "+7 900 000-00-00",
-        site: "central.ru"
-    },
-    north: {
-        head: "Петров П.П.",
-        phone: "+7 900 111-11-11",
-        site: "north.ru"
-    },
-    south: {
-        head: "Сидоров С.С.",
-        phone: "+7 900 222-22-22",
-        site: "south.ru"
-    }
-};
-
-document.querySelectorAll('.region-item').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        const r = data[el.dataset.region];
-        document.getElementById('region-info').innerHTML = `
-            <div><b>Глава:</b> ${r.head}</div>
-            <div><b>Телефон:</b> ${r.phone}</div>
-            <div><b>Сайт:</b> ${r.site}</div>
-        `;
-    });
-});
 </script>
 
 </body>
