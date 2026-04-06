@@ -2,22 +2,21 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Калькулятор ЖКХ — Тверь</title>
+<title>ЖКХ — Тверь: опрос и расчёт</title>
 
 <style>
 body {
     font-family: Arial, sans-serif;
     background: #f5f7fa;
-    padding: 30px;
+    padding: 20px;
 }
 
 .container {
-    background: white;
-    padding: 25px;
-    max-width: 420px;
+    max-width: 600px;
     margin: auto;
+    background: white;
+    padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 h2 {
@@ -25,140 +24,237 @@ h2 {
 }
 
 label {
+    display: block;
+    margin-top: 12px;
     font-weight: bold;
 }
 
-input {
+input, select {
     width: 100%;
-    padding: 10px;
-    margin: 8px 0 15px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+    padding: 8px;
+    margin-top: 5px;
 }
 
 button {
     width: 100%;
     padding: 12px;
-    background: #4CAF50;
+    margin-top: 20px;
+    background: #2e7d32;
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
     cursor: pointer;
+    border-radius: 6px;
 }
 
 button:hover {
-    background: #45a049;
+    background: #256428;
 }
 
-#result {
+.hidden {
+    display: none;
+}
+
+#calc {
     margin-top: 20px;
     padding: 15px;
-    background: #f0f4f8;
+    background: #f1f1f1;
     border-radius: 8px;
 }
-
-.result-ok {
-    color: green;
-}
-
-.result-warn {
-    color: orange;
-}
-
-.result-bad {
-    color: red;
-}
 </style>
-
 </head>
 
 <body>
 
 <div class="container">
 
-<h2>Калькулятор ЖКХ — Тверь</h2>
+<h2>Опрос перед расчётом ЖКХ (Тверь)</h2>
 
-<label>Холодная вода (м³)</label>
-<input id="cold" type="number" placeholder="Например: 10">
 
-<label>Канализация (м³)</label>
-<input id="sewer" type="number" placeholder="Например: 10">
+<div id="survey">
 
-<label>Электричество (кВт⋅ч)</label>
-<input id="el" type="number" placeholder="Например: 100">
+    <label>Тип помещения</label>
+    <select id="propertyType">
+        <option value="residential">Жилое</option>
+        <option value="commercial">Нежилое</option>
+    </select>
 
-<label>Отопление (Гкал)</label>
-<input id="heat" type="number" placeholder="Например: 1">
+    <label>Тип дома</label>
+    <select id="buildingType">
+        <option value="apartment">Многоквартирный дом</option>
+        <option value="house">Частный дом</option>
+    </select>
 
-<label>
-    <input type="checkbox" id="benefits">
-    Есть льготы
-</label>
+    <label>Отопление</label>
+    <select id="heatingType">
+        <option value="central">Центральное</option>
+        <option value="individual">Индивидуальное</option>
+        <option value="none">Нет</option>
+    </select>
 
-<br><br>
+    <label>Счётчик отопления</label>
+    <select id="heatingMeter">
+        <option value="true">Есть</option>
+        <option value="false">Нет</option>
+    </select>
 
-<label>Сумма из квитанции (₽)</label>
-<input id="user_total" type="number" placeholder="Например: 5000">
+    <label>Счётчик воды</label>
+    <select id="waterMeter">
+        <option value="true">Есть</option>
+        <option value="false">Нет</option>
+    </select>
 
-<button onclick="calc()">Рассчитать</button>
+    <label>Электричество (учёт)</label>
+    <select id="electricityType">
+        <option value="single">Однотарифный</option>
+        <option value="dual">День / ночь</option>
+    </select>
 
-<div id="result"></div>
+    <label>Тип плиты</label>
+    <select id="stoveType">
+        <option value="gas">Газовая</option>
+        <option value="electric">Электрическая (тариф на свет × 0,7)</option>
+    </select>
+
+    <label>Газ</label>
+    <select id="gasType">
+        <option value="none">Нет</option>
+        <option value="meter">По счётчику</option>
+        <option value="norm">По нормативу</option>
+    </select>
+
+    <label>ОДН (общедомовые нужды)</label>
+    <select id="odn">
+        <option value="true">Есть</option>
+        <option value="false">Нет</option>
+    </select>
+
+    <label>Площадь (м²)</label>
+    <input id="area" type="number">
+
+    <label>Количество жильцов</label>
+    <input id="residents" type="number">
+
+    <button onclick="startCalc()">Продолжить</button>
+
+</div>
+
+<div id="calc" class="hidden">
+
+    <h3>Данные для расчёта</h3>
+
+    <label>Холодная вода (м³)</label>
+    <input id="coldWater">
+
+    <label>Горячая вода (м³)</label>
+    <input id="hotWater">
+
+    <label>Электричество (день)</label>
+    <input id="elDay">
+
+    <label>Электричество (ночь)</label>
+    <input id="elNight">
+
+    <label>Отопление (Гкал)</label>
+    <input id="heating">
+
+    <label>Газ</label>
+    <input id="gas">
+
+    <label>Сумма из квитанции</label>
+    <input id="userTotal">
+
+    <button onclick="send()">Рассчитать</button>
+
+    <div id="result"></div>
+
+</div>
 
 </div>
 
 <script>
-async function calc() {
+let profile = {};
+
+function startCalc() {
+
+    profile = {
+        propertyType: val("propertyType"),
+        buildingType: val("buildingType"),
+        heatingType: val("heatingType"),
+        heatingMeter: val("heatingMeter") === "true",
+        waterMeter: val("waterMeter") === "true",
+        electricityType: val("electricityType"),
+        stoveType: val("stoveType"),
+        gasType: val("gasType"),
+        odn: val("odn") === "true",
+        area: num("area"),
+        residents: num("residents")
+    };
+
+    localStorage.setItem("gkh_profile", JSON.stringify(profile));
+
+    document.getElementById("survey").classList.add("hidden");
+    document.getElementById("calc").classList.remove("hidden");
+}
+
+async function send() {
 
     const data = {
-        coldWaterVolume: +document.getElementById("cold").value || 0,
-        sewerVolume: +document.getElementById("sewer").value || 0,
-        electricityVolume: +document.getElementById("el").value || 0,
-        heatingVolume: +document.getElementById("heat").value || 0,
-        hasBenefits: document.getElementById("benefits").checked,
-        userTotal: +document.getElementById("user_total").value || 0
+        profile,
+        coldWaterVolume: num("coldWater"),
+        hotWaterVolume: num("hotWater"),
+        electricityVolume: num("elDay") + num("elNight"),
+        electricityDayVolume: num("elDay"),
+        electricityNightVolume: num("elNight"),
+        heatingVolume: num("heating"),
+        gasVolume: num("gas"),
+        residents: profile.residents || 0,
+        hasBenefits: false,
+        userTotal: num("userTotal")
     };
 
     const res = await fetch("/api/gkh/calculate", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
     });
 
     const r = await res.json();
 
-    const statusText = getStatusText(r.status);
-    const statusClass = getStatusClass(r.status);
+    // Создаем словарь для перевода статусов
+    const statusTranslations = {
+        "ok": "<span style='color: green;'>Всё верно</span>",
+        "overpay": "<span style='color: orange;'>Переплата (в квитанции сумма больше)</span>",
+        "underpay": "<span style='color: red;'>Недоплата (в квитанции сумма меньше)</span>"
+    };
+
+    // Получаем перевод или выводим исходный статус, если что-то пошло не так
+    const translatedStatus = statusTranslations[r.status] || r.status;
 
     document.getElementById("result").innerHTML = `
-        <h3>Результат расчёта</h3>
+        <h3>Результат</h3>
+        <b>Итого:</b> ${r.total.toFixed(2)} ₽<br>
+        <b>Разница:</b> ${r.difference.toFixed(2)} ₽<br>
+        <b>Статус:</b> ${translatedStatus}<br><br>
 
-        <b>Итого:</b> ${r.total.toFixed(2)} ₽ <br>
-        <b>Разница:</b> ${r.difference.toFixed(2)} ₽ <br>
-        <b class="${statusClass}">Статус: ${statusText}</b>
-
-        <hr>
-
-        <h4>Детализация:</h4>
+        <b>Расшифровка:</b><br>
         Холодная вода: ${r.breakdown.coldWater.toFixed(2)} ₽<br>
-        Канализация: ${r.breakdown.sewer.toFixed(2)} ₽<br>
+        Горячая вода: ${r.breakdown.hotWater.toFixed(2)} ₽<br>
+        Водоотведение: ${r.breakdown.sewer.toFixed(2)} ₽<br>
         Электричество: ${r.breakdown.electricity.toFixed(2)} ₽<br>
-        Отопление: ${r.breakdown.heating.toFixed(2)} ₽
+        Отопление: ${r.breakdown.heating.toFixed(2)} ₽<br>
+        Газ: ${r.breakdown.gas.toFixed(2)} ₽<br>
+        Обращение с ТКО (на жильца): ${r.breakdown.waste.toFixed(2)} ₽<br>
+        ОДН (оценка): ${r.breakdown.odn.toFixed(2)} ₽<br>
+        Капитальный ремонт: ${r.breakdown.capitalRepair.toFixed(2)} ₽
     `;
 }
 
-function getStatusText(status) {
-    if (status === "ok") return "✅ Всё корректно";
-    if (status === "overpay") return "⚠️ Возможна переплата";
-    if (status === "underpay") return "⚠️ Возможна недоплата";
-    return status;
+function val(id) {
+    return document.getElementById(id).value;
 }
 
-function getStatusClass(status) {
-    if (status === "ok") return "result-ok";
-    if (status === "overpay") return "result-warn";
-    if (status === "underpay") return "result-bad";
-    return "";
+function num(id) {
+    return +document.getElementById(id).value || 0;
 }
 </script>
 

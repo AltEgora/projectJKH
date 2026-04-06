@@ -2,10 +2,17 @@ namespace GkhCalculator.Models
 {
     public class GkhRequest
     {
+        public GkhProfile? Profile { get; set; }
+
         public decimal ColdWaterVolume { get; set; }
-        public decimal SewerVolume { get; set; }
+        public decimal HotWaterVolume { get; set; }
         public decimal ElectricityVolume { get; set; }
+        public decimal ElectricityDayVolume { get; set; }
+        public decimal ElectricityNightVolume { get; set; }
         public decimal HeatingVolume { get; set; }
+        public decimal GasVolume { get; set; }
+
+        public int Residents { get; set; }
 
         public bool HasBenefits { get; set; }
 

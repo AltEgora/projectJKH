@@ -7,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Swagger / OpenAPI
 builder.Services.AddOpenApi();
 
+builder.Services.Configure<GkhTariffsOptions>(
+    builder.Configuration.GetSection(GkhTariffsOptions.SectionName));
+
 // 👉 Регистрируем сервис
 builder.Services.AddScoped<GkhCalculatorService>();
 
