@@ -5,13 +5,29 @@ services:
       - "8081:8081"
     command: go run cmd/main.go
     volumes:
-      - ./static:/app/static
+      - ./front:/app/front
     env_file:
       - .env
     depends_on:
       - db
     networks:
       - net
+
+  calc:
+    build: ./GkhCalculator
+    ports:
+      - "8082:8080"
+    expose:
+      - 8080
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - net
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+
   db:
     image: postgres:latest
     volumes:

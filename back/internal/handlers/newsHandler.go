@@ -15,7 +15,7 @@ type dataNews struct {
 func NewsHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Got request on news page")
 
-	tmpl, err := template.ParseFiles("./static/news/index.html")
+	tmpl, err := template.ParseFiles("./front/news.html")
 
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)

@@ -15,7 +15,7 @@ type dataEpd struct {
 func EpdHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Got request on epd page")
 
-	tmpl, err := template.ParseFiles("./static/epd/index.html")
+	tmpl, err := template.ParseFiles("./front/EPD.html")
 
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)

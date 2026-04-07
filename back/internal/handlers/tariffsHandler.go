@@ -9,7 +9,7 @@ import (
 func TariffsHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Got request on tariffs page")
 
-	tmpl, err := template.ParseFiles("./static/tariffs/index.html")
+	tmpl, err := template.ParseFiles("./front/tariffs.html")
 
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)

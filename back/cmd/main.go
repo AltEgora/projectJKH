@@ -20,6 +20,7 @@ func main() {
 
 	domain.PRepo = repository.NewPostRepo(postgres)
 	domain.StatePRepo = repository.NewStatePostRepo(postgres)
+	domain.PhonePRepo = repository.NewPhonePostRepo(postgres)
 
 	app := server.NewApp("0.0.0.0:" + settings.AppPort)
 

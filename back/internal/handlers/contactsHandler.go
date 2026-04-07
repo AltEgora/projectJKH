@@ -9,7 +9,7 @@ import (
 func ContactsHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Got request on contacts page")
 
-	tmpl, err := template.ParseFiles("./static/contacts/index.html")
+	tmpl, err := template.ParseFiles("./front/contacts.html")
 
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)

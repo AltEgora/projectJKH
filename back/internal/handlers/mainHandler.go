@@ -9,13 +9,14 @@ import (
 )
 
 type data struct {
-	News []domain.ShortNew
+	News   []domain.ShortNew
+	Phones []domain.Phone
 }
 
 func MainHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Got request on main page")
 
-	tmpl, err := template.ParseFiles("./static/mainPage/index.html")
+	tmpl, err := template.ParseFiles("./front/home.html")
 
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)
@@ -26,8 +27,14 @@ func MainHandler(w http.ResponseWriter, req *http.Request) {
 		fmt.Printf("Error while getting news from bd: %s", err)
 	}
 
+	phoneList, err := domain.PhonePRepo.GetList(context.Background())
+	if err != nil {
+		fmt.Printf("Error while getting news from bd: %s", err)
+	}
+
 	err = tmpl.Execute(w, data{
-		News: newsList,
+		News:   newsList,
+		Phones: phoneList,
 	})
 
 	if err != nil {

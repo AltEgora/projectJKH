@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЖКХ Тверь — Актуальные тарифы</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+
+        :root {
+            --primary: #da822a;
+            --primary-dark: #722982;
+            --bg: #f8fafc;
+            --text: #400a2e;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --gray-light: #cbd5e1;
+        }
+
+        .tariff-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 16px 24px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .tariff-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .price-badge {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .accordion-content {
+            display: none;
+            margin-top: 12px;
+            border-top: 1px solid var(--border);
+            font-size: 14px;
+            line-height: 1.6;
+            cursor: default;
+        }
+
+        .tariff-card.active .accordion-content {
+            display: block;
+        }
+          
+        .accordion-box {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px;
+            margin-top: 12px;
+            background: #fafafa;
+        }
+
+        .price-value {
+            font-weight: 800;
+            font-size: 16px;
+            color: var(--text);
+        }
+
+        .date-section {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 2px;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .doc-link {
+            display: inline-block;
+            margin-top: 8px;
+            color: var(--primary);
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        /* Улучшенная прозрачная кнопка */
+        .calc-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px 24px;
+            background-color: transparent;
+            color: #64748b; /* Сероватый текст изначально */
+            font-weight: 600;
+            border-radius: 12px;
+            border: 1px solid var(--gray-light); /* Сероватая рамка */
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .calc-button:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(218, 130, 42, 0.15);
+            background-color: rgba(218, 130, 42, 0.02);
+        }
+
+        .calc-button i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body class="bg-[var(--bg)] text-[var(--text)]">
+
+  <nav class="bg-[var(--card)] border-b sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div class="font-bold text-[var(--primary)] text-xl">ЖКХ Тверь</div>
+        <div class="flex gap-6 text-sm font-semibold">
+            <a href="/" class="hover:text-[var(--primary)]">Главная</a>
+            <a href="/tariffs" class="text-[var(--primary)] flex items-center gap-1">Тарифы</a>
+            <a href="/faq" class="hover:text-[var(--primary)]">Вопрос-ответ</a>
+            <a href="/complaints" class="hover:text-[var(--primary)]">Подать жалобу</a>
+            <a href="/calc" class="hover:text-[var(--primary)]">Проверить начисления</a>
+            <a href="/contacts" class="hover:text-[var(--primary)]">Контакты служб</a>
+        </div>
+    </div>
+</nav>
+
+<header class="py-12 text-center">
+    <h1 class="text-4xl font-extrabold tracking-tight">Актуальные тарифы ЖКХ</h1>
+</header>
+
+<main class="max-w-3xl mx-auto px-4 pb-20 space-y-4">
+
+    <div class="tariff-card">
+        <div class="flex justify-between items-center">
+            <div class="flex gap-5 items-center">
+                <div class="price-badge bg-blue-50 text-blue-600">
+                    <i data-lucide="snowflake"></i>
+                </div>
+                <h3 class="font-bold">Холодное водоснабжение</h3>
+            </div>
+            <i data-lucide="chevron-down"></i>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-box">
+                <strong class="text-lg uppercase">ХОЛОДНОЕ ВОДОСНАБЖЕНИЕ</strong><br>
+                <span class="text-slate-500 italic">Поставщик: ООО «Тверь Водоканал»</span><br>
+                
+                <p class="mt-4 font-bold border-b pb-1">Для населения (с учетом НДС):</p>
+                <span class="date-section">с 1 января по 30 сентября 2026 года:</span>
+                <span class="price-value">31,83</span> руб./куб. м<br>
+                <span class="date-section">с 1 октября по 31 декабря 2026 года:</span>
+                <span class="price-value">35,48</span> руб./куб. м
+                
+                <br><br>
+                <a href="http://publication.pravo.gov.ru/document/6901202512180019" class="doc-link" target="_blank">Приказ о стоимости холодного водоснабжения</a>
+                
+                <button class="calc-button" onclick="event.stopPropagation();">
+                    <i data-lucide="calculator" class="w-4 h-4"></i> Рассчитать холодное водоснабжение
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tariff-card">
+        <div class="flex justify-between items-center">
+            <div class="flex gap-5 items-center">
+                <div class="price-badge bg-red-50 text-red-600">
+                    <i data-lucide="droplet"></i>
+                </div>
+                <h3 class="font-bold">Горячее водоснабжение</h3>
+            </div>
+            <i data-lucide="chevron-down"></i>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-box">
+                <strong class="text-lg uppercase">ГОРЯЧЕЕ ВОДОСНАБЖЕНИЕ</strong><br>
+                <span class="text-slate-500 italic">Поставщик: ООО «Тверская генерация»</span><br>
+                
+                <p class="mt-4 font-bold border-b pb-1">Для населения (с учетом НДС):</p>
+                <span class="date-section italic">с 1 января по 30 сентября 2026 года:</span>
+                компонент на воду: <span class="price-value">26,09</span> руб./куб. м<br>
+                компонент на энергию: <span class="price-value">2 683,50</span> руб./Гкал
+
+                <br><br>
+                <a href="http://publication.pravo.gov.ru/document/6901202512190021?index=4" class="doc-link" target="_blank">Приказ о стоимости горячего водоснабжения</a>
+
+                <button class="calc-button" onclick="event.stopPropagation();">
+                    <i data-lucide="calculator" class="w-4 h-4"></i> Рассчитать горячее водоснабжение
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tariff-card">
+        <div class="flex justify-between items-center">
+            <div class="flex gap-5 items-center">
+                <div class="price-badge bg-cyan-50 text-cyan-600">
+                    <i data-lucide="droplets"></i>
+                </div>
+                <h3 class="font-bold">Водоотведение</h3>
+            </div>
+            <i data-lucide="chevron-down"></i>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-box">
+                <strong class="text-lg uppercase">ВОДООТВЕДЕНИЕ</strong><br>
+                <span class="text-slate-500 italic">Поставщик: ООО «Тверь Водоканал»</span><br>
+                
+                <span class="date-section">с 1 января по 30 сентября 2026 года:</span>
+                <span class="price-value">37,45</span> руб./куб. м
+
+                <br><br>
+                <a href="http://publication.pravo.gov.ru/document/6901202512180019" class="doc-link" target="_blank">Приказ о стоимости водоотведения</a>
+
+                <button class="calc-button" onclick="event.stopPropagation();">
+                    <i data-lucide="calculator" class="w-4 h-4"></i> Рассчитать водоотведение
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tariff-card">
+        <div class="flex justify-between items-center">
+            <div class="flex gap-5 items-center">
+                <div class="price-badge bg-purple-50 text-purple-600">
+                    <i data-lucide="sun"></i>
+                </div>
+                <h3 class="font-bold">Отопление</h3>
+            </div>
+            <i data-lucide="chevron-down"></i>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-box">
+                <strong class="text-lg uppercase">ОТОПЛЕНИЕ</strong><br>
+                <span class="text-slate-500 italic">Поставщик: ООО «Тверская генерация»</span><br>
+                
+                <span class="date-section">с 1 января по 30 сентября 2026 года:</span>
+                <span class="price-value">2 683,50</span> руб./Гкал
+
+                <br><br>
+                <a href="http://publication.pravo.gov.ru/document/6901202512190031?index=4" class="doc-link" target="_blank">Приказ о стоимости отопления</a>
+
+                <button class="calc-button" onclick="event.stopPropagation();">
+                    <i data-lucide="calculator" class="w-4 h-4"></i> Рассчитать отопление
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tariff-card">
+        <div class="flex justify-between items-center">
+            <div class="flex gap-5 items-center">
+                <div class="price-badge bg-orange-50 text-orange-600">
+                    <i data-lucide="flame"></i>
+                </div>
+                <h3 class="font-bold">Газ</h3>
+            </div>
+            <i data-lucide="chevron-down"></i>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-box">
+                <strong class="text-lg uppercase">ГАЗ</strong><br>
+                <span class="text-slate-500 italic">Поставщик: ООО «Газпром межрегионгаз Тверь»</span><br>
+                
+                <div class="mt-4">
+                    Плита и нагрев воды: <span class="price-value">11,91</span> руб./куб. м
+                </div>
+
+                <a href="http://publication.pravo.gov.ru/document/6901202512290011" target="_blank" class="doc-link">Приказ о стоимости газа</a>
+
+                <button class="calc-button" onclick="event.stopPropagation();">
+                    <i data-lucide="calculator" class="w-4 h-4"></i> Рассчитать газ
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tariff-card">
+        <div class="flex justify-between items-center">
+            <div class="flex gap-5 items-center">
+                <div class="price-badge bg-yellow-50 text-yellow-600">
+                    <i data-lucide="zap"></i>
+                </div>
+                <h3 class="font-bold">Электроэнергия</h3>
+            </div>
+            <i data-lucide="chevron-down"></i>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-box">
+                <strong class="text-lg uppercase">ЭЛЕКТРОЭНЕРГИЯ</strong><br>
+                <span class="text-slate-500 italic">Поставщик: АО «АтомЭнергоSбыт»</span><br>
+                
+                <p class="mt-4">Одноставочный тариф: <span class="price-value">5,95</span> руб./кВт·ч</p>
+
+                <a href="http://publication.pravo.gov.ru/document/6901202512290009" target="_blank" class="doc-link">Приказ о стоимости электроэнергии</a>
+
+                <button class="calc-button" onclick="event.stopPropagation();">
+                    <i data-lucide="calculator" class="w-4 h-4"></i> Рассчитать электроэнергию
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tariff-card">
+        <div class="flex justify-between items-center">
+            <div class="flex gap-5 items-center">
+                <div class="price-badge bg-emerald-50 text-emerald-600">
+                    <i data-lucide="trash-2"></i>
+                </div>
+                <h3 class="font-bold">ТКО</h3>
+            </div>
+            <i data-lucide="chevron-down"></i>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-box">
+                <strong class="text-lg uppercase">ОБРАЩЕНИЕ С ТКО</strong><br>
+                <span class="text-slate-500 italic">Оператор: ООО «ТСАХ»</span><br>
+                
+                <span class="date-section">Текущий тариф:</span>
+                <span class="price-value">742,94</span> руб./куб. м
+
+                <br>
+                <a href="http://publication.pravo.gov.ru/document/6901202512220005?index=2" target="_blank" class="doc-link">Приказ о стоимости ТКО</a>
+
+                <button class="calc-button" onclick="event.stopPropagation();">
+                    <i data-lucide="calculator" class="w-4 h-4"></i> Рассчитать ТКО
+                </button>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script>
+    lucide.createIcons();
+    document.querySelectorAll('.tariff-card').forEach(card => {
+        card.addEventListener('click', () => {
+            card.classList.toggle('active');
+        });
+    });
+</script>
+
+</body>
+</html>

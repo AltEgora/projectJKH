@@ -22,7 +22,7 @@ func NewApp(addr string) *http.Server {
 		http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
 	//Basic handlers
-	rout.HandleFunc("/main", handlers.MainHandler).Methods("GET")
+	rout.HandleFunc("/", handlers.MainHandler).Methods("GET")
 	rout.HandleFunc("/tariffs", handlers.TariffsHandler).Methods("GET")
 	rout.HandleFunc("/faq", handlers.FaqHandler).Methods("GET")
 	rout.HandleFunc("/complaints", handlers.ComplaintsHandler).Methods("GET")
