@@ -1,12 +1,155 @@
-{{define "styles"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{.Title}}</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
-    .btn-search {
-        background: transparent;
-        color: var(--primary);
-        border: 2px solid var(--primary);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+body { font-family: 'Inter', sans-serif; 
+        background-color: var(--bg);
+}
+
+:root {
+    --primary: #da822a;
+    --primary-light: #ecb726;
+    --primary-dark: #722982;
+
+    --button: #51134cb6;
+    --button-light: #791d61b6;
+
+    --bg: #f8fafc;
+
+    --text: #400a2e;
+    --link: #4a474a;
+
+    --card: #ffffff;
+    --border: #f4e6cb;
+    --hover: #fffbf7;
+
+    --column-width: 900px;
+    --column-radius: 32px;
+}
+
+.card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: 0.2s;
+}
+.card:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: 0.2s;
+}
+
+.region-item {
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.region-item:hover {
+    background: var(--primary-light);
+    color: white;
+}
+
+.button {
+    background: linear-gradient(to right, var(--button), var(--button-light));
+}
+</style>
+
+{{template "styles" .}}
+
+</head>
+
+<body class="bg-[var(--bg)] text-[var(--text)]">
+
+<!-- NAVBAR -->
+<nav class="bg-white border-b sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+
+        <a href="/">
+            <div class="font-bold text-[var(--primary)] text-xl tracking-tight">
+                ПроЖКХ
+            </div>
+        </a>
+
+        <div class="flex gap-6 text-sm font-semibold">
+
+            <a href="/"
+               class="{{if eq .Active "home"}}text-[var(--primary)]{{else}}hover:text-[var(--primary)]{{end}}">
+               Главная
+            </a>
+
+            <a href="/tariffs"
+               class="{{if eq .Active "tariffs"}}text-[var(--primary)]{{else}}hover:text-[var(--primary)]{{end}}">
+               Тарифы
+            </a>
+
+            <a href="/faq"
+               class="{{if eq .Active "faq"}}text-[var(--primary)]{{else}}hover:text-[var(--primary)]{{end}}">
+               Вопрос-ответ
+            </a>
+
+            <a href="/complaints"
+               class="{{if eq .Active "complaints"}}text-[var(--primary)]{{else}}hover:text-[var(--primary)]{{end}}">
+               Жалобы
+            </a>
+
+            <a href="/accruals"
+               class="{{if eq .Active "accruals"}}text-[var(--primary)]{{else}}hover:text-[var(--primary)]{{end}}">
+               Начисления
+            </a>
+
+            <a href="/contacts"
+               class="{{if eq .Active "contacts"}}text-[var(--primary)]{{else}}hover:text-[var(--primary)]{{end}}">
+               Контакты
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+<!-- КОНТЕНТ -->
+{{template "content" .}}
+
+<script>
+lucide.createIcons();
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     .btn-search:hover {
         background: var(--primary);
@@ -183,3 +326,4 @@ document.querySelectorAll('.region-item').forEach(el => {
 </script>
 
 {{end}}
+

@@ -1,67 +1,22 @@
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЖКХ Тверь — Помощь и ответы</title>
+{{define "styles"}}
+<style>
+    .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 24px;
+        transition: 0.2s;
+    }
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    .search-input:focus {
+        box-shadow: 0 0 0 4px rgba(218, 130, 42, 0.2);
+    }
+</style>
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+{{end}}
 
-        :root {
-            --primary: #da822a;
-            --primary-light: #ecb726;
-            --button: #722982;
-            --bg: #f8fafc;
-            --text: #400a2e;
-            --card: #ffffff;
-            --border: #e2e8f0;
-            --accent-soft: #fff7ed;
-        }
 
-        .card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            transition: 0.2s;
-        }
-        
-        .faq-item {
-            border-bottom: 1px solid var(--border);
-            padding: 20px 0;
-            transition: 0.2s;
-        }
-        .faq-item:last-child { border-bottom: none; }
-        .faq-item:hover { background-color: var(--accent-soft); border-radius: 8px; padding-left: 10px; }
-
-        .search-input:focus {
-            box-shadow: 0 0 0 4px rgba(218, 130, 42, 0.2);
-        }
-    </style>
-</head>
-
-<body class="bg-[var(--bg)] text-[var(--text)]">
-
-<nav class="bg-[var(--card)] border-b sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <a href="/" class="block">
-    <div class="font-bold text-[var(--primary)] text-xl tracking-tight">ПроЖКХ</div></a>
-        <div class="flex gap-6 text-sm font-semibold">
-            <a href="#" class="hover:text-[var(--primary)]">Главная</a>
-            <a href="#"  class="hover:text-[var(--primary)]">Тарифы</a>
-            <a href="#" class="text-[var(--primary)] flex items-center gap-1">
-                Вопрос-ответ
-            </a>
-            <a href="#"  class="hover:text-[var(--primary)]">Подать жалобу</a>
-            <a href="#"  class="hover:text-[var(--primary)]">Проверить начисления</a>
-            <a href="#"  class="hover:text-[var(--primary)]">Контакты служб</a>
-        </div>
-    </div>
-</nav>
+{{define "content"}}
 
 <header class="py-12 px-4 bg-white border-b">
     <div class="max-w-4xl mx-auto text-center">
@@ -120,7 +75,7 @@
 
         <aside class="space-y-6">
             
-            <a href="/spravochnik" class="block">
+            <a href="/consumer" class="block">
     <div class="p-8 rounded-2xl text-white relative overflow-hidden group cursor-pointer" 
          style="background: linear-gradient(135deg, var(--button), #7228558e);">
         <div class="relative z-10">
@@ -140,7 +95,7 @@
             <div class="card">
                 <div class="flex items-center gap-2 mb-6 border-b pb-4">
                     <i data-lucide="book-open" class="text-[var(--primary)] w-5 h-5"></i>
-                    <h3 class="font-bold">Важные справочники</h3>
+                    <h3 class="font-bold">Важные документы</h3>
                 </div>
                 <div class="space-y-1">
                     <a href="https://www.consultant.ru/cons/cgi/online.cgi?req=doc&base=LAW&n=511791&dst=100001#uEfQ1GVCbSEjQryA" 
@@ -177,3 +132,5 @@
 
     </div>
   </main>
+
+{{end}}

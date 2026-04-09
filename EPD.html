@@ -1,109 +1,58 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЖКХ Тверь — Платежи и ЕПД</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+{{define "styles"}}
+<style>
+    /* КОНТЕЙНЕР ДЛЯ СТОЛБЦА */
+    .column-wrapper {
+        max-width: var(--column-width);
+        margin: 30px auto 0; /* Отступ сверху от навигации */
+    }
+
+    /* ЦЕНТРАЛЬНЫЙ СТОЛБЕЦ */
+    .main-column {
+        background-color: var(--card);
         
-        :root {
-            /* 1. ЦВЕТ БОКОВОГО ФОНА САЙТА */
-            --page-bg: #f8fafc; 
+        /* ЛИНИИ ПО БОКАМ */
+        border-left: 2px solid var(--primary);  
+        border-right: 2px solid var(--primary); 
+        
+        /* СКРУГЛЕНИЕ СВЕРХУ И ЛИНИЯ НАД ЗАГОЛОВКОМ */
+        border-top: 2px solid var(--primary); 
+        border-top-left-radius: var(--column-radius);
+        border-top-right-radius: var(--column-radius);
+        
+        /* ОСТАВЛЯЕМ БЕСКОНЕЧНЫЙ СТОЛБЕЦ СНИЗУ */
+        min-height: calc(100vh - 30px); /* Высота на весь экран минус отступ сверху */
+        
+        padding-bottom: 60px; /* Отступ в конце статьи */
+    }
 
-            /* 2. ЦВЕТ ЦЕНТРАЛЬНОГО СТОЛБЦА */
-            --column-bg: #ffffff; 
+    .main-title {
+        color: var(--text);
+    }
 
-            /* 3. ЦВЕТ РАЗДЕЛИТЕЛЬНЫХ ЛИНИЙ И ШАПКИ */
-            --line-color: #da822a; 
+    .content-text p {
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+        color: #363038;
+    }
+</style>
 
-            /* 4. ЦВЕТ ЗАГОЛОВКА */
-            --title-color: #400a2e; 
+{{end}}
 
-            /* 5. ОСНОВНОЙ ОРАНЖЕВЫЙ ДЛЯ НАВИГАЦИИ */
-            --primary: #da822a;
-
-            /* ШИРИНА СТОЛБЦА И СКРУГЛЕНИЕ */
-            --column-width: 900px;
-            --column-radius: 32px;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--page-bg);
-            margin: 0;
-            padding: 0;
-        }
-
-        /* КОНТЕЙНЕР ДЛЯ СТОЛБЦА */
-        .column-wrapper {
-            max-width: var(--column-width);
-            margin: 30px auto 0; /* Отступ сверху от навигации */
-        }
-
-        /* ЦЕНТРАЛЬНЫЙ СТОЛБЕЦ */
-        .main-column {
-            background-color: var(--column-bg);
-            
-            /* ЛИНИИ ПО БОКАМ */
-            border-left: 2px solid var(--line-color);  
-            border-right: 2px solid var(--line-color); 
-            
-            /* СКРУГЛЕНИЕ СВЕРХУ И ЛИНИЯ НАД ЗАГОЛОВКОМ */
-            border-top: 2px solid var(--line-color); 
-            border-top-left-radius: var(--column-radius);
-            border-top-right-radius: var(--column-radius);
-            
-            /* ОСТАВЛЯЕМ БЕСКОНЕЧНЫЙ СТОЛБЕЦ СНИЗУ */
-            min-height: calc(100vh - 30px); /* Высота на весь экран минус отступ сверху */
-            
-            padding-bottom: 60px; /* Отступ в конце статьи */
-        }
-
-        .main-title {
-            color: var(--title-color);
-        }
-
-        .content-text p {
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            color: #363038;
-        }
-    </style>
-</head>
-<body>
-
-<nav class="bg-white border-b sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <a href="/" class="block">
-    <div class="font-bold text-[var(--primary)] text-xl tracking-tight">ПроЖКХ</div></a>
-        <div class="flex gap-6 text-sm font-semibold text-slate-600">
-            <a href="#" class="hover:text-[var(--primary)]">Главная</a>
-            <a href="#" class="hover:text-[var(--primary)]">Тарифы</a>
-            <a href="#" class="text-[var(--primary)] flex items-center gap-1">
-                 Вопрос-ответ
-            </a>
-            <a href="#" class="hover:text-[var(--primary)]">Подать жалобу</a>
-            <a href="#" class="hover:text-[var(--primary)]">Проверить начисления</a>
-            <a href="#" class="hover:text-[var(--primary)]">Контакты служб</a>
-        </div>
-    </div>
-</nav>
+{{define "content"}}
 
 <div class="column-wrapper">
     <div class="main-column px-8 md:px-16 py-12">
         
         <header class="text-center mb-12">
-            <h1 class="text-[var(--title-color)] text-4xl font-extrabold tracking-tight">
+            <h1 class="text-[var(--text)] text-4xl font-extrabold tracking-tight">
                 Платежи и ЕПД
             </h1>
-            <div class="h-1 w-20 bg-[var(--line-color)] mx-auto mt-4 rounded-full"></div>
+            <div class="h-1 w-20 bg-[var(--primary)] mx-auto mt-4 rounded-full"></div>
         </header>
 
-        <article class="content-text text-lg text-[var(--text-color)]">
+        <article class="content-text text-lg text-[var(--text)]">
             
-            <h2 class="text-xl font-bold mb-8 text-[var(--title-color)] border-b pb-2 inline-block">
+            <h2 class="text-xl font-bold mb-8 text-[var(--text)] border-b pb-2 inline-block">
                 Единый платежный документ (ЕПД): что это такое и для чего он нужен?
             </h2>
 
@@ -128,12 +77,11 @@
                 Оплата услуг является ключевым этапом. Это можно сделать онлайн — <strong>через личный кабинет на «Госуслугах», на сайте УК или на некоторых региональных порталах.</strong> На платежном документе есть QR-код, позволяющий оплатить услуги через мобильные банковские приложения или терминалы без ручного ввода данных. Также доступна оплата через банкоматы и терминалы. Крайний срок оплаты — <u>до 15-го числа месяца, следующего за расчётным</u> (например, за январь — до 15 февраля).
             </p>
 
-            <div class="mt-12 p-6 rounded-2xl bg-orange-50 border-l-4 border-[var(--line-color)] italic text-slate-700">
+            <div class="mt-12 p-6 rounded-2xl bg-orange-50 border-l-4 border-[var(--primary)] italic text-slate-700">
                 Теперь вы знаете, что такое Единый платежный документ. А чтобы расчитать свои платежи по отдельным тарифам, переходи в наш <a href=#><span class="text-[var(--primary)]"> Калькулятор тарифов</span></a>
             </div>
         </article>
     </div>
 </div>
 
-</body>
-</html>
+{{end}}

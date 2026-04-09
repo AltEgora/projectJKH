@@ -1,28 +1,6 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ЖКХ Тверь — Проверка начислений</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://unpkg.com/lucide@latest"></script>
+{{define "styles"}}
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-body { font-family: 'Inter', sans-serif; }
-
-:root {
-    --primary: #da822a;
-    --primary-light: #ecb726;
-    --button: #b302b6;
-    --bg: #f8fafc;
-    --text: #400a2e;
-    --card: #ffffff;
-    --border: #e2e8f0;
-    --dark: #722982;
-}
-
 .card-upload {
     background: var(--card);
     border: 2px solid var(--border);
@@ -43,11 +21,6 @@ body { font-family: 'Inter', sans-serif; }
     transform: translateY(-5px);
 }
 
-/* Все иконки одного цвета */
-i[data-lucide] {
-    stroke: var(--button) !important;
-}
-
 .icon-box {
     width: 80px;
     height: 80px;
@@ -58,27 +31,9 @@ i[data-lucide] {
     margin-bottom: 24px;
 }
 </style>
-</head>
+{{end}}
 
-<body class="bg-[var(--bg)] text-[var(--text)] flex flex-col min-h-screen">
-
-<nav class="bg-[var(--card)] border-b sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <div class="font-bold text-[var(--primary)] text-xl flex items-center gap-2">
-            ЖКХ Тверь
-        </div>
-
-        <div class="hidden md:flex gap-6 text-sm font-semibold">
-            <a href="#" class="hover:text-[var(--primary)]">Главная</a>
-            <a href="#" class="hover:text-[var(--primary)]">Тарифы</a>
-            <a href="#" class="hover:text-[var(--primary)]">Вопрос-ответ</a>
-            <a href="#" class="hover:text-[var(--primary)]">Подать жалобу</a>
-            <a href="#" class="text-[var(--primary)]">Проверить начисления</a>
-            <a href="#" class="hover:text-[var(--primary)]">Контакты служб</a>
-        </div>
-    </div>
-</nav>
-
+{{define "content"}}
 <main class="max-w-[1600px] mx-auto px-4 sm:px-8 py-12">
     
     <div class="text-center mb-12">
@@ -160,5 +115,4 @@ i[data-lucide] {
     lucide.createIcons();
 </script>
 
-</body>
-</html>
+{{end}}
