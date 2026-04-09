@@ -2,73 +2,194 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>ЖКХ — Тверь: опрос и расчёт</title>
+<title>ЖКХ — Тверь: калькулятор</title>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-    background: #f5f7fa;
-    padding: 20px;
-}
+    body {
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        background-color: #f4f7f9;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
 
-.container {
-    max-width: 600px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-}
+    .site-header {
+        background: linear-gradient(90deg, #e67e22 0%, #f1c40f 100%);
+        padding: 56px 20px 96px;
+        text-align: center;
+        color: #fff;
+    }
 
-h2 {
-    text-align: center;
-}
+    .site-header .header-title {
+        margin: 0;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        font-weight: 700;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+        letter-spacing: 0.02em;
+    }
 
-label {
-    display: block;
-    margin-top: 12px;
-    font-weight: bold;
-}
+    .container {
+        max-width: 700px;
+        margin: -60px auto 50px;
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 10;
+    }
 
-input, select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-}
+    h3 { margin-top: 0; color: #2c3e50; }
 
-button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 20px;
-    background: #2e7d32;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-}
+    .tab-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        background: #f0f2f5;
+        padding: 8px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+    }
 
-button:hover {
-    background: #256428;
-}
+    .tab-btn {
+        flex: 1 1 auto;
+        min-width: 148px;
+        min-height: 52px;
+        margin-top: 0;
+        border: none;
+        padding: 14px 16px;
+        background: transparent;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 1.25;
+        border-radius: 10px;
+        transition: 0.3s;
+        color: #4a5568;
+    }
 
-.hidden {
-    display: none;
-}
+    .tab-btn:hover { background: rgba(142, 102, 148, 0.12); }
 
-#calc {
-    margin-top: 20px;
-    padding: 15px;
-    background: #f1f1f1;
-    border-radius: 8px;
-}
+    .tab-btn.active {
+        background: #8e6694;
+        color: white;
+    }
+
+    .tab-panel {
+        display: none;
+    }
+
+    .tab-panel.active {
+        display: block;
+    }
+
+    .spec-block {
+        padding: 14px;
+        background: #f8fafc;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        margin-bottom: 0;
+    }
+
+    #calc {
+        margin-top: 20px;
+        padding: 15px;
+        background: #f1f5f9;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+    }
+
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: 600;
+        font-size: 14px;
+        color: #4a5568;
+    }
+    
+    input, select {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        margin-top: 6px;
+        box-sizing: border-box;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        background: #f8fafc;
+        font-size: 15px;
+    }
+    
+    input:focus, select:focus {
+        outline: none;
+        border-color: #f1c40f;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(241, 196, 15, 0.1);
+    }
+    
+    .container button:not(.tab-btn) {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        margin-top: 25px;
+        background: #8e6694;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .container button:not(.tab-btn):hover { background: #7a5580; }
+    
+    .hidden { display: none !important; }
+    
+    .hint {
+        background: #fff9e6;
+        border-left: 4px solid #f1c40f;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #718096;
+        margin-bottom: 20px;
+    }
+    
+    #result, [id^="result"] {
+        margin-top: 25px;
+        padding: 20px;
+        background: #f8fafc;
+        border-radius: 12px;
+        border: 1px solid #edf2f7;
+    }
+    
+    @media (max-width: 600px) {
+        .tab-bar { flex-direction: column; }
+        .site-header { padding: 40px 16px 72px; }
+        .container { margin: -44px 10px 24px; }
+    }
 </style>
-</head>
 
+</head>
 <body>
+
+<div class="site-header">
+    <h1 class="header-title">Калькулятор ЖКХ — Тверь</h1>
+</div>
 
 <div class="container">
 
-<h2>Опрос перед расчётом ЖКХ (Тверь)</h2>
+<div class="tab-bar" role="tablist">
+    <button type="button" class="tab-btn active" data-tab="general" onclick="showTab('general')" role="tab">Общий</button>
+    <button type="button" class="tab-btn" data-tab="cold" onclick="showTab('cold')" role="tab">Холодная вода</button>
+    <button type="button" class="tab-btn" data-tab="hot" onclick="showTab('hot')" role="tab">Горячая вода</button>
+    <button type="button" class="tab-btn" data-tab="heat" onclick="showTab('heat')" role="tab">Отопление</button>
+</div>
 
+<!-- ========== ОБЩИЙ ========== -->
+<div id="tab-general" class="tab-panel active" role="tabpanel">
+
+<p class="hint">Полный опрос и расчёт по всем строкам квитанции.</p>
 
 <div id="survey">
 
@@ -111,15 +232,8 @@ button:hover {
 
     <label>Тип плиты</label>
     <select id="stoveType">
-        <option value="gas">Газовая</option>
-        <option value="electric">Электрическая (тариф на свет × 0,7)</option>
-    </select>
-
-    <label>Газ</label>
-    <select id="gasType">
-        <option value="none">Нет</option>
-        <option value="meter">По счётчику</option>
-        <option value="norm">По нормативу</option>
+        <option value="gas">Газовая (газ в квартире учитываем по счётчику ниже)</option>
+        <option value="electric">Электрическая (тариф на свет × 0,7; газ в расчёте не учитывается)</option>
     </select>
 
     <label>ОДН (общедомовые нужды)</label>
@@ -134,7 +248,7 @@ button:hover {
     <label>Количество жильцов</label>
     <input id="residents" type="number">
 
-    <button onclick="startCalc()">Продолжить</button>
+    <button type="button" onclick="startCalc()">Продолжить</button>
 
 </div>
 
@@ -145,8 +259,11 @@ button:hover {
     <label>Холодная вода (м³)</label>
     <input id="coldWater">
 
-    <label>Горячая вода (м³)</label>
+    <label>Горячая вода — объём (м³), тариф 26,09 ₽/м³</label>
     <input id="hotWater">
+
+    <label>Горячая вода — тепло на подогрев (Гкал), тариф 2683,50 ₽/Гкал</label>
+    <input id="hotWaterGcal">
 
     <label>Электричество (день)</label>
     <input id="elDay">
@@ -163,9 +280,135 @@ button:hover {
     <label>Сумма из квитанции</label>
     <input id="userTotal">
 
-    <button onclick="send()">Рассчитать</button>
+    <button type="button" onclick="send()">Рассчитать</button>
 
     <div id="result"></div>
+
+</div>
+
+</div>
+
+<!-- ========== ХОЛОДНАЯ ВОДА ========== -->
+<div id="tab-cold" class="tab-panel spec-block" role="tabpanel">
+
+<h3>Холодное водоснабжение</h3>
+<p class="hint">Оценка по ХВС и водоотведению (канализация считается от объёма ХВС; ГВС в этой вкладке не учитывается). Сумма из квитанции — только по этим строкам.</p>
+
+<label>Тип помещения</label>
+<select id="c_propertyType">
+    <option value="residential">Жилое</option>
+    <option value="commercial">Нежилое</option>
+</select>
+
+<label>Счётчик холодной воды</label>
+<select id="c_waterMeter" onchange="syncColdForm()">
+    <option value="true">Есть</option>
+    <option value="false">Нет (норматив на человека)</option>
+</select>
+
+<div id="c_residents_wrap" class="hidden">
+<label>Количество жильцов (для норматива)</label>
+<input id="c_residents" type="number" value="1" min="1">
+</div>
+
+<div id="c_volumes_wrap">
+<label>Объём холодной воды (м³)</label>
+<input id="c_coldWater" type="number">
+</div>
+
+<label>Сумма из квитанции (ХВС + водоотведение по ХВС)</label>
+<input id="c_userTotal" type="number">
+
+<button type="button" onclick="sendSpecial('cold')">Рассчитать</button>
+<div id="resultCold"></div>
+
+</div>
+
+<!-- ========== ГОРЯЧАЯ ВОДА ========== -->
+<div id="tab-hot" class="tab-panel spec-block" role="tabpanel">
+
+<h3>Горячая вода</h3>
+<p class="hint">При счётчике: сначала объём ГВС (м³), затем Гкал на подогрев. Без счётчика объёмы не вводятся — расчёт по нормативу на человека (только число жильцов). Водоотведение в этой вкладке не считается.</p>
+
+<label>Тип помещения</label>
+<select id="h_propertyType">
+    <option value="residential">Жилое</option>
+    <option value="commercial">Нежилое</option>
+</select>
+
+<label>Счётчик воды (ХВС/ГВС)</label>
+<select id="h_waterMeter" onchange="syncHotForm()">
+    <option value="true">Есть</option>
+    <option value="false">Нет (норматив на человека)</option>
+</select>
+
+<div id="h_residents_wrap" class="hidden">
+<label>Количество жильцов (для норматива)</label>
+<input id="h_residents" type="number" value="1" min="1">
+</div>
+
+<div id="h_volumes_wrap">
+<label>1. Объём горячей воды (м³)</label>
+<input id="h_hotWater" type="number">
+
+<label>2. Тепловая энергия на подогрев ГВС (Гкал) </label>
+<input id="h_hotWaterGcal" type="number">
+</div>
+
+<label>Сумма из квитанции (только ГВС: вода + подогрев, без водоотведения)</label>
+<input id="h_userTotal" type="number">
+
+<button type="button" onclick="sendSpecial('hot')">Рассчитать</button>
+<div id="resultHot"></div>
+
+</div>
+
+<!-- ========== ОТОПЛЕНИЕ ========== -->
+<div id="tab-heat" class="tab-panel spec-block" role="tabpanel">
+
+<h3>Отопление</h3>
+<p class="hint">Только строка отопления. Со счётчиком вводите объём тепла (Гкал). Без счётчика — площадь квартиры (м²), расчёт по нормативу Гкал/м².</p>
+
+<label>Тип помещения</label>
+<select id="ht_propertyType">
+    <option value="residential">Жилое</option>
+    <option value="commercial">Нежилое</option>
+</select>
+
+<label>Тип дома</label>
+<select id="ht_buildingType">
+    <option value="apartment">Многоквартирный дом</option>
+    <option value="house">Частный дом</option>
+</select>
+
+<label>Отопление</label>
+<select id="ht_heatingType">
+    <option value="central">Центральное</option>
+    <option value="individual">Индивидуальное</option>
+    <option value="none">Нет</option>
+</select>
+
+<label>Счётчик отопления</label>
+<select id="ht_heatingMeter" onchange="syncHeatForm()">
+    <option value="true">Есть</option>
+    <option value="false">Нет</option>
+</select>
+
+<div id="ht_heating_volume_wrap">
+<label>Объём тепла (Гкал)</label>
+<input id="ht_heating" type="number">
+</div>
+
+<div id="ht_area_wrap" class="hidden">
+<label>Площадь квартиры (м²)</label>
+<input id="ht_area" type="number">
+</div>
+
+<label>Сумма из квитанции (только отопление)</label>
+<input id="ht_userTotal" type="number">
+
+<button type="button" onclick="sendSpecial('heat')">Рассчитать</button>
+<div id="resultHeat"></div>
 
 </div>
 
@@ -174,8 +417,73 @@ button:hover {
 <script>
 let profile = {};
 
-function startCalc() {
+const statusTranslations = {
+    ok: "<span style='color: green;'>Совпадает</span>",
+    overpay: "<span style='color: orange;'>В квитанции больше</span>",
+    underpay: "<span style='color: red;'>В квитанции меньше</span>"
+};
 
+var VALID_TABS = ["general", "cold", "hot", "heat"];
+
+function showTab(name) {
+    if (VALID_TABS.indexOf(name) === -1) {
+        name = "general";
+    }
+    document.querySelectorAll(".tab-panel").forEach(function (p) {
+        p.classList.toggle("active", p.id === "tab-" + name);
+    });
+    document.querySelectorAll(".tab-btn").forEach(function (b) {
+        b.classList.toggle("active", b.dataset.tab === name);
+    });
+    if (name === "cold") {
+        syncColdForm();
+    }
+    if (name === "hot") {
+        syncHotForm();
+    }
+    if (name === "heat") {
+        syncHeatForm();
+    }
+    var nextHash = "#" + name;
+    if (location.hash !== nextHash && history.replaceState) {
+        history.replaceState(null, "", location.pathname + location.search + nextHash);
+    }
+}
+
+function applyTabFromHash() {
+    var h = (location.hash || "").replace(/^#/, "").toLowerCase();
+    if (VALID_TABS.indexOf(h) !== -1) {
+        showTab(h);
+    }
+}
+
+function syncHeatForm() {
+    var hasMeter = val("ht_heatingMeter") === "true";
+    document.getElementById("ht_heating_volume_wrap").classList.toggle("hidden", !hasMeter);
+    document.getElementById("ht_area_wrap").classList.toggle("hidden", hasMeter);
+}
+
+function syncColdForm() {
+    var hasMeter = val("c_waterMeter") === "true";
+    document.getElementById("c_residents_wrap").classList.toggle("hidden", hasMeter);
+    document.getElementById("c_volumes_wrap").classList.toggle("hidden", !hasMeter);
+}
+
+function syncHotForm() {
+    var hasMeter = val("h_waterMeter") === "true";
+    document.getElementById("h_residents_wrap").classList.toggle("hidden", hasMeter);
+    document.getElementById("h_volumes_wrap").classList.toggle("hidden", !hasMeter);
+}
+
+function val(id) {
+    return document.getElementById(id).value;
+}
+
+function num(id) {
+    return +document.getElementById(id).value || 0;
+}
+
+function startCalc() {
     profile = {
         propertyType: val("propertyType"),
         buildingType: val("buildingType"),
@@ -184,7 +492,7 @@ function startCalc() {
         waterMeter: val("waterMeter") === "true",
         electricityType: val("electricityType"),
         stoveType: val("stoveType"),
-        gasType: val("gasType"),
+        gasType: val("stoveType") === "gas" ? "meter" : "none",
         odn: val("odn") === "true",
         area: num("area"),
         residents: num("residents")
@@ -196,12 +504,20 @@ function startCalc() {
     document.getElementById("calc").classList.remove("hidden");
 }
 
-async function send() {
+function buildRequest(body) {
+    return fetch("/api/gkh/calculate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+    }).then(function (res) { return res.json(); });
+}
 
+async function send() {
     const data = {
         profile,
         coldWaterVolume: num("coldWater"),
         hotWaterVolume: num("hotWater"),
+        hotWaterThermalGcal: num("hotWaterGcal"),
         electricityVolume: num("elDay") + num("elNight"),
         electricityDayVolume: num("elDay"),
         electricityNightVolume: num("elNight"),
@@ -212,50 +528,177 @@ async function send() {
         userTotal: num("userTotal")
     };
 
-    const res = await fetch("/api/gkh/calculate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-    });
-
-    const r = await res.json();
-
-    // Создаем словарь для перевода статусов
-    const statusTranslations = {
-        "ok": "<span style='color: green;'>Всё верно</span>",
-        "overpay": "<span style='color: orange;'>Переплата (в квитанции сумма больше)</span>",
-        "underpay": "<span style='color: red;'>Недоплата (в квитанции сумма меньше)</span>"
-    };
-
-    // Получаем перевод или выводим исходный статус, если что-то пошло не так
+    const r = await buildRequest(data);
     const translatedStatus = statusTranslations[r.status] || r.status;
 
-    document.getElementById("result").innerHTML = `
-        <h3>Результат</h3>
-        <b>Итого:</b> ${r.total.toFixed(2)} ₽<br>
-        <b>Разница:</b> ${r.difference.toFixed(2)} ₽<br>
-        <b>Статус:</b> ${translatedStatus}<br><br>
-
-        <b>Расшифровка:</b><br>
-        Холодная вода: ${r.breakdown.coldWater.toFixed(2)} ₽<br>
-        Горячая вода: ${r.breakdown.hotWater.toFixed(2)} ₽<br>
-        Водоотведение: ${r.breakdown.sewer.toFixed(2)} ₽<br>
-        Электричество: ${r.breakdown.electricity.toFixed(2)} ₽<br>
-        Отопление: ${r.breakdown.heating.toFixed(2)} ₽<br>
-        Газ: ${r.breakdown.gas.toFixed(2)} ₽<br>
-        Обращение с ТКО (на жильца): ${r.breakdown.waste.toFixed(2)} ₽<br>
-        ОДН (оценка): ${r.breakdown.odn.toFixed(2)} ₽<br>
-        Капитальный ремонт: ${r.breakdown.capitalRepair.toFixed(2)} ₽
-    `;
+    document.getElementById("result").innerHTML =
+        "<h3>Результат</h3>" +
+        "<b>Итого:</b> " + r.total.toFixed(2) + " ₽<br>" +
+        "<b>Разница:</b> " + r.difference.toFixed(2) + " ₽<br>" +
+        "<b>Статус:</b> " + translatedStatus + "<br><br>" +
+        "<b>Расшифровка:</b><br>" +
+        "Холодная вода: " + r.breakdown.coldWater.toFixed(2) + " ₽<br>" +
+        "ГВС (м³): " + (r.breakdown.hotWaterSupply != null ? r.breakdown.hotWaterSupply : 0).toFixed(2) + " ₽<br>" +
+        "ГВС (подогрев, Гкал): " + (r.breakdown.hotWaterHeat != null ? r.breakdown.hotWaterHeat : 0).toFixed(2) + " ₽<br>" +
+        "Горячая вода (всего): " + r.breakdown.hotWater.toFixed(2) + " ₽<br>" +
+        "Водоотведение: " + r.breakdown.sewer.toFixed(2) + " ₽<br>" +
+        "Электричество: " + r.breakdown.electricity.toFixed(2) + " ₽<br>" +
+        "Отопление: " + r.breakdown.heating.toFixed(2) + " ₽<br>" +
+        "Газ: " + r.breakdown.gas.toFixed(2) + " ₽<br>" +
+        "Обращение с ТКО (на жильца): " + r.breakdown.waste.toFixed(2) + " ₽<br>" +
+        "ОДН (оценка): " + r.breakdown.odn.toFixed(2) + " ₽<br>" +
+        "Капитальный ремонт: " + r.breakdown.capitalRepair.toFixed(2) + " ₽";
 }
 
-function val(id) {
-    return document.getElementById(id).value;
+function neutralProfile() {
+    return {
+        propertyType: "residential",
+        buildingType: "apartment",
+        heatingType: "none",
+        heatingMeter: false,
+        waterMeter: true,
+        electricityType: "single",
+        stoveType: "gas",
+        gasType: "none",
+        odn: false,
+        area: 0,
+        residents: 0
+    };
 }
 
-function num(id) {
-    return +document.getElementById(id).value || 0;
+async function sendSpecial(mode) {
+    let profileS;
+    let data;
+    let resultEl;
+    let userLine;
+
+    if (mode === "cold") {
+        resultEl = "resultCold";
+        userLine = num("c_userTotal");
+        profileS = neutralProfile();
+        profileS.propertyType = val("c_propertyType");
+        profileS.waterMeter = val("c_waterMeter") === "true";
+        var cHasMeter = profileS.waterMeter;
+        profileS.residents = cHasMeter ? 0 : Math.max(1, num("c_residents"));
+        data = {
+            profile: profileS,
+            coldWaterVolume: num("c_coldWater"),
+            hotWaterVolume: 0,
+            electricityVolume: 0,
+            electricityDayVolume: 0,
+            electricityNightVolume: 0,
+            heatingVolume: 0,
+            gasVolume: 0,
+            hotWaterThermalGcal: 0,
+            residents: profileS.residents,
+            hasBenefits: false,
+            userTotal: 0,
+            receiptLineMode: mode,
+            receiptLineAmount: userLine
+        };
+    } else if (mode === "hot") {
+        resultEl = "resultHot";
+        userLine = num("h_userTotal");
+        profileS = neutralProfile();
+        profileS.propertyType = val("h_propertyType");
+        profileS.waterMeter = val("h_waterMeter") === "true";
+        var hHasMeter = profileS.waterMeter;
+        profileS.residents = hHasMeter ? 0 : Math.max(1, num("h_residents"));
+        data = {
+            profile: profileS,
+            coldWaterVolume: 0,
+            hotWaterVolume: num("h_hotWater"),
+            hotWaterThermalGcal: num("h_hotWaterGcal"),
+            electricityVolume: 0,
+            electricityDayVolume: 0,
+            electricityNightVolume: 0,
+            heatingVolume: 0,
+            gasVolume: 0,
+            residents: profileS.residents,
+            hasBenefits: false,
+            userTotal: 0,
+            receiptLineMode: mode,
+            receiptLineAmount: userLine
+        };
+    } else if (mode === "heat") {
+        resultEl = "resultHeat";
+        userLine = num("ht_userTotal");
+        var heatHasMeter = val("ht_heatingMeter") === "true";
+        profileS = neutralProfile();
+        profileS.propertyType = val("ht_propertyType");
+        profileS.buildingType = val("ht_buildingType");
+        profileS.heatingType = val("ht_heatingType");
+        profileS.heatingMeter = heatHasMeter;
+        profileS.area = heatHasMeter ? 0 : num("ht_area");
+        data = {
+            profile: profileS,
+            coldWaterVolume: 0,
+            hotWaterVolume: 0,
+            hotWaterThermalGcal: 0,
+            electricityVolume: 0,
+            electricityDayVolume: 0,
+            electricityNightVolume: 0,
+            heatingVolume: heatHasMeter ? num("ht_heating") : 0,
+            gasVolume: 0,
+            residents: 0,
+            hasBenefits: false,
+            userTotal: 0,
+            receiptLineMode: mode,
+            receiptLineAmount: userLine
+        };
+    } else {
+        return;
+    }
+
+    const r = await buildRequest(data);
+    const lc = r.lineComparison;
+    if (!lc) {
+        document.getElementById(resultEl).innerHTML = "<p>Нет данных сравнения по строке.</p>";
+        return;
+    }
+
+    let html;
+
+    if (mode === "cold") {
+        html =
+            "<h3>Результат</h3>" +
+            "<p><b>По калькулятору (ХВС + водоотведение):</b> " + lc.subtotal.toFixed(2) + " ₽</p>" +
+            "<p>Холодная вода: " + r.breakdown.coldWater.toFixed(2) + " ₽<br>" +
+            "Водоотведение: " + r.breakdown.sewer.toFixed(2) + " ₽</p>";
+    } else if (mode === "hot") {
+        var hSup = r.breakdown.hotWaterSupply != null ? r.breakdown.hotWaterSupply : 0;
+        var hHeat = r.breakdown.hotWaterHeat != null ? r.breakdown.hotWaterHeat : 0;
+        html =
+            "<h3>Результат</h3>" +
+            "<p><b>По калькулятору (ГВС: м³ + подогрев, без водоотведения):</b> " + lc.subtotal.toFixed(2) + " ₽</p>" +
+            "<p>ГВС (м³): " + hSup.toFixed(2) + " ₽<br>" +
+            "ГВС (подогрев, Гкал): " + hHeat.toFixed(2) + " ₽</p>";
+    } else {
+        html =
+            "<h3>Результат</h3>" +
+            "<p><b>По калькулятору (отопление):</b> " + lc.subtotal.toFixed(2) + " ₽</p>" +
+            "<p>Отопление: " + r.breakdown.heating.toFixed(2) + " ₽</p>";
+    }
+
+    const st = lc.status;
+    html +=
+        "<p><b>Ваша сумма:</b> " + lc.receiptLineAmount.toFixed(2) + " ₽<br>" +
+        "<b>Разница:</b> " + lc.difference.toFixed(2) + " ₽<br>" +
+        "<b>Статус:</b> " + (statusTranslations[st] || st) + "</p>";
+
+    document.getElementById(resultEl).innerHTML = html;
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    applyTabFromHash();
+    syncColdForm();
+    syncHotForm();
+    syncHeatForm();
+});
+
+window.addEventListener("hashchange", function () {
+    applyTabFromHash();
+});
 </script>
 
 </body>
