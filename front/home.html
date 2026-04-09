@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ЖКХ Тверь — Главная</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+body { font-family: 'Inter', sans-serif; }
+
+/* ЦВЕТОВАЯ СИСТЕМА */
+:root {
+    --primary: #da822a;
+    --primary-light: #ecb726;
+
+    --button: #601f5fb6;
+
+    --bg: #f8fafc;
+    --text: #400a2e;
+
+    --card: #ffffff;
+    --border: #e2e8f0;
+
+    --danger: #7a207b;
+    --danger-light: #fee2e2;
+
+    --dark: #722982;
+}
+
+/* карточки */
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: 0.2s;
+}
+.card:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+.region-item {
+    padding: 6px;
+    border-radius: 6px;
+}
+.region-item:hover {
+    background: var(--primary-light);
+    color: white;
+}
+</style>
+</head>
+
+<body class="bg-[var(--bg)] text-[var(--text)]">
+
+<!-- NAVBAR -->
+<nav class="bg-white border-b sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <a href="/" class="block">
+    <div class="font-bold text-[var(--primary)] text-xl tracking-tight">ПроЖКХ</div></a>
+        <div class="flex gap-6 text-sm font-semibold">
+            <a href="/" class="text-[var(--primary)] flex items-center gap-1">Главная</a>
+            <a href="/tariffs" class="hover:text-[var(--primary)]">Тарифы</a>
+            <a href="/faq" class="hover:text-[var(--primary)]">Вопрос-ответ</a>
+            <a href="/complaints" class="hover:text-[var(--primary)]">Подать жалобу</a>
+            <a href="/calc" class="hover:text-[var(--primary)]">Проверить начисления</a>
+            <a href="/contacts" class="hover:text-[var(--primary)]">Контакты служб</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="py-16 px-4 text-center text-white"
+        style="background: linear-gradient(to right, var(--primary), var(--primary-light));">
+
+    <h1 class="text-4xl font-extrabold mb-4">
+        Единый портал ЖКХ сервисов
+    </h1>
+
+    <p class="opacity-90 max-w-2xl mx-auto">
+        Найдите тарифы, подайте жалобу или проверьте начисления в один клик
+    </p>
+
+    <div class="mt-8 max-w-3xl mx-auto relative">
+        <input 
+            type="text"
+            placeholder="Поиск"
+            class="w-full py-4 px-6 rounded-full text-black outline-none"
+        >
+    </div>
+</header>
+
+<!-- MAIN -->
+<main class="max-w-7xl mx-auto px-4 py-12 space-y-8">
+
+    <!-- ВЕРХ: район + кнопки -->
+    <div class="grid lg:grid-cols-3 gap-8">
+
+        <!-- ДАННЫЕ О РАЙОНЕ  -->
+        <section class="lg:col-span-2">
+
+          <div class="card !p-8 shadow-sm">
+                <div class="flex items-center gap-3 mb-6 text-[var(--danger)]">
+                    <i data-lucide="shield-alert" class="w-6 h-6"></i>
+                    <h3 class="text-xl font-bold text-[var(--text)]">Экстренные номера</h3>
+                </div>
+                
+                <div class="space-y-3">
+
+                    {{range .Phones}}       
+                    {{if eq .Name "Служба спасения"}}             
+                    <div class="flex justify-between items-center p-4 bg-[var(--danger)]/5 rounded-xl border border-[var(--danger)]/10">
+                        <div>
+                            <div class="font-bold text-[var(--text)]">{{.Name}}</div>
+                            <div class="text-[10px] uppercase tracking-wider text-gray-500">{{.Explanation}}</div>
+                        </div>
+                        <div class="text-2xl font-black text-[var(--danger)]">{{.Value}}</div>
+                    </div>
+                    {{else}}
+                    <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div>
+                            <div class="font-bold text-[var(--text)]">{{.Name}}</div>
+                            <div class="text-xs text-gray-500">{{.Explanation}}</div>
+                        </div>
+                        <div class="font-bold text-[var(--danger)] text-lg">{{.Value}}</div>
+                    </div>
+                    {{end}}
+                    {{end}}
+                </div>
+            </div>
+
+        </section>
+
+        <!-- СПРАВА: кнопки -->
+    <aside class="space-y-6 sticky top-24 h-fit">
+
+        <a href="/consumer" class="card flex justify-between items-center"
+           style="background: var(--button); color: white;">
+            <span>Справочник потребителя</span>
+            <i data-lucide="chevron-right"></i>
+        </a>
+
+        <a href="/complaints" class="card flex justify-between items-center"
+           style="background: var(--button); color: white;">
+            <span>Сформировать жалобу</span>
+            <i data-lucide="chevron-right"></i>
+        </a>
+
+    </aside>
+
+    </div>
+
+    <!-- 🟦 НОВОСТИ (снизу) -->
+    <section>
+
+        <div class="card">
+
+            <div class="flex justify-between mb-6">
+                <h2 class="text-2xl font-bold flex gap-2 items-center">
+                    <i data-lucide="newspaper" style="color: var(--primary)"></i>
+                    Новости ЖКХ
+                </h2>
+
+                <a href="/news" target="_blank"
+                   class="text-[var(--primary)] text-sm">
+                    Все новости
+                </a>
+            </div>
+
+            <div class="space-y-6">
+
+                <div>
+                    <div style="border-left: 4px solid var(--danger); padding-left: 12px;">
+
+                        <div class="flex gap-2 mb-2 text-sm">
+                            <span style="color: gray;">01.04.2026</span>
+                        </div>
+
+                        <h3 class="font-bold text-lg mb-2">
+                            Отключение электроэнергии
+                        </h3>
+
+                        <p style="color: gray;">
+                            АО «Тверьгорэлектро» информирует жителей областного центра о проведении плановых ремонтных работ на электросетях...
+                        </p>
+
+                    </div>
+                </div>
+
+                <div>
+                  <div style="border-left: 4px solid var(--danger); padding-left: 12px;">
+                    <div class="text-sm mb-2" style="color: gray;">
+                      <span style="color: gray;">30.03.2026</span>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">
+                        Александр Новак и Виталий Королев обсудили модернизацию теплоснабжения Твери и газификацию Верхневолжья
+                    </h3>
+                    <p style="color: gray;">
+                        Главные темы: повышение надёжности теплоснабжения областной столицы, газификация Верхневолжья и модернизация объектов ЖКХ...
+                    </p>
+                </div>
+              </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+lucide.createIcons();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS tarifs (
+    id SERIAL PRIMARY KEY,   
+    _name VARCHAR(100) NOT NULL,
+    tarif JSON NOT NULL,
+    updated_at TIMESTAMP DEFAULT NOW()
+);

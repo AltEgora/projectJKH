@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЖКХ Тверь — Платежи и ЕПД</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        :root {
+            /* 1. ЦВЕТ БОКОВОГО ФОНА САЙТА */
+            --page-bg: #f8fafc; 
+
+            /* 2. ЦВЕТ ЦЕНТРАЛЬНОГО СТОЛБЦА */
+            --column-bg: #ffffff; 
+
+            /* 3. ЦВЕТ РАЗДЕЛИТЕЛЬНЫХ ЛИНИЙ И ШАПКИ */
+            --line-color: #da822a; 
+
+            /* 4. ЦВЕТ ЗАГОЛОВКА */
+            --title-color: #400a2e; 
+
+            /* 5. ОСНОВНОЙ ОРАНЖЕВЫЙ ДЛЯ НАВИГАЦИИ */
+            --primary: #da822a;
+
+            /* ШИРИНА СТОЛБЦА И СКРУГЛЕНИЕ */
+            --column-width: 900px;
+            --column-radius: 32px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--page-bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* КОНТЕЙНЕР ДЛЯ СТОЛБЦА */
+        .column-wrapper {
+            max-width: var(--column-width);
+            margin: 30px auto 0; /* Отступ сверху от навигации */
+        }
+
+        /* ЦЕНТРАЛЬНЫЙ СТОЛБЕЦ */
+        .main-column {
+            background-color: var(--column-bg);
+            
+            /* ЛИНИИ ПО БОКАМ */
+            border-left: 2px solid var(--line-color);  
+            border-right: 2px solid var(--line-color); 
+            
+            /* СКРУГЛЕНИЕ СВЕРХУ И ЛИНИЯ НАД ЗАГОЛОВКОМ */
+            border-top: 2px solid var(--line-color); 
+            border-top-left-radius: var(--column-radius);
+            border-top-right-radius: var(--column-radius);
+            
+            /* ОСТАВЛЯЕМ БЕСКОНЕЧНЫЙ СТОЛБЕЦ СНИЗУ */
+            min-height: calc(100vh - 30px); /* Высота на весь экран минус отступ сверху */
+            
+            padding-bottom: 60px; /* Отступ в конце статьи */
+        }
+
+        .main-title {
+            color: var(--title-color);
+        }
+
+        .content-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #363038;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="bg-white border-b sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <a href="/" class="block">
+    <div class="font-bold text-[var(--primary)] text-xl tracking-tight">ПроЖКХ</div></a>
+        <div class="flex gap-6 text-sm font-semibold">
+            <a href="/" class="hover:text-[var(--primary)]">Главная</a>
+            <a href="/tariffs" class="hover:text-[var(--primary)]">Тарифы</a>
+            <a href="/faq" class="hover:text-[var(--primary)]">Вопрос-ответ</a>
+            <a href="/complaints" class="hover:text-[var(--primary)]">Подать жалобу</a>
+            <a href="/calc" class="hover:text-[var(--primary)]">Проверить начисления</a>
+            <a href="/contacts" class="hover:text-[var(--primary)]">Контакты служб</a>
+        </div>
+    </div>
+</nav>
+
+<div class="column-wrapper">
+    <div class="main-column px-8 md:px-16 py-12">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-[var(--title-color)] text-4xl font-extrabold tracking-tight">
+                Платежи и ЕПД
+            </h1>
+            <div class="h-1 w-20 bg-[var(--line-color)] mx-auto mt-4 rounded-full"></div>
+        </header>
+
+        <article class="content-text text-lg text-[var(--text-color)]">
+            
+            <h2 class="text-xl font-bold mb-8 text-[var(--title-color)] border-b pb-2 inline-block">
+                Единый платежный документ (ЕПД): что это такое и для чего он нужен?
+            </h2>
+
+            <p>
+                Каждый месяц мы получаем квитанции за «коммуналку». Уже нет необходимости самостоятельно собирать данные и оплачивать услуги по отдельности, чтобы оставаться добросовестным потребителем жилищно-коммунальных услуг. В Твери большинство жителей пользуются <strong>единым платежным документом (ЕПД) от ООО «ЕРКЦ»</strong>. <a href="prikaz_43pr.pdf" download class="font-bold text-[var(--primary)] hover:underline">
+    Приказом Минстроя России от 26.01.2018 N 43/пр</a> утверждена примерная форма платежного документа. Она не является строго унифицированной, поэтому в разных регионах внешний вид и содержание квитанций могут отличаться.
+            </p>
+
+            <p>
+              <strong>Единый платежный документ (ЕПД)</strong> — это комплексный платежный документ, который содержит сведения о большинстве жилищных и коммунальных расходов, а также информацию о потребителе, объекте обслуживания, поставщиках и получателях денежных средств. него включаются основные услуги: <u>холодная и горячая вода, отопление, электроэнергия, газ, вывоз отходов, взносы на капитальный ремонт и плата за содержание жилья</u>.
+            </p>
+
+            <p>
+                Формирование документа осуществляется централизованно. В Твери формированием данного документа занимается <strong>ООО «ЕРКЦ» (Единый расчетно-кассовый центр)</strong>. С 2016 года организация последовательно заключала договоры с ресурсоснабжающими организациями, что позволило объединить данные об услугах в одном документе. ЕРКЦ выступает единым агентом: принимает платежи и распределяет их между поставщиками — управляющими компаниями, ресурсоснабжающими организациями (например, «Тверская генерация», «ТверьВодоканал»), региональным оператором по капитальному ремонту и другими.
+            </p>
+
+            <p>
+                В зависимости от региона ЕПД может предоставляться в бумажном или электронном виде. В России <strong>доступен полный переход на электронный формат</strong> — через электронную почту, личный кабинет ГИС ЖКХ, а также через портал «Госуслуги». При выборе электронного формата бумажные квитанции больше не направляются.
+            </p>
+
+            <p>
+                Оплата услуг является ключевым этапом. Это можно сделать онлайн — <strong>через личный кабинет на «Госуслугах», на сайте УК или на некоторых региональных порталах.</strong> На платежном документе есть QR-код, позволяющий оплатить услуги через мобильные банковские приложения или терминалы без ручного ввода данных. Также доступна оплата через банкоматы и терминалы. Крайний срок оплаты — <u>до 15-го числа месяца, следующего за расчётным</u> (например, за январь — до 15 февраля).
+            </p>
+
+            <div class="mt-12 p-6 rounded-2xl bg-orange-50 border-l-4 border-[var(--line-color)] italic text-slate-700">
+                Теперь вы знаете, что такое Единый платежный документ. А чтобы расчитать свои платежи по отдельным тарифам, переходи в наш <a href=#><span class="text-[var(--primary)]"> Калькулятор тарифов</span></a>
+            </div>
+        </article>
+    </div>
+</div>
+
+</body>
+</html>

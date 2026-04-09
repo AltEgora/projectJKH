@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ЖКХ Тверь — Главная</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+body { font-family: 'Inter', sans-serif; }
+
+/* ЦВЕТОВАЯ СИСТЕМА */
+:root {
+    --primary: #da822a;
+    --primary-light: #ecb726;
+
+    --button: #601f5fb6;
+
+    --bg: #f8fafc;
+    --text: #400a2e;
+
+    --card: #ffffff;
+    --border: #e2e8f0;
+
+    --danger: #7a207b;
+    --danger-light: #fee2e2;
+
+    --dark: #722982;
+}
+
+/* карточки */
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: 0.2s;
+}
+.card:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+.region-item {
+    padding: 6px;
+    border-radius: 6px;
+}
+.region-item:hover {
+    background: var(--primary-light);
+    color: white;
+}
+</style>
+</head>
+
+<body class="bg-[var(--bg)] text-[var(--text)]">
+
+<!-- NAVBAR -->
+<nav class="bg-[var(--card)] border-b sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+
+        <div class="font-bold text-[var(--primary)] text-xl">
+            ЖКХ Тверь
+        </div>
+
+        <div class="flex gap-6 text-sm font-semibold"></div>
+            <a href="/main" class="text-[var(--primary)] flex items-center gap-1">
+                <i data-lucide="house"></i> Главная
+            </a>
+            <a href="/tariffs"  class="hover:text-[var(--primary)]">Тарифы</a>
+            <a href="/faq"  class="hover:text-[var(--primary)]">Вопрос-ответ</a>
+            <a href="/complaints"  class="hover:text-[var(--primary)]">Подать жалобу</a>
+            <a href="/accruals"  class="hover:text-[var(--primary)]">Проверить начисления</a>
+            <a href="/contacts"  class="hover:text-[var(--primary)]">Контакты служб</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="py-16 px-4 text-center text-white"
+        style="background: linear-gradient(to right, var(--primary), var(--primary-light));">
+
+    <h1 class="text-4xl font-extrabold mb-4">
+        Единый портал ЖКХ сервисов
+    </h1>
+
+    <p class="opacity-90 max-w-2xl mx-auto">
+        Найдите тарифы, подайте жалобу или проверьте начисления в один клик
+    </p>
+
+    <div class="mt-8 max-w-3xl mx-auto relative">
+        <input 
+            type="text"
+            placeholder="Поиск"
+            class="w-full py-4 px-6 rounded-full text-black outline-none"
+        >
+    </div>
+</header>
+
+<!-- MAIN -->
+<main class="max-w-7xl mx-auto px-4 py-12 space-y-8">
+
+    <!-- 🔷 ВЕРХ: район + кнопки -->
+    <div class="grid lg:grid-cols-3 gap-8">
+
+        <!-- 🟪 ДАННЫЕ О РАЙОНЕ (слева) -->
+        <section class="lg:col-span-2">
+
+            <div class="card">
+
+                <h3 class="font-bold mb-4">
+                    Данные для экстренной связи по районам
+                </h3>
+
+                <div class="flex gap-6">
+
+                    <!-- список -->
+                    <div class="flex flex-col gap-2 w-1/2">
+
+                        <div class="region-item cursor-pointer" data-region="central">
+                            Центральный
+                        </div>
+
+                        <div class="region-item cursor-pointer" data-region="north">
+                            Северный
+                        </div>
+
+                        <div class="region-item cursor-pointer" data-region="south">
+                            Южный
+                        </div>
+
+                    </div>
+
+                    <!-- инфо -->
+                    <div class="w-1/2 text-sm" id="region-info">
+                        Наведите на район
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- 🔶 КНОПКИ (справа) -->
+        <aside class="space-y-6">
+
+            <a href="/consumer" class="card flex justify-between items-center"
+               style="background: var(--button); color: white;">
+                <span>Справочник потребителя</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+            <a href="/complaints" class="card flex justify-between items-center"
+               style="background: var(--button); color: white;">
+                <span>Сформировать жалобу</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+        </aside>
+
+    </div>
+
+    <!-- 🟦 НОВОСТИ (снизу) -->
+    <section>
+
+        <div class="card">
+
+            <div class="flex justify-between mb-6">
+                <h2 class="text-2xl font-bold flex gap-2 items-center">
+                    <i data-lucide="newspaper" style="color: var(--primary)"></i>
+                    Новости ЖКХ
+                </h2>
+
+                <a href="/news" target="_blank"
+                   class="text-[var(--primary)] text-sm">
+                    Все новости
+                </a>
+            </div>
+
+            <div class="space-y-6">
+
+                {{range .News}}
+                {{if .Is_emergency}}
+                <div>
+                    <div style="border-left: 4px solid var(--danger); padding-left: 12px;">
+
+                        <div class="flex gap-2 mb-2 text-sm">
+                            <span style="background: var(--danger-light); color: var(--danger); padding: 2px 6px; border-radius: 6px;">
+                                Экстренно
+                            </span>
+                            <span style="color: gray;">{{.DateUpdated}}</span>
+                        </div>
+
+                        <h3 class="font-bold text-lg mb-2">
+                            {{.Header}}
+                        </h3>
+
+                        <p style="color: gray;">
+                            {{.Preview}}
+                        </p>
+
+                    </div>
+                </div>
+                {{else}}
+                <div>
+                    <div class="text-sm mb-2" style="color: gray;">{{.DateUpdated}}</div>
+                    <h3 class="font-bold text-lg mb-2">
+                        {{.Header}}
+                    </h3>
+                    <p style="color: gray;">
+                        {{.Preview}}
+                    </p>
+                </div>
+                {{end}}
+                {{end}}
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+lucide.createIcons();
+
+const data = {
+    central: {
+        head: "Иванов И.И.",
+        phone: "+7 900 000-00-00",
+        site: "central.ru"
+    },
+    north: {
+        head: "Петров П.П.",
+        phone: "+7 900 111-11-11",
+        site: "north.ru"
+    },
+    south: {
+        head: "Сидоров С.С.",
+        phone: "+7 900 222-22-22",
+        site: "south.ru"
+    }
+};
+
+document.querySelectorAll('.region-item').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        const r = data[el.dataset.region];
+        document.getElementById('region-info').innerHTML = `
+            <div><b>Глава:</b> ${r.head}</div>
+            <div><b>Телефон:</b> ${r.phone}</div>
+            <div><b>Сайт:</b> ${r.site}</div>
+        `;
+    });
+});
+</script>
+
+</body>
+</html>

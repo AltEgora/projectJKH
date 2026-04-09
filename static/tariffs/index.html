@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЖКХ Тверь — Актуальные тарифы</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+
+        :root {
+            --primary: #da822a;
+            --primary-light: #ecb726;
+            --button: #601f449c;
+            --bg: #f8fafc;
+            --text: #400a2e;
+            --card: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        .tariff-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 16px 24px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tariff-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        /* Стиль для цветных кружков с ценой */
+        .price-badge {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body class="bg-[var(--bg)] text-[var(--text)]">
+
+<nav class="bg-[var(--card)] border-b sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div class="font-bold text-[var(--primary)] text-xl">ЖКХ Тверь</div>
+        <div class="flex gap-6 text-sm font-semibold">
+            <a href="/main" class="hover:text-[var(--primary)]">Главная</a>
+            <a href="/tariffs" class="text-[var(--primary)] font-bold">Тарифы</a>
+            <a href="/faq"  class="hover:text-[var(--primary)]">Вопрос-ответ</a>
+            <a href="/complaints"  class="hover:text-[var(--primary)]">Подать жалобу</a>
+            <a href="/accruals"  class="hover:text-[var(--primary)]">Проверить начисления</a>
+            <a href="/contacts"  class="hover:text-[var(--primary)]">Контакты служб</a>
+        </div>
+    </div>
+</nav>
+
+<header class="py-12 px-4 text-center">
+    <h1 class="text-4xl font-extrabold mb-2 text-[var(--text)]">Актуальные тарифы ЖКХ</h1>
+</header>
+
+<main class="max-w-3xl mx-auto px-4 pb-20 space-y-4">
+
+    <div class="tariff-card flex items-center justify-between group">
+        <div class="flex items-center gap-5">
+            <div class="price-badge bg-blue-50 text-blue-600"><i data-lucide="snowflake"></i></div>
+            <div>
+                <h3 class="font-bold text-lg">Холодное водоснабжение</h3>
+                <p class="text-sm text-slate-400">43.50 руб/м³</p>
+            </div>
+        </div>
+        <i data-lucide="chevron-down" class="text-slate-300 group-hover:text-[var(--primary)]"></i>
+    </div>
+
+    <div class="tariff-card flex items-center justify-between group">
+        <div class="flex items-center gap-5">
+            <div class="price-badge bg-red-50 text-red-600"><i data-lucide="droplet"></i></div>
+            <div>
+                <h3 class="font-bold text-lg">Горячее водоснабжение</h3>
+                <p class="text-sm text-slate-400">210.30 руб/м³</p>
+            </div>
+        </div>
+        <i data-lucide="chevron-down" class="text-slate-300 group-hover:text-[var(--primary)]"></i>
+    </div>
+
+    <div class="tariff-card flex items-center justify-between group">
+        <div class="flex items-center gap-5">
+            <div class="price-badge bg-yellow-50 text-yellow-600"><i data-lucide="zap"></i></div>
+            <div>
+                <h3 class="font-bold text-lg">Электроснабжение (одноставочный)</h3>
+                <p class="text-sm text-slate-400">5.70 руб/кВт·ч</p>
+            </div>
+        </div>
+        <i data-lucide="chevron-down" class="text-slate-300 group-hover:text-[var(--primary)]"></i>
+    </div>
+
+    <div class="tariff-card flex items-center justify-between group">
+        <div class="flex items-center gap-5">
+            <div class="price-badge bg-orange-50 text-orange-600"><i data-lucide="cooking-pot"></i></div>
+            <div>
+                <h3 class="font-bold text-lg">Газоснабжение</h3>
+                <p class="text-sm text-slate-400">7.85 руб/м³</p>
+            </div>
+        </div>
+        <i data-lucide="chevron-down" class="text-slate-300 group-hover:text-[var(--primary)]"></i>
+    </div>
+
+    <div class="tariff-card flex items-center justify-between group">
+        <div class="flex items-center gap-5">
+            <div class="price-badge bg-purple-50 text-purple-600"><i data-lucide="sun"></i></div>
+            <div>
+                <h3 class="font-bold text-lg">Отопление (Теплоэнергия)</h3>
+                <p class="text-sm text-slate-400">2350.00 руб/Гкал</p>
+            </div>
+        </div>
+        <i data-lucide="chevron-down" class="text-slate-300 group-hover:text-[var(--primary)]"></i>
+    </div>
+
+    <div class="tariff-card flex items-center justify-between group">
+        <div class="flex items-center gap-5">
+            <div class="price-badge bg-emerald-50 text-emerald-600"><i data-lucide="trash-2"></i></div>
+            <div>
+                <h3 class="font-bold text-lg">Вывоз ТКО</h3>
+                <p class="text-sm text-slate-400">110.20 руб/чел</p>
+            </div>
+        </div>
+        <i data-lucide="chevron-down" class="text-slate-300 group-hover:text-[var(--primary)]"></i>
+    </div>
+
+</main>
+
+<script>
+    lucide.createIcons();
+    
+    // Можно добавить простую логику открытия подробностей
+    document.querySelectorAll('.tariff-card').forEach(card => {
+        card.addEventListener('click', () => {
+            alert("Здесь можно открыть подробную таблицу с нормативами для этого тарифа.");
+        });
+    });
+</script>
+
+</body>
+</html>

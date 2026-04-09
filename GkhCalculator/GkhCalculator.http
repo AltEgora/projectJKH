@@ -1,0 +1,6 @@
+@GkhCalculator_HostAddress = http://localhost:5135
+
+GET {{GkhCalculator_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
