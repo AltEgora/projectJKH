@@ -1,19 +1,23 @@
 # syntax=docker/dockerfile:1
 
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+# Используем 9.0-alpine — это самая легкая версия
+FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
 WORKDIR /src
 
-COPY ["GkhCalculator.csproj", "./"]
-RUN dotnet restore "GkhCalculator.csproj"
+# Включаем принудительное копирование всех csproj, если их несколько
+COPY *.csproj ./
+RUN dotnet restore
 
 COPY . .
-RUN dotnet publish "GkhCalculator.csproj" -c Release -o /app/publish /p:UseAppHost=false
+# Важно: добавляем флаги для экономии памяти
+RUN dotnet publish -c Release -o /app/publish /p:UseAppHost=false /p:PublishReadyToRun=false /p:TieredCompilation=false
 
-FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine AS final
 WORKDIR /app
 
-ENV ASPNETCORE_URLS=http://+:8080
-EXPOSE 8080
+# На Render лучше использовать порт 80 или 10000
+ENV ASPNETCORE_URLS=http://+:80
+EXPOSE 80
 
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "GkhCalculator.dll"]

@@ -5,7 +5,10 @@ namespace GkhCalculator.Models
         public const string SectionName = "GkhTariffs";
 
         public decimal ColdWaterTariff { get; set; }
-        public decimal HotWaterTariff { get; set; }
+        /// <summary>ГВС: компонент за 1 м³ (холодная составляющая / поставка).</summary>
+        public decimal HotWaterVolumeTariff { get; set; }
+        /// <summary>ГВС: подогрев за 1 Гкал.</summary>
+        public decimal HotWaterHeatTariff { get; set; }
         public decimal SewerTariff { get; set; }
         public decimal ElectricityTariff { get; set; }
         public decimal HeatingTariff { get; set; }
