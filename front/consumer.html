@@ -1,82 +1,45 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЖКХ Тверь — Справочник потребителя</title>
+{{define "style"}}
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+<style>
+    .card-upload {
+        background: var(--card);
+        border: 2px solid var(--border);
+        border-radius: 24px;
+        padding: 30px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        height: 100%;
+    }
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+    .card-upload:hover {
+        border-color: var(--primary);
+        box-shadow: 0 10px 30px rgba(218, 130, 42, 0.1);
+        transform: translateY(-5px);
+    }
 
-        :root {
-            --primary: #da822a;
-            --primary-light: #ecb726;
-            --button: #601f5fb6;
-            --bg: #f8fafc;
-            --text: #400a2e;
-            --card: #ffffff;
-            --border: #e2e8f0;
-            --dark: #722982;
-        }
+    i[data-lucide] {
+        stroke: var(--button) !important;
+    }
 
-        .card-upload {
-            background: var(--card);
-            border: 2px solid var(--border);
-            border-radius: 24px;
-            padding: 30px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            height: 100%;
-        }
+    .icon-box {
+        width: 70px;
+        height: 70px;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+</style>
 
-        .card-upload:hover {
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(218, 130, 42, 0.1);
-            transform: translateY(-5px);
-        }
+{{end}}
 
-        i[data-lucide] {
-            stroke: var(--button) !important;
-        }
 
-        .icon-box {
-            width: 70px;
-            height: 70px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-
-<body class="bg-[var(--bg)] text-[var(--text)] flex flex-col min-h-screen">
-
-<nav class="bg-[var(--card)] border-b sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <div class="font-bold text-[var(--primary)] text-xl">
-            ЖКХ Тверь
-        </div>
-
-        <div class="flex gap-6 text-sm font-semibold">
-            <a href="/" class="hover:text-[var(--primary)]">Главная</a>
-            <a href="/tariffs" class="hover:text-[var(--primary)]">Тарифы</a>
-            <a href="/faq" class="text-[var(--primary)]">Вопрос-ответ</a>
-            <a href="/complaints" class="hover:text-[var(--primary)]">Подать жалобу</a>
-            <a href="/calc" class="hover:text-[var(--primary)]">Проверить начисления</a>
-            <a href="/contacts" class="hover:text-[var(--primary)]">Контакты служб</a>
-        </div>
-    </div>
-</nav>
+{{define "content"}}
 
 <main class="max-w-[1600px] mx-auto px-4 sm:px-8 py-12">
 
@@ -138,6 +101,7 @@
             </h3>
             <p class="text-gray-400 text-sm">
                 Термины и аббревиатуры, которые нужно знать
+            </p>
         </div>
 
     </div>
@@ -178,12 +142,4 @@
     </div>
 </div>
 
-
-</main>
-
-<script>
-    lucide.createIcons();
-</script>
-
-</body>
-</html>
+{{end}}

@@ -11,12 +11,14 @@ import (
 type data struct {
 	News   []domain.ShortNew
 	Phones []domain.Phone
+	Title  string
+	Active string
 }
 
 func MainHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Got request on main page")
 
-	tmpl, err := template.ParseFiles("./front/home.html")
+	tmpl, err := template.ParseFiles("/app/front/base.html", "/app/front/home.html")
 
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)
@@ -32,9 +34,11 @@ func MainHandler(w http.ResponseWriter, req *http.Request) {
 		fmt.Printf("Error while getting news from bd: %s", err)
 	}
 
-	err = tmpl.Execute(w, data{
+	err = tmpl.ExecuteTemplate(w, "base", data{
 		News:   newsList,
 		Phones: phoneList,
+		Title:  "ПРО ЖКХ Оналйн",
+		Active: "home",
 	})
 
 	if err != nil {
