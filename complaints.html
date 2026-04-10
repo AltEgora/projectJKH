@@ -15,31 +15,51 @@
         :root {
             --primary: #da822a;
             --primary-light: #ecb726;
-            --button-purple: #722982;
-            --bg: #f8fafc;
-            --text: #400a2e;
-            --card: #ffffff;
-            --border: #e2e8f0;
-            --dark-header: #1e293b;
-        }
+            --primary-dark: #722982;
 
-        .card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 20px;
-            transition: 0.2s;
+            --button: #51134cb6;
+            --button-light: #791d61b6;
+
+            --bg: #f8fafc;
+
+            --text: #400a2e;
+            --link: #4a474a;
+
+            --card: #ffffff;
+            --border: #f4e6cb;
+            --hover: #fffbf7;
         }
 
         .category-badge {
-            background: #eff6ff;
-            color: #3b82f6;
+            background: var(--card);
+            border: 1px solid var(--primary);
             font-size: 10px;
             font-weight: 700;
             padding: 2px 8px;
             border-radius: 4px;
             text-transform: uppercase;
         }
+      
+      .category-card {
+          border: 1px solid var(--button);
+          border-radius: 16px;
+          padding: 20px;
+          background: white;
+      }
+
+      .action-btn {
+          border: 1px solid var(--primary-dark);
+          color: var(--primary-dark);
+          background: transparent;
+          transition: all 0.25s ease;
+      }
+
+      .action-btn:hover {
+          border-color: var(--primary);
+          box-shadow: 0 6px 14px rgba(218,130,42,0.2);
+          transform: translateY(-3px);
+      }
+
     </style>
 </head>
 
@@ -49,12 +69,12 @@
     <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <div class="font-bold text-[var(--primary)] text-xl">ЖКХ Тверь</div>
         <div class="flex gap-6 text-sm font-semibold">
-            <a href="#" class="hover:text-[var(--primary)]">Главная</a>
-            <a href="#" class="hover:text-[var(--primary)]">Тарифы</a>
-            <a href="#" class="hover:text-[var(--primary)]">Вопрос-ответ</a>
-            <a href="#" class="text-[var(--primary)] flex items-center gap-1">Подать жалобу</a>
-            <a href="#" class="hover:text-[var(--primary)]">Проверить начисления</a>
-            <a href="#" class="hover:text-[var(--primary)]">Контакты служб</a>
+            <a href="/" class="hover:text-[var(--primary)]">Главная</a>
+            <a href="/tariffs" class="hover:text-[var(--primary)]">Тарифы</a>
+            <a href="/faq" class="hover:text-[var(--primary)]">Вопрос-ответ</a>
+            <a href="/complaints" class="text-[var(--primary)] flex items-center gap-1">Подать жалобу</a>
+            <a href="/calc" class="hover:text-[var(--primary)]">Проверить начисления</a>
+            <a href="/contacts" class="hover:text-[var(--primary)]">Контакты служб</a>
         </div>
     </div>
 </nav>
@@ -73,76 +93,216 @@
 <main class="max-w-7xl mx-auto px-4 py-8">
     <div class="grid grid-cols-1 gap-4 items-start">
 
-        <section class="space-y-4">
-
-    <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 text-center lg:text-left">
-        Категории проблем
-    </h2>
+        <section class="space-y-8">
 
     <!-- ОТОПЛЕНИЕ -->
-    <div class="card">
-        <div class="flex justify-between items-center cursor-pointer category-header">
-            <span class="font-bold text-lg">Отопление</span>
-            <i data-lucide="chevron-down"></i>
+    <div class="category-card">
+    <h2 class="text-lg font-bold mb-6">Отопление</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <!-- карточка проблемы -->
+        <div class="border border-[var(--border)] rounded-xl p-4">
+            <div class="font-semibold mb-4">Отсутствие отопления</div>
+
+            <a href="/docs/heat/no_heat/template.doc"
+               class="action-btn block text-center py-2 rounded-lg mb-2">
+                Шаблон заявления<br>
+                <span class="text-xs">Скачать</span>
+            </a>
+
+            <a href="/docs/heat/no_heat/example.doc"
+               class="action-btn block text-center py-2 rounded-lg">
+                Пример заявления<br>
+                <span class="text-xs">Скачать</span>
+            </a>
         </div>
 
-        <div class="mt-4 space-y-2 hidden category-content">
-            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
-                Отсутствие отопления
-            </div>
+        <!-- 2 -->
+        <div class="border border-[var(--border)] rounded-xl p-4">
+            <div class="font-semibold mb-4">Низкая температура в квартире</div>
+
+            <a href="#" class="action-btn block text-center py-2 rounded-lg mb-2">
+                Шаблон заявления<br><span class="text-xs">Скачать</span>
+            </a>
+
+            <a href="#" class="action-btn block text-center py-2 rounded-lg">
+                Пример заявления<br><span class="text-xs">Скачать</span>
+            </a>
         </div>
+
+        <!-- 3 -->
+        <div class="border border-[var(--border)] rounded-xl p-4">
+            <div class="font-semibold mb-4">Неравномерный прогрев батарей</div>
+
+            <a href="#" class="action-btn block text-center py-2 rounded-lg mb-2">
+                Шаблон заявления<br><span class="text-xs">Скачать</span>
+            </a>
+
+            <a href="#" class="action-btn block text-center py-2 rounded-lg">
+                Пример заявления<br><span class="text-xs">Скачать</span>
+            </a>
+        </div>
+
     </div>
+</div>
+
 
     <!-- ВОДОСНАБЖЕНИЕ -->
-    <div class="card">
-        <div class="flex justify-between items-center cursor-pointer category-header">
-            <span class="font-bold text-lg">Водоснабжение</span>
-            <i data-lucide="chevron-down"></i>
+<div class="category-card">
+    <h2 class="text-lg font-bold mb-6">Водоснабжение</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <div class="border border-[var(--border)] rounded-xl p-4">
+            <div class="font-semibold mb-4">Грязная вода из крана</div>
+            <a href="/docs/water/dirty/template.doc" class="action-btn block text-center py-2 rounded-lg mb-2">
+                Шаблон заявления<br><span class="text-xs">Скачать</span>
+            </a>
+            <a href="/docs/water/dirty/example.doc" class="action-btn block text-center py-2 rounded-lg">
+                Пример заявления<br><span class="text-xs">Скачать</span>
+            </a>
         </div>
 
-        <div class="mt-4 space-y-2 hidden category-content">
-            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
-                Грязная вода из крана
-            </div>
-            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
-                Засор канализации
-            </div>
+        <div class="border border-[var(--border)] rounded-xl p-4">
+            <div class="font-semibold mb-4">Засор канализации</div>
+            <a href="/docs/water/plug/template.doc" class="action-btn block text-center py-2 rounded-lg mb-2">
+                Шаблон заявления<br><span class="text-xs">Скачать</span>
+            </a>
+            <a href="/docs/water/plug/example.doc" class="action-btn block text-center py-2 rounded-lg">
+                Пример заявления<br><span class="text-xs">Скачать</span>
+            </a>
         </div>
+
+        <div class="border border-[var(--border)] rounded-xl p-4">
+            <div class="font-semibold mb-4">Низкое давление воды</div>
+            <a href="#" class="action-btn block text-center py-2 rounded-lg mb-2">
+                Шаблон заявления<br><span class="text-xs">Скачать</span>
+            </a>
+            <a href="#" class="action-btn block text-center py-2 rounded-lg">
+                Пример заявления<br><span class="text-xs">Скачать</span>
+            </a>
+        </div>
+
     </div>
+</div>
 
-    <!-- ЭЛЕКТРИЧЕСТВО -->
-    <div class="card">
-        <div class="flex justify-between items-center cursor-pointer category-header">
-            <span class="font-bold text-lg">Электричество</span>
-            <i data-lucide="chevron-down"></i>
+<!-- КВИТАНЦИИ -->
+<div class="category-card">
+    <h2 class="text-lg font-bold mb-6">Неправильные расчеты в квитанции</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <div class="border border-[var(--border)] rounded-xl p-4">
+            <div class="font-semibold mb-4">Неправильный расчет горячей воды</div>
+            <a href="/docs/cvit/hot_water/Шаблон жалобы в УК.docx" class="action-btn block text-center py-2 rounded-lg mb-2">
+                Шаблон заявления<br><span class="text-xs">Скачать</span>
+            </a>
+            <a href="/docs/cvit/hot_water/Пример жалобы в УК.docx" class="action-btn block text-center py-2 rounded-lg">
+                Пример заявления<br><span class="text-xs">Скачать</span>
+            </a>
         </div>
 
-        <div class="mt-4 space-y-2 hidden category-content">
-            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
-                Отсутствие электричества
-            </div>
+        <div class="border border-[var(--border)] rounded-xl p-4">
+            <div class="font-semibold mb-4">Ошибка в начислении отопления</div>
+            <a href="#" class="action-btn block text-center py-2 rounded-lg mb-2">
+                Шаблон заявления<br><span class="text-xs">Скачать</span>
+            </a>
+            <a href="#" class="action-btn block text-center py-2 rounded-lg">
+                Пример заявления<br><span class="text-xs">Скачать</span>
+            </a>
         </div>
+
+        <div class="border border-[var(--border)] rounded-xl p-4">
+            <div class="font-semibold mb-4">Начисления за неоказанные услуги</div>
+            <a href="#" class="action-btn block text-center py-2 rounded-lg mb-2">
+                Шаблон заявления<br><span class="text-xs">Скачать</span>
+            </a>
+            <a href="#" class="action-btn block text-center py-2 rounded-lg">
+                Пример заявления<br><span class="text-xs">Скачать</span>
+            </a>
+        </div>
+
     </div>
+</div>
 
-    <!-- ОБЩЕЕ ИМУЩЕСТВО -->
-    <div class="card">
-        <div class="flex justify-between items-center cursor-pointer category-header">
-            <span class="font-bold text-lg">Общее имущество</span>
-            <i data-lucide="chevron-down"></i>
+<!-- ЭЛЕКТРИЧЕСТВО -->
+<div class="category-card">
+    <h2 class="text-lg font-bold mb-6">Электричество</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <div class="border border-[var(--border)] rounded-xl p-4">
+            <div class="font-semibold mb-4">Отсутствие электричества</div>
+            <a href="/docs/electro/no_electro/template.doc" class="action-btn block text-center py-2 rounded-lg mb-2">
+                Шаблон заявления<br><span class="text-xs">Скачать</span>
+            </a>
+            <a href="/docs/electro/no_electro/example.doc" class="action-btn block text-center py-2 rounded-lg">
+                Пример заявления<br><span class="text-xs">Скачать</span>
+            </a>
         </div>
 
-        <div class="mt-4 space-y-2 hidden category-content">
-            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
-                Ненадлежащая уборка подъезда и территории
-            </div>
-            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
-                Затопление (соседи или крыша)
-            </div>
-            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
-                Неисправность лифта
-            </div>
+        <div class="border border-[var(--border)] rounded-xl p-4">
+            <div class="font-semibold mb-4">Перепады напряжения</div>
+            <a href="#" class="action-btn block text-center py-2 rounded-lg mb-2">
+                Шаблон заявления<br><span class="text-xs">Скачать</span>
+            </a>
+            <a href="#" class="action-btn block text-center py-2 rounded-lg">
+                Пример заявления<br><span class="text-xs">Скачать</span>
+            </a>
         </div>
+
+        <div class="border border-[var(--border)] rounded-xl p-4">
+            <div class="font-semibold mb-4">Неисправность счетчика</div>
+            <a href="#" class="action-btn block text-center py-2 rounded-lg mb-2">
+                Шаблон заявления<br><span class="text-xs">Скачать</span>
+            </a>
+            <a href="#" class="action-btn block text-center py-2 rounded-lg">
+                Пример заявления<br><span class="text-xs">Скачать</span>
+            </a>
+        </div>
+
     </div>
+</div>
+
+<!-- ОБЩЕЕ ИМУЩЕСТВО -->
+<div class="category-card">
+    <h2 class="text-lg font-bold mb-6">Общее имущество</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <div class="border border-[var(--border)] rounded-xl p-4">
+            <div class="font-semibold mb-4">Ненадлежащая уборка</div>
+            <a href="/docs/property/podezd/template.doc" class="action-btn block text-center py-2 rounded-lg mb-2">
+                Шаблон заявления<br><span class="text-xs">Скачать</span>
+            </a>
+            <a href="/docs/property/podezd/example.doc" class="action-btn block text-center py-2 rounded-lg">
+                Пример заявления<br><span class="text-xs">Скачать</span>
+            </a>
+        </div>
+
+        <div class="border border-[var(--border)] rounded-xl p-4">
+            <div class="font-semibold mb-4">Затопление</div>
+            <a href="/docs/property/flood/template.doc" class="action-btn block text-center py-2 rounded-lg mb-2">
+                Шаблон заявления<br><span class="text-xs">Скачать</span>
+            </a>
+            <a href="/docs/property/flood/example.doc" class="action-btn block text-center py-2 rounded-lg">
+                Пример заявления<br><span class="text-xs">Скачать</span>
+            </a>
+        </div>
+
+        <div class="border border-[var(--border)] rounded-xl p-4">
+            <div class="font-semibold mb-4">Неисправность лифта</div>
+            <a href="/docs/property/lift/template.doc" class="action-btn block text-center py-2 rounded-lg mb-2">
+                Шаблон заявления<br><span class="text-xs">Скачать</span>
+            </a>
+            <a href="/docs/property/lift/example.doc" class="action-btn block text-center py-2 rounded-lg">
+                Пример заявления<br><span class="text-xs">Скачать</span>
+            </a>
+        </div>
+
+    </div>
+</div>
 
 </section>
 </div>
