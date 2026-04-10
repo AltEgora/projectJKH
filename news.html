@@ -1,23 +1,266 @@
-<body class="bg-[var(--bg)] text-[var(--text)]">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЖКХ Тверь — Новости</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        :root {
+            --page-bg: #f8fafc;      
+            --line-color: #da822a;    
+            --title-color: #400a2e;   
+            --primary: #da822a;
+            --news-card-bg: #ffffff;  
+            --news-border: #e2e8f0;   
+            --text-color: #363038;
+            --text-color2: #4d434f;
+        }
 
-<div class="max-w-4xl mx-auto py-12 px-4">
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--page-bg);
+            margin: 0;
+            padding-bottom: 100px;
+            color: #334155;
+        }
 
-    <h1 class="text-3xl font-bold mb-8">Все новости ЖКХ</h1>
+         .content-container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
 
-    <div class="space-y-6">
+        .news-card {
+            background-color: var(--news-card-bg);
+            border: 1px solid var(--news-border);
+            border-radius: 28px;
+            padding: 28px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-bottom: 24px;
+        }
 
-        <div class="card">
-            <h3 class="font-bold text-xl mb-2">Отключение воды</h3>
-            <p>Полный текст новости...</p>
+        .news-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        .full-text {
+            display: none;
+            opacity: 0;
+        }
+
+        .news-card.active {
+            cursor: default;
+            border-color: var(--line-color);
+        }
+
+        .news-card.active .preview-text {
+            display: none;
+        }
+
+        .news-card.active .full-text {
+            display: block;
+            animation: fadeIn 0.4s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .rotate-icon { transition: transform 0.3s ease; }
+        .news-card.active .rotate-icon { transform: rotate(180deg); }
+
+    </style>
+</head>
+<body>
+
+<nav class="bg-white border-b sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div class="font-bold text-[var(--primary)] text-xl tracking-tight">ПроЖКХ</div>
+        <div class="flex gap-6 text-sm font-semibold text-slate-600">
+            <a href="#" class="text-[var(--primary)] flex items-center gap-1">Главная</a>
+            <a href="#" class="hover:text-[var(--primary)]">Тарифы</a>
+            <a href="#" class="hover:text-[var(--primary)]">Вопрос-ответ</a>
+            <a href="#" class="hover:text-[var(--primary)]">Подать жалобу</a>
+            <a href="#" class="hover:text-[var(--primary)]">Проверить начисления</a>
+            <a href="#" class="hover:text-[var(--primary)]">Контакты служб</a>
+        </div>
+    </div>
+</nav>
+
+<div class="content-container px-6">
+    
+    <header class="text-center py-16">
+        <h1 class="text-[var(--title-color)] text-4xl font-extrabold tracking-tight">Новости ЖКХ Тверь</h1>
+        <div class="h-1 w-12 bg-[var(--line-color)] mx-auto mt-6 rounded-full opacity-60"></div>
+    </header>
+
+    <div class="news-list">
+
+        <div class="news-card" onclick="this.classList.toggle('active')">
+            <div class="flex justify-between items-start">
+                <div class="flex-1">
+                    <h2 class="text-2xl font-bold text-[var(--title-color)] leading-snug">
+                        Плановые отключения электроэнергии в Твери: график на 1-3 апреля 2026 года
+                    </h2>
+                    <div class="preview-text mt-4 pl-4">
+                        <img src="https://vedtver.ru/wp-content/uploads/2025/12/%D0%91%D0%B5%D0%BB%D1%8F%D0%BA%D0%BE%D0%B2%D0%B0-%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B8%D0%BD%D0%B0-35-min-scaled-e1765014851393.jpg">
+                    </div>
+
+                    <div class="full-text mt-6 space-y-4 text-[var(--text-color)] leading-relaxed">
+                        <p>АО «Тверьгорэлектро» информирует жителей областного центра о проведении плановых ремонтных работ на электросетях. В период с 1 по 3 апреля будет временно отключено электроснабжение в ряде районов города. Мероприятия связаны с заменой аварийных опор, установкой шкафов учёта и ремонтом трансформаторных подстанций.</p>
+                        
+                        <p class="font-bold text-[var(--title-color)]">График отключений и адреса:</p>
+
+<div class="space-y-6">
+    <div>
+        <span class="text-[var(--primary)] font-bold">1 апреля (среда):</span><br>
+        
+        <div class="mt-2">
+            <strong>Тверь ЗР (Заволжский район)</strong><br>
+            <strong>с 09:00 до 16:00</strong> –<br>
+            ул. Осипенко, 26–52, 23–63<br>
+            ул. Серова, 18–54, 15–55<br>
+            ул. Туполева, 38–74<br>
+            2-й пер. Котовского, 15–25, 16–18<br>
+            1-й пер. Котовского, 13–23, 14–24<br>
+            ул. Котовского, 16–26, 61<br>
+            1-й пр. Серова, 3, 4<br>
+            пер. Белинского, 12–14, 24, 26<br>
+            1-й пер. Белинского, 21
         </div>
 
-        <div class="card">
-            <h3 class="font-bold text-xl mb-2">Тарифы</h3>
-            <p>Полный текст...</p>
+        <div class="mt-4"> <strong>с 13:30 до 16:00</strong> –<br>
+            ул. Туполева, 74–112/24<br>
+            ул. 1-я Силикатная, 5<br>
+            ул. 2-я Силикатная, 11–23, 24<br>
+            ул. 2-я Серова, 1–35<br>
+            ул. Серова, 7–11, 14–16
+        </div>
+
+        <div class="mt-6"> <strong>Тверь МР (Московский район)</strong><br>
+            <strong>с 09:00 до 14:00</strong> –<br>
+            Смоленский пер., 34 (поликлиника)<br>
+            наб. С. Разина, 42, 43, 48<br>
+            ул. Вокзальная, 3
+        </div>
+
+        <div class="mt-4">
+            <strong>с 09:00 до 16:00</strong> –<br>
+            ул. Ушакова, 17, 21<br>
+            дер. Батино, 107, 111<br>
+            Смоленский пер., 32<br>
+            ул. Вагжанова, 1, 3, 5 к.1<br>
+            ул. Вокзальная, 4, 6<br>
+            ул. Горького, 81, 81а, 83, 84, 85, 86, 87 (детский сад)<br>
+            наб. А. Никитина, 84, 86, 110
+        </div>
+    </div>
+
+    <div class="mt-8">
+        <span class="text-[var(--primary)] font-bold">2 апреля (четверг):</span><br>
+        <div class="mt-2">
+            <strong>Тверь ЗР</strong><br>
+            <strong>с 09:00 до 16:00</strong> – все те же адреса, что указаны для Заволжского района на 1 апреля.
+        </div>
+        <div class="mt-4">
+            <strong>Тверь МР</strong><br>
+            <strong>с 09:00 до 16:00</strong> – все те же адреса, что указаны для Московского района на 1 апреля.
+        </div>
+    </div>
+
+    <div class="mt-8">
+        <span class="text-[var(--primary)] font-bold">3 апреля (пятница):</span><br>
+        <div class="mt-2">
+            <strong>Тверь МР</strong><br>
+            <strong>с 09:00 до 15:00</strong> – все те же адреса Московского района.
+        </div>
+    </div>
+</div>
+
+                        <p class="pt-4 border-t border-slate-100 text-sm italic">Внимание! Отключения могут затрагивать только часть домов по указанным улицам. Подробную информацию можно уточнить в своей управляющей компании или по телефону диспетчерской службы АО «Тверьгорэлектро»: 8 (4822) 34-56-78 (справочная).</p>
+                      <img src="https://vedtver.ru/wp-content/uploads/2025/12/%D0%91%D0%B5%D0%BB%D1%8F%D0%BA%D0%BE%D0%B2%D0%B0-%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B8%D0%BD%D0%B0-35-min-scaled-e1765014851393.jpg">
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-2 rounded-full ml-4 shrink-0">
+                    <i data-lucide="chevron-down" class="rotate-icon text-slate-400 w-5 h-5"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-card" onclick="this.classList.toggle('active')">
+            <div class="flex justify-between items-start">
+                <div class="flex-1">
+                    <h2 class="text-2xl font-bold text-[var(--title-color)] leading-snug">
+                        Александр Новак и Виталий Королев обсудили модернизацию теплоснабжения Твери и газификацию Верхневолжья
+                    </h2>
+                    <div class="preview-text mt-4 pl-4">
+                        <img src="https://xn-----glcfccctdci4bhow0as6psb.xn--p1ai/wp-content/uploads/2026/03/photo_2026-03-30_17-05-01-678x381.jpg">
+                    </div>
+
+                    <div class="full-text mt-6 space-y-4 text-[var(--text-color)] leading-relaxed">
+                        <p>30 марта в Москве прошла встреча зампреда Правительства РФ <strong>Александра Новака</strong> и губернатора Тверской области <strong>Виталия Королева</strong>. Главные темы: повышение надёжности теплоснабжения областной столицы, газификация Верхневолжья и модернизация объектов ЖКХ. Виталий Королев отметил, что совместная работа нацелена на решение насущных вопросов в энергетике и создание условий для инвестиционной активности.</p>
+                        <p>С 1 марта теплоэнергетический комплекс региона передан в управление государственной компании <strong>«Объединенные энергетические системы Тверской области» (ОЭС)</strong> со 100%‑ным участием региона. Губернатор поставил задачу обеспечить чёткую и эффективную работу новой структуры. Параллельно реализуется программа газификации, утвержденная правительством области и ПАО «Газпром», которая позволит увеличить уровень газификации до <strong>84,5%</strong>.</p>
+                        <p>В 2026 году планируется удвоить количество обновленных объектов теплоснабжения в муниципалитетах. Принята программа повышения надёжности электроснабжения на <strong>2026–2030</strong> годы, включающая реконструкцию высоковольтных линий, закупку спецтехники и генераторов. Виталий Королев подчеркнул, что эта работа определяет качество жизни десятков тысяч семей Верхневолжья.</p>
+                        <img src="https://xn-----glcfccctdci4bhow0as6psb.xn--p1ai/wp-content/uploads/2026/03/photo_2026-03-30_17-05-01-678x381.jpg">
+                      <p class="mt-6 pt-4 border-t border-slate-100 text-sm text-[var(--text-color2)]">
+    Ссылка на источник: 
+    <a href="https://tver.mk.ru/social/2026/03/30/vitaliy-korolev-i-vicepremer-aleksandr-novak-obsudili-modernizaciyu-sistemy-teplosnabzheniya-tveri.html" target="_blank" class="text-[var(--text-color2)] font-semibold hover:underline decoration-2 underline-offset-4">
+        MK в Твери
+    </a>
+</p>
+                      
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-2 rounded-full ml-4 shrink-0">
+                    <i data-lucide="chevron-down" class="rotate-icon text-slate-400 w-5 h-5"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-card" onclick="this.classList.toggle('active')">
+            <div class="flex justify-between items-start">
+                <div class="flex-1">
+                    <h2 class="text-2xl font-bold text-[var(--title-color)]">
+                        Прокуратура выявила незаконное начисление НДС в квитанциях жителей Твери
+                    </h2>
+                    <div class="preview-text mt-4 pl-4">
+                        <img src="https://vedtver.ru/wp-content/uploads/2024/10/%D0%91%D0%B5%D0%BB%D1%8F%D0%BA%D0%BE%D0%B2%D0%B0-%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B8%D0%BD%D0%B0-8-2.jpg">
+                    </div>
+
+                    <div class="full-text mt-6 space-y-4 text-[var(--text-color)] leading-relaxed">
+                        <p>Сотрудники прокуратуры Центрального района Твери проверили соблюдение жилищного законодательства управляющей компанией <strong>«РЭП-17»</strong>. Установлено, что организация незаконно включала в платежные документы жильцов трех домов налог на добавленную стоимость (НДС) в размере <strong>5%</strong>.</p>
+                        <p>Согласно действующим правилам, НДС не применяется при расчетах с населением за коммунальные услуги. Прокуратура внесла в адрес УК представление с требованием устранить нарушения. В результате вмешательства надзорного ведомства компания провела перерасчет, приведя платежные документы в соответствие с законом.</p>
+                      <img src="https://vedtver.ru/wp-content/uploads/2024/10/%D0%91%D0%B5%D0%BB%D1%8F%D0%BA%D0%BE%D0%B2%D0%B0-%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B8%D0%BD%D0%B0-8-2.jpg">
+                      <p class="mt-6 pt-4 border-t border-slate-100 text-sm text-[var(--text-color2)]">
+    Ссылка на источник: 
+    <a href="https://vedtver.ru/news/proisshestviya/upravljajushhaja-kompanii-v-tveri-nezakonno-nachisljala-nds-za-kommunalnye-uslugi/" target="_blank" class="text-[var(--text-color2)] font-semibold hover:underline decoration-2 underline-offset-4">
+        Тверские Ведомости
+    </a>
+</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-2 rounded-full ml-4 shrink-0">
+                    <i data-lucide="chevron-down" class="rotate-icon text-slate-400 w-5 h-5"></i>
+                </div>
+            </div>
         </div>
 
     </div>
-
 </div>
 
+<script>
+    lucide.createIcons();
+    // Чтобы клик по тексту внутри развернутой новости не закрывал её
+    document.querySelectorAll('.full-text').forEach(el => {
+        el.addEventListener('click', (e) => e.stopPropagation());
+    });
+</script>
+
 </body>
+</html>

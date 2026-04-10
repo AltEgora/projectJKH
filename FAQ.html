@@ -14,7 +14,7 @@
         :root {
             --primary: #da822a;
             --primary-light: #ecb726;
-            --button: #722982; /* Фиолетовый из вашего стиля */
+            --button: #722982;
             --bg: #f8fafc;
             --text: #400a2e;
             --card: #ffffff;
@@ -48,12 +48,12 @@
 
 <nav class="bg-[var(--card)] border-b sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <div class="font-bold text-[var(--primary)] text-xl">ЖКХ Тверь</div>
+        <a href="/" class="block">
+    <div class="font-bold text-[var(--primary)] text-xl tracking-tight">ПроЖКХ</div></a>
         <div class="flex gap-6 text-sm font-semibold">
             <a href="#" class="hover:text-[var(--primary)]">Главная</a>
             <a href="#"  class="hover:text-[var(--primary)]">Тарифы</a>
             <a href="#" class="text-[var(--primary)] flex items-center gap-1">
-                <!-- <i data-lucide="help-circle" class="w-4 h-4"></i>  -->
                 Вопрос-ответ
             </a>
             <a href="#"  class="hover:text-[var(--primary)]">Подать жалобу</a>
@@ -120,20 +120,22 @@
 
         <aside class="space-y-6">
             
-            <div class="p-8 rounded-2xl text-white relative overflow-hidden group cursor-pointer" 
-                 style="background: linear-gradient(135deg, var(--button), #7228558e);">
-                <div class="relative z-10">
-                    <div class="bg-white/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="shield-check" class="w-8 h-8 text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2">Справочник потребителя</h3>
-                    <p class="text-white/80 text-sm mb-6">Здесь можно найти полезные советы и информацию  о своих правах, о составе коммунальных услуг, структуре платежа и др</p>
-                    <div class="flex items-center gap-2 font-bold group-hover:gap-4 transition-all">
-                        Перейти в раздел <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                    </div>
-                </div>
-                <i data-lucide="gavel" class="absolute -bottom-4 -right-4 w-32 h-32 opacity-10 rotate-12"></i>
+            <a href="/spravochnik" class="block">
+    <div class="p-8 rounded-2xl text-white relative overflow-hidden group cursor-pointer" 
+         style="background: linear-gradient(135deg, var(--button), #7228558e);">
+        <div class="relative z-10">
+            <div class="bg-white/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                <i data-lucide="shield-check" class="w-8 h-8 text-white"></i>
             </div>
+            <h3 class="text-2xl font-bold mb-2">Справочник потребителя</h3>
+            <p class="text-white/80 text-sm mb-6">Здесь можно найти полезные советы и информацию  о своих правах, о составе коммунальных услуг, структуре платежа и др</p>
+            <div class="flex items-center gap-2 font-bold group-hover:gap-4 transition-all">
+                Перейти в раздел <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </div>
+        </div>
+        <i data-lucide="gavel" class="absolute -bottom-4 -right-4 w-32 h-32 opacity-10 rotate-12"></i>
+    </div>
+</a>
 
             <div class="card">
                 <div class="flex items-center gap-2 mb-6 border-b pb-4">
@@ -141,21 +143,28 @@
                     <h3 class="font-bold">Важные справочники</h3>
                 </div>
                 <div class="space-y-1">
-                    <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <a href="https://www.consultant.ru/cons/cgi/online.cgi?req=doc&base=LAW&n=511791&dst=100001#uEfQ1GVCbSEjQryA" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 group transition-colors">
                         <div class="flex items-center gap-3">
                             <i data-lucide="file-text" class="w-4 h-4 text-gray-400"></i>
                             <span class="text-sm">Жилищный кодекс РФ</span>
                         </div>
                         <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-[var(--primary)]"></i>
                     </a>
-                    <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <a href="https://login.consultant.ru/link/?req=doc&base=LAW&n=522272&dst=100001%2C-1&date=06.04.2026&demo=2" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 group transition-colors">
                         <div class="flex items-center gap-3">
                             <i data-lucide="file-text" class="w-4 h-4 text-gray-400"></i>
-                            <span class="text-sm">Постановление №354</span>
+                            <span class="text-sm">Постановление Правительства №354 (О предоставлении коммунальных услуг)</span>
                         </div>
                         <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-[var(--primary)]"></i>
                     </a>
-                    <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <a href="https://login.consultant.ru/link/?req=doc&base=LAW&n=515330&dst=100001%2C-1&date=06.04.2026&demo=2" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 group transition-colors"
+                       target="_blank">
                         <div class="flex items-center gap-3">
                             <i data-lucide="scale" class="w-4 h-4 text-gray-400"></i>
                             <span class="text-sm">Права потребителей услуг ЖКХ</span>
@@ -167,4 +176,4 @@
         </aside>
 
     </div>
-</main>
+  </main>
