@@ -9,13 +9,16 @@ import (
 func ComplaintsHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Got request on complaints page")
 
-	tmpl, err := template.ParseFiles("./front/complaints.html")
+	tmpl, err := template.ParseFiles("/app/front/consumer.html", "/app/front/base.html")
 
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)
 	}
 
-	err = tmpl.Execute(w, data{})
+	err = tmpl.ExecuteTemplate(w, "base", data{
+		Active: "complaints",
+		Title:  "Справочник потребителя",
+	})
 
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)

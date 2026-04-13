@@ -25,7 +25,10 @@ namespace GkhCalculator.Services
             var hotVol = ResolveHotWaterVolume(req, p, residents);
 
             var coldWater = coldVol * _tariffs.ColdWaterTariff;
-            var hotWater = hotVol * _tariffs.HotWaterTariff;
+            var hotGcal = req.HotWaterThermalGcal;
+            var hotWaterSupply = hotVol * _tariffs.HotWaterVolumeTariff;
+            var hotWaterHeat = hotGcal * _tariffs.HotWaterHeatTariff;
+            var hotWater = hotWaterSupply + hotWaterHeat;
 
             var sewerVolume = coldVol + hotVol;
             var sewer = sewerVolume * _tariffs.SewerTariff;
@@ -44,7 +47,9 @@ namespace GkhCalculator.Services
 
             var resourceMult = CommercialMult(p);
             coldWater *= resourceMult;
-            hotWater *= resourceMult;
+            hotWaterSupply *= resourceMult;
+            hotWaterHeat *= resourceMult;
+            hotWater = hotWaterSupply + hotWaterHeat;
             sewer *= resourceMult;
             electricity *= resourceMult;
             heating *= resourceMult;
@@ -72,6 +77,29 @@ namespace GkhCalculator.Services
                 ? "ok"
                 : diff > 0 ? "overpay" : "underpay";
 
+            object? lineComparison = null;
+            var lineMode = req.ReceiptLineMode?.Trim().ToLowerInvariant();
+            if (lineMode is "cold" or "hot" or "heat")
+            {
+                var lineSubtotal = lineMode switch
+                {
+                    "cold" => coldWater + sewer,
+                    "hot" => hotWaterSupply + hotWaterHeat,
+                    _ => heating
+                };
+                var lineDiff = req.ReceiptLineAmount - lineSubtotal;
+                var lineStatus = Math.Abs(lineDiff) < 1
+                    ? "ok"
+                    : lineDiff > 0 ? "overpay" : "underpay";
+                lineComparison = new
+                {
+                    subtotal = lineSubtotal,
+                    receiptLineAmount = req.ReceiptLineAmount,
+                    difference = lineDiff,
+                    status = lineStatus
+                };
+            }
+
             return new
             {
                 total,
@@ -81,6 +109,8 @@ namespace GkhCalculator.Services
                 {
                     coldWater,
                     hotWater,
+                    hotWaterSupply,
+                    hotWaterHeat,
                     sewer,
                     electricity,
                     heating,
@@ -88,7 +118,8 @@ namespace GkhCalculator.Services
                     waste,
                     odn,
                     capitalRepair
-                }
+                },
+                lineComparison
             };
         }
 

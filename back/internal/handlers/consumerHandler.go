@@ -9,13 +9,16 @@ import (
 func ConsumerHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Got request on consumer page")
 
-	tmpl, err := template.ParseFiles("./front/consumer.html")
+	tmpl, err := template.ParseFiles("/app/front/consumer.html", "/app/front/base.html")
 
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)
 	}
 
-	err = tmpl.Execute(w, data{})
+	err = tmpl.ExecuteTemplate(w, "base", data{
+		Active: "consumer",
+		Title:  "Справочник потребителя",
+	})
 
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)

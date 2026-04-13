@@ -1,137 +1,101 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЖКХ Тверь — Актуальные тарифы</title>
+{{define "style"}}
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+<style>
+    .tariff-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 16px 24px;
+        transition: 0.3s;
+        cursor: pointer;
+    }
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+    .tariff-card:hover {
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
 
-        :root {
-            --primary: #da822a;
-            --primary-dark: #722982;
-            --bg: #f8fafc;
-            --text: #400a2e;
-            --card: #ffffff;
-            --border: #e2e8f0;
-            --gray-light: #cbd5e1;
-        }
+    .price-badge {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-        .tariff-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 16px 24px;
-            transition: 0.3s;
-            cursor: pointer;
-        }
+    .accordion-content {
+        display: none;
+        margin-top: 12px;
+        border-top: 1px solid var(--border);
+        font-size: 14px;
+        line-height: 1.6;
+        cursor: default;
+    }
 
-        .tariff-card:hover {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
+    .tariff-card.active .accordion-content {
+        display: block;
+    }
+        
+    .accordion-box {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px;
+        margin-top: 12px;
+        background: #fafafa;
+    }
 
-        .price-badge {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .price-value {
+        font-weight: 800;
+        font-size: 16px;
+        color: var(--text);
+    }
 
-        .accordion-content {
-            display: none;
-            margin-top: 12px;
-            border-top: 1px solid var(--border);
-            font-size: 14px;
-            line-height: 1.6;
-            cursor: default;
-        }
+    .date-section {
+        display: block;
+        margin-top: 12px;
+        margin-bottom: 2px;
+        font-weight: 600;
+        color: var(--primary-dark);
+    }
 
-        .tariff-card.active .accordion-content {
-            display: block;
-        }
-          
-        .accordion-box {
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 16px;
-            margin-top: 12px;
-            background: #fafafa;
-        }
+    .doc-link {
+        display: inline-block;
+        margin-top: 8px;
+        color: var(--primary);
+        text-decoration: underline;
+        font-weight: 500;
+    }
 
-        .price-value {
-            font-weight: 800;
-            font-size: 16px;
-            color: var(--text);
-        }
+    .calc-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        width: 100%;
+        padding: 10px 24px;
+        background-color: transparent;
+        color: var(--primary-light);
+        font-weight: 600;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
 
-        .date-section {
-            display: block;
-            margin-top: 12px;
-            margin-bottom: 2px;
-            font-weight: 600;
-            color: var(--primary-dark);
-        }
+    .calc-button:hover {
+        color: var(--primary);
+        border-color: var(--primary);
+        box-shadow: 0 0 15px rgba(218, 130, 42, 0.15);
+        background-color: rgba(218, 130, 42, 0.02);
+    }
 
-        .doc-link {
-            display: inline-block;
-            margin-top: 8px;
-            color: var(--primary);
-            text-decoration: underline;
-            font-weight: 500;
-        }
+    .calc-button i {
+        margin-right: 8px;
+    }
+</style>
+{{end}}
 
-        /* Улучшенная прозрачная кнопка */
-        .calc-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-            width: 100%;
-            padding: 10px 24px;
-            background-color: transparent;
-            color: #64748b; /* Сероватый текст изначально */
-            font-weight: 600;
-            border-radius: 12px;
-            border: 1px solid var(--gray-light); /* Сероватая рамка */
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .calc-button:hover {
-            color: var(--primary);
-            border-color: var(--primary);
-            box-shadow: 0 0 15px rgba(218, 130, 42, 0.15);
-            background-color: rgba(218, 130, 42, 0.02);
-        }
-
-        .calc-button i {
-            margin-right: 8px;
-        }
-    </style>
-</head>
-
-<body class="bg-[var(--bg)] text-[var(--text)]">
-
-  <nav class="bg-[var(--card)] border-b sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <div class="font-bold text-[var(--primary)] text-xl">ЖКХ Тверь</div>
-        <div class="flex gap-6 text-sm font-semibold">
-            <a href="/" class="hover:text-[var(--primary)]">Главная</a>
-            <a href="/tariffs" class="text-[var(--primary)] flex items-center gap-1">Тарифы</a>
-            <a href="/faq" class="hover:text-[var(--primary)]">Вопрос-ответ</a>
-            <a href="/complaints" class="hover:text-[var(--primary)]">Подать жалобу</a>
-            <a href="/calc" class="hover:text-[var(--primary)]">Проверить начисления</a>
-            <a href="/contacts" class="hover:text-[var(--primary)]">Контакты служб</a>
-        </div>
-    </div>
-</nav>
+{{define "content"}}
 
 <header class="py-12 text-center">
     <h1 class="text-4xl font-extrabold tracking-tight">Актуальные тарифы ЖКХ</h1>
@@ -341,7 +305,6 @@
 </main>
 
 <script>
-    lucide.createIcons();
     document.querySelectorAll('.tariff-card').forEach(card => {
         card.addEventListener('click', () => {
             card.classList.toggle('active');
@@ -349,5 +312,4 @@
     });
 </script>
 
-</body>
-</html>
+{{end}}

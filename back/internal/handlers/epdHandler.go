@@ -10,12 +10,14 @@ import (
 
 type dataEpd struct {
 	States []domain.State
+	Active string
+	Title  string
 }
 
 func EpdHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Got request on epd page")
 
-	tmpl, err := template.ParseFiles("./front/EPD.html")
+	tmpl, err := template.ParseFiles("/app/front/EPD.html", "/app/front/base.html")
 
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)
@@ -26,9 +28,12 @@ func EpdHandler(w http.ResponseWriter, req *http.Request) {
 		fmt.Printf("Error while bd getting: %s\n", err)
 	}
 
-	err = tmpl.Execute(w, dataEpd{
-		States: states,
-	})
+	err = tmpl.ExecuteTemplate(w, "base",
+		dataEpd{
+			States: states,
+			Active: "epd",
+			Title:  "О ЕПД",
+		})
 
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)

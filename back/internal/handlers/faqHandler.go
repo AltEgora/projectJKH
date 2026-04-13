@@ -9,13 +9,15 @@ import (
 func FaqHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Got request on faq page")
 
-	tmpl, err := template.ParseFiles("./front/FAQ.html")
-
+	tmpl, err := template.ParseFiles("/app/front/FAQ.html", "/app/front/base.html")
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)
 	}
 
-	err = tmpl.Execute(w, data{})
+	err = tmpl.ExecuteTemplate(w, "base", data{
+		Title:  "Самые частые вопросы",
+		Active: "faq",
+	})
 
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)
