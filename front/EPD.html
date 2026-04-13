@@ -1,25 +1,20 @@
-{{define "style"}}
+{{define "styles"}}
 <style>
-    /* КОНТЕЙНЕР ДЛЯ СТОЛБЦА */
     .column-wrapper {
         max-width: var(--column-width);
         margin: 30px auto 0; /* Отступ сверху от навигации */
     }
 
-    /* ЦЕНТРАЛЬНЫЙ СТОЛБЕЦ */
     .main-column {
         background-color: var(--card);
-        
-        /* ЛИНИИ ПО БОКАМ */
+
         border-left: 2px solid var(--primary);  
         border-right: 2px solid var(--primary); 
-        
-        /* СКРУГЛЕНИЕ СВЕРХУ И ЛИНИЯ НАД ЗАГОЛОВКОМ */
+
         border-top: 2px solid var(--primary); 
         border-top-left-radius: var(--column-radius);
         border-top-right-radius: var(--column-radius);
-        
-        /* ОСТАВЛЯЕМ БЕСКОНЕЧНЫЙ СТОЛБЕЦ СНИЗУ */
+
         min-height: calc(100vh - 30px); /* Высота на весь экран минус отступ сверху */
         
         padding-bottom: 60px; /* Отступ в конце статьи */
@@ -34,11 +29,32 @@
         line-height: 1.8;
         color: #363038;
     }
+
+    .back-btn {
+            background: var(--card);
+            color: var(--text);
+            padding: 8px 16px;
+            font-weight: 600;
+            transition: all 0.1s ease;
+        }
+
+    .back-btn:hover {
+        box-shadow:
+            0 0 0 4px var(--primary-light),
+            0 6px 16px rgba(0,0,0,0.1);
+    }
 </style>
 
 {{end}}
 
 {{define "content"}}
+
+<div class="max-w-[1600px] mx-auto px-4 sm:px-8 pt-6">
+    <a href="/consumer" class="back-btn flex items-center gap-2 w-fit rounded-full">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Назад
+    </a>
+</div>
 
 <div class="column-wrapper">
     <div class="main-column px-8 md:px-16 py-12">
