@@ -283,32 +283,65 @@
         font-weight: 600;
         text-decoration: underline;
     }
+
+    .calc-back-row {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 1.5rem 1rem 0;
+    }
+
+    @media (min-width: 640px) {
+        .calc-back-row {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: fit-content;
+        border-radius: 9999px;
+        background: var(--card);
+        color: var(--text);
+        padding: 8px 16px;
+        font-weight: 600;
+        font-family: inherit;
+        font-size: inherit;
+        text-decoration: none;
+        border: 1px solid var(--border);
+        cursor: pointer;
+        transition: all 0.1s ease;
+    }
+
+    button.back-btn {
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    .back-btn:hover {
+        box-shadow:
+            0 0 0 4px var(--primary-light),
+            0 6px 16px rgba(0, 0, 0, 0.1);
+    }
 </style>
 {{end}}
 
 </head>
 <body>
-<!--
-<nav class="site-nav" aria-label="Основное меню">
-    <div class="site-nav-inner">
-        <div class="site-nav-left">
-            <button type="button" id="site-back-btn" aria-label="Назад">← Назад</button>
-            <a href="#nav-home" class="site-nav-link site-nav-brand" data-site="home">ЖКХ Тверь</a>
-        </div>
-        <div class="site-nav-links">
-            <a href="#nav-home" class="site-nav-link" data-site="home">Главная</a>
-            <a href="#nav-tariffs" class="site-nav-link" data-site="tariffs">Тарифы</a>
-            <a href="#nav-faq" class="site-nav-link" data-site="faq">Вопрос-ответ</a>
-            <a href="#nav-complaints" class="site-nav-link" data-site="complaints">Подать жалобу</a>
-            <a href="#nav-accruals" class="site-nav-link" data-site="accruals">Начисления</a>
-            <a href="#nav-contacts" class="site-nav-link" data-site="contacts">Контакты</a>
-        </div>
-    </div>
-</nav> -->
+
 
 {{define "content"}}
 
 <div id="calculator-root">
+
+<div class="calc-back-row">
+    <button type="button" class="back-btn" id="calc-history-back" aria-label="Вернуться на предыдущую страницу">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Назад
+    </button>
+</div>
 
 <div class="site-header">
     <h1 class="header-title">Калькулятор ЖКХ — Тверь</h1>
@@ -317,10 +350,10 @@
 <div class="gkh-panel">
 
 <div id="gkh-tab-bar" class="tab-bar" role="tablist">
-    <a href="/accruals#"><button type="button" class="tab-btn active" data-tab="general" role="tab">Общий</button></a>
-    <a href="/accruals#cold"><button type="button" class="tab-btn" data-tab="cold" role="tab">Холодная вода</button></a>
-    <a href="/accruals#hot"><button type="button" class="tab-btn" data-tab="hot" role="tab">Горячая вода</button></a>
-    <a href="/accruals#heat"><button type="button" class="tab-btn" data-tab="heat" role="tab">Отопление</button></a>
+    <button type="button" class="tab-btn active" data-tab="general" role="tab">Общий</button>
+    <button type="button" class="tab-btn" data-tab="cold" role="tab">Холодная вода</button>
+    <button type="button" class="tab-btn" data-tab="hot" role="tab">Горячая вода</button>
+    <button type="button" class="tab-btn" data-tab="heat" role="tab">Отопление</button>
 </div>
 
 <!-- ========== ОБЩИЙ ========== -->
@@ -464,7 +497,7 @@
 <div id="tab-hot" class="tab-panel spec-block" role="tabpanel">
 
 <h3>Горячая вода</h3>
-<p class="hint">При наличии счётчика: сначала введите объём потребления <b>горячей</b> воды (м³), затем количество энергии на её подогрев (Гкал). Если счётчика нет: расчёт проводится по нормативу потребления на человека</p>
+<p class="hint">При наличии счётчика: сначала введите объём потребления горячей воды (м³), затем количество энергии на её подогрев (Гкал). Если счётчика нет: расчёт проводится по нормативу потребления на человека</p>
 
 <label>Тип помещения</label>
 <select id="h_propertyType">
@@ -941,7 +974,20 @@ async function sendSpecial(mode) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("site-back-btn").addEventListener("click", goSiteBack);
+    var calcHistoryBack = document.getElementById("calc-history-back");
+    if (calcHistoryBack) {
+        calcHistoryBack.addEventListener("click", function () {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = "/";
+            }
+        });
+    }
+    var backBtn = document.getElementById("site-back-btn");
+    if (backBtn) {
+        backBtn.addEventListener("click", goSiteBack);
+    }
     var tabBar = document.getElementById("gkh-tab-bar");
     if (tabBar) {
         tabBar.addEventListener("click", function (ev) {
