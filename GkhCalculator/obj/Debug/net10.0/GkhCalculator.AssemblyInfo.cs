@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GkhCalculator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fca225a3e7ff4fbf6ae873915c10d92f57cca1f6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eec1aa09b05811874e4bcdfb7b05d2dc741a5a0d")]
 [assembly: System.Reflection.AssemblyProductAttribute("GkhCalculator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GkhCalculator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

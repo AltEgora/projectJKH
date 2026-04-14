@@ -9,7 +9,7 @@ import (
 func ComplaintsHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Got request on complaints page")
 
-	tmpl, err := template.ParseFiles("/app/front/consumer.html", "/app/front/base.html")
+	tmpl, err := template.ParseFiles("/app/front/complaints.html", "/app/front/base.html")
 
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)

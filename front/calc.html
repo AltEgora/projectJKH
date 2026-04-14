@@ -2,12 +2,24 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ЖКХ — Тверь: калькулятор</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+    :root {
+        --primary: #da822a;
+        --primary-light: #ecb726;
+        --bg: #f4f7f9;
+        --text: #400a2e;
+        --card: #ffffff;
+        --border: #e2e8f0;
+    }
+
     body {
-        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        background-color: #f4f7f9;
+        font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        background-color: var(--bg);
         margin: 0;
         padding: 0;
         color: #333;
@@ -28,7 +40,8 @@
         letter-spacing: 0.02em;
     }
 
-    .container {
+    /* не использовать имя .container — конфликтует с Tailwind CDN */
+    .gkh-panel {
         max-width: 700px;
         margin: -60px auto 50px;
         background: white;
@@ -75,12 +88,12 @@
         color: white;
     }
 
-    .tab-panel {
-        display: none;
+    #calculator-root .tab-panel {
+        display: none !important;
     }
 
-    .tab-panel.active {
-        display: block;
+    #calculator-root .tab-panel.active {
+        display: block !important;
     }
 
     .spec-block {
@@ -126,7 +139,7 @@
         box-shadow: 0 0 0 3px rgba(241, 196, 15, 0.1);
     }
     
-    .container button:not(.tab-btn) {
+    .gkh-panel button:not(.tab-btn) {
         display: block;
         width: 100%;
         padding: 15px;
@@ -141,7 +154,7 @@
         transition: 0.2s;
     }
 
-    .container button:not(.tab-btn):hover { background: #7a5580; }
+    .gkh-panel button:not(.tab-btn):hover { background: #7a5580; }
     
     .hidden { display: none !important; }
     
@@ -166,24 +179,145 @@
     @media (max-width: 600px) {
         .tab-bar { flex-direction: column; }
         .site-header { padding: 40px 16px 72px; }
-        .container { margin: -44px 10px 24px; }
+        .gkh-panel { margin: -44px 10px 24px; }
+    }
+
+    #portal-root {
+        background: var(--card);
+    }
+
+    #portal-iframe {
+        display: block;
+        width: 100%;
+        min-height: calc(100vh - 3.5rem);
+        border: 0;
+    }
+
+    .site-nav-link.site-nav-active {
+        color: var(--primary);
+        font-weight: 700;
+    }
+
+    #site-back-btn {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--text);
+        background: #f1f5f9;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-family: inherit;
+    }
+
+    #site-back-btn:hover {
+        background: #e2e8f0;
+        color: var(--primary);
+    }
+
+    .site-nav {
+        background: var(--card);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .site-nav-inner {
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 0.5rem 1rem;
+        min-height: 3.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+    }
+
+    .site-nav-left {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .site-nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.25rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--text);
+    }
+
+    .site-nav-links a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .site-nav-links a:hover {
+        color: var(--primary);
+    }
+
+    .site-nav-brand {
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: var(--primary);
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    .portal-hint {
+        font-size: 0.875rem;
+        color: #64748b;
+        padding: 0.5rem 1rem;
+        background: #f8fafc;
+        border-bottom: 1px solid var(--border);
+        margin: 0;
+    }
+
+    .portal-hint a {
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: underline;
     }
 </style>
 
 </head>
 <body>
 
+<nav class="site-nav" aria-label="Основное меню">
+    <div class="site-nav-inner">
+        <div class="site-nav-left">
+            <button type="button" id="site-back-btn" aria-label="Назад">← Назад</button>
+            <a href="#nav-home" class="site-nav-link site-nav-brand" data-site="home">ЖКХ Тверь</a>
+        </div>
+        <div class="site-nav-links">
+            <a href="#nav-home" class="site-nav-link" data-site="home">Главная</a>
+            <a href="#nav-tariffs" class="site-nav-link" data-site="tariffs">Тарифы</a>
+            <a href="#nav-faq" class="site-nav-link" data-site="faq">Вопрос-ответ</a>
+            <a href="#nav-complaints" class="site-nav-link" data-site="complaints">Подать жалобу</a>
+            <a href="#nav-accruals" class="site-nav-link" data-site="accruals">Начисления</a>
+            <a href="#nav-contacts" class="site-nav-link" data-site="contacts">Контакты</a>
+        </div>
+    </div>
+</nav>
+
+<div id="calculator-root">
+
 <div class="site-header">
     <h1 class="header-title">Калькулятор ЖКХ — Тверь</h1>
 </div>
 
-<div class="container">
+<div class="gkh-panel">
 
-<div class="tab-bar" role="tablist">
-    <button type="button" class="tab-btn active" data-tab="general" onclick="showTab('general')" role="tab">Общий</button>
-    <button type="button" class="tab-btn" data-tab="cold" onclick="showTab('cold')" role="tab">Холодная вода</button>
-    <button type="button" class="tab-btn" data-tab="hot" onclick="showTab('hot')" role="tab">Горячая вода</button>
-    <button type="button" class="tab-btn" data-tab="heat" onclick="showTab('heat')" role="tab">Отопление</button>
+<div id="gkh-tab-bar" class="tab-bar" role="tablist">
+    <button type="button" class="tab-btn active" data-tab="general" role="tab">Общий</button>
+    <button type="button" class="tab-btn" data-tab="cold" role="tab">Холодная вода</button>
+    <button type="button" class="tab-btn" data-tab="hot" role="tab">Горячая вода</button>
+    <button type="button" class="tab-btn" data-tab="heat" role="tab">Отопление</button>
 </div>
 
 <!-- ========== ОБЩИЙ ========== -->
@@ -259,10 +393,10 @@
     <label>Холодная вода (м³)</label>
     <input id="coldWater">
 
-    <label>Горячая вода — объём (м³), тариф 26,09 ₽/м³</label>
+    <label>Горячая вода — объём (м³)</label>
     <input id="hotWater">
 
-    <label>Горячая вода — тепло на подогрев (Гкал), тариф 2683,50 ₽/Гкал</label>
+    <label>Горячая вода — тепло на подогрев (Гкал)</label>
     <input id="hotWaterGcal">
 
     <label>Электричество (день)</label>
@@ -292,7 +426,6 @@
 <div id="tab-cold" class="tab-panel spec-block" role="tabpanel">
 
 <h3>Холодное водоснабжение</h3>
-<p class="hint">Оценка по ХВС и водоотведению (канализация считается от объёма ХВС; ГВС в этой вкладке не учитывается). Сумма из квитанции — только по этим строкам.</p>
 
 <label>Тип помещения</label>
 <select id="c_propertyType">
@@ -328,7 +461,7 @@
 <div id="tab-hot" class="tab-panel spec-block" role="tabpanel">
 
 <h3>Горячая вода</h3>
-<p class="hint">При счётчике: сначала объём ГВС (м³), затем Гкал на подогрев. Без счётчика объёмы не вводятся — расчёт по нормативу на человека (только число жильцов). Водоотведение в этой вкладке не считается.</p>
+<p class="hint">При наличии счётчика: сначала введите объём потребления <b>горячей</b> воды (м³), затем количество энергии на её подогрев (Гкал). Если счётчика нет: расчёт проводится по нормативу потребления на человека</p>
 
 <label>Тип помещения</label>
 <select id="h_propertyType">
@@ -367,7 +500,7 @@
 <div id="tab-heat" class="tab-panel spec-block" role="tabpanel">
 
 <h3>Отопление</h3>
-<p class="hint">Только строка отопления. Со счётчиком вводите объём тепла (Гкал). Без счётчика — площадь квартиры (м²), расчёт по нормативу Гкал/м².</p>
+<p class="hint">Есть счетчик есть -  вводите объём тепла (Гкал). Без счётчика — площадь квартиры (м²).</p>
 
 <label>Тип помещения</label>
 <select id="ht_propertyType">
@@ -414,8 +547,95 @@
 
 </div>
 
+</div>
+
+<div id="portal-root" class="hidden">
+    <p class="portal-hint">
+        Раздел портала загружается ниже. Если страница пустая, откройте её
+        <a href="#" id="portal-open-tab" target="_blank" rel="noopener">в новой вкладке</a>.
+    </p>
+    <iframe id="portal-iframe" title="Раздел портала ЖКХ"></iframe>
+</div>
+
 <script>
 let profile = {};
+
+var PORTAL_PREFIX = "nav-";
+var PORTAL_PATHS = {
+    home: "/",
+    tariffs: "/tariffs",
+    faq: "/faq",
+    complaints: "/complaints",
+    accruals: "/accruals",
+    contacts: "/contacts"
+};
+
+var lastCalcHash = "#general";
+
+function updateSiteNavActive(siteKey) {
+    document.querySelectorAll(".site-nav-link").forEach(function (el) {
+        var k = el.getAttribute("data-site");
+        el.classList.toggle("site-nav-active", k === siteKey);
+    });
+}
+
+function hidePortalView() {
+    var portalEl = document.getElementById("portal-root");
+    var calcEl = document.getElementById("calculator-root");
+    if (portalEl) {
+        portalEl.classList.add("hidden");
+    }
+    if (calcEl) {
+        calcEl.classList.remove("hidden");
+    }
+}
+
+function showPortalView(key) {
+    var path = PORTAL_PATHS[key];
+    if (!path) {
+        return;
+    }
+    var portalEl = document.getElementById("portal-root");
+    var iframeEl = document.getElementById("portal-iframe");
+    var calcEl = document.getElementById("calculator-root");
+    if (!portalEl || !iframeEl || !calcEl) {
+        window.location.href = path;
+        return;
+    }
+    iframeEl.src = path;
+    var openTab = document.getElementById("portal-open-tab");
+    if (openTab) {
+        openTab.href = path;
+    }
+    portalEl.classList.remove("hidden");
+    calcEl.classList.add("hidden");
+    updateSiteNavActive(key);
+    var want = "#" + PORTAL_PREFIX + key;
+    if (location.hash !== want && history.replaceState) {
+        history.replaceState(null, "", location.pathname + location.search + want);
+    }
+}
+
+function goSiteBack() {
+    var portalEl = document.getElementById("portal-root");
+    var portalOpen = portalEl && !portalEl.classList.contains("hidden");
+    if (portalOpen) {
+        hidePortalView();
+        var tab = lastCalcHash.replace(/^#/, "") || "general";
+        if (VALID_TABS.indexOf(tab) === -1) {
+            tab = "general";
+        }
+        showTab(tab, true);
+        if (history.replaceState) {
+            history.replaceState(null, "", location.pathname + location.search + lastCalcHash);
+        }
+        updateSiteNavActive("calc");
+        return;
+    }
+    if (window.history.length > 1) {
+        window.history.back();
+    }
+}
 
 const statusTranslations = {
     ok: "<span style='color: green;'>Совпадает</span>",
@@ -425,15 +645,21 @@ const statusTranslations = {
 
 var VALID_TABS = ["general", "cold", "hot", "heat"];
 
-function showTab(name) {
+function showTab(name, fromHash) {
     if (VALID_TABS.indexOf(name) === -1) {
         name = "general";
     }
-    document.querySelectorAll(".tab-panel").forEach(function (p) {
+    hidePortalView();
+    var calcRoot = document.getElementById("calculator-root");
+    if (!calcRoot) {
+        return;
+    }
+    calcRoot.querySelectorAll(".tab-panel").forEach(function (p) {
         p.classList.toggle("active", p.id === "tab-" + name);
     });
-    document.querySelectorAll(".tab-btn").forEach(function (b) {
-        b.classList.toggle("active", b.dataset.tab === name);
+    calcRoot.querySelectorAll(".tab-btn").forEach(function (b) {
+        var t = b.getAttribute("data-tab");
+        b.classList.toggle("active", t === name);
     });
     if (name === "cold") {
         syncColdForm();
@@ -444,16 +670,29 @@ function showTab(name) {
     if (name === "heat") {
         syncHeatForm();
     }
-    var nextHash = "#" + name;
-    if (location.hash !== nextHash && history.replaceState) {
-        history.replaceState(null, "", location.pathname + location.search + nextHash);
+    lastCalcHash = "#" + name;
+    updateSiteNavActive("calc");
+    if (!fromHash && history.replaceState) {
+        var nextHash = "#" + name;
+        if (location.hash !== nextHash) {
+            history.replaceState(null, "", location.pathname + location.search + nextHash);
+        }
     }
 }
 
-function applyTabFromHash() {
+function applyHashRoute() {
     var h = (location.hash || "").replace(/^#/, "").toLowerCase();
+    if (h.indexOf(PORTAL_PREFIX) === 0) {
+        var portalKey = h.slice(PORTAL_PREFIX.length);
+        if (PORTAL_PATHS[portalKey]) {
+            showPortalView(portalKey);
+            return;
+        }
+    }
     if (VALID_TABS.indexOf(h) !== -1) {
-        showTab(h);
+        showTab(h, true);
+    } else if (h === "") {
+        showTab("general", true);
     }
 }
 
@@ -673,6 +912,15 @@ async function sendSpecial(mode) {
             "<p><b>По калькулятору (ГВС: м³ + подогрев, без водоотведения):</b> " + lc.subtotal.toFixed(2) + " ₽</p>" +
             "<p>ГВС (м³): " + hSup.toFixed(2) + " ₽<br>" +
             "ГВС (подогрев, Гкал): " + hHeat.toFixed(2) + " ₽</p>";
+        var hRes = val("h_propertyType") === "residential";
+        var hMeter = val("h_waterMeter") === "true";
+        if (hRes && !hMeter) {
+            var hN = Math.max(1, num("h_residents"));
+            html +=
+                "<p class=\"hint\" style=\"margin-top:14px;margin-bottom:0;\"><b>Норматив:</b> для жилого помещения без счётчика объём ГВС взят как число жильцов (" +
+                hN +
+                ") × норматив м³ на человека (значение из тарифных параметров калькулятора). Подогрев в Гкал без показаний счётчика в сумме не участвует. Водоотведение по этой вкладке не рассчитывается.</p>";
+        }
     } else {
         html =
             "<h3>Результат</h3>" +
@@ -690,14 +938,29 @@ async function sendSpecial(mode) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    applyTabFromHash();
+    document.getElementById("site-back-btn").addEventListener("click", goSiteBack);
+    var tabBar = document.getElementById("gkh-tab-bar");
+    if (tabBar) {
+        tabBar.addEventListener("click", function (ev) {
+            var btn = ev.target.closest(".tab-btn");
+            if (!btn || !tabBar.contains(btn)) {
+                return;
+            }
+            var tabName = btn.getAttribute("data-tab");
+            if (tabName) {
+                showTab(tabName, false);
+            }
+        });
+    }
+    window.showTab = showTab;
+    applyHashRoute();
     syncColdForm();
     syncHotForm();
     syncHeatForm();
 });
 
 window.addEventListener("hashchange", function () {
-    applyTabFromHash();
+    applyHashRoute();
 });
 </script>
 

@@ -19,6 +19,9 @@ services:
       - "8082:80"
     expose:
       - 8080
+    working_dir: /app
+    volumes:
+      - ./front/calc.html:/app/wwwroot/index.html
     env_file:
       - .env
     depends_on:

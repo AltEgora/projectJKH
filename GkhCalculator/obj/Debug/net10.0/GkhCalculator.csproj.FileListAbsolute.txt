@@ -68,4 +68,4 @@
 /Users/egoraltukhov/Desktop/projectJKH/GkhCalculator/obj/Debug/net10.0/GkhCalculator.pdb
 /Users/egoraltukhov/Desktop/projectJKH/GkhCalculator/obj/Debug/net10.0/GkhCalculator.genruntimeconfig.cache
 /Users/egoraltukhov/Desktop/projectJKH/GkhCalculator/obj/Debug/net10.0/ref/GkhCalculator.dll
-/Users/egoraltukhov/Desktop/projectJKH/GkhCalculator/obj/Debug/net10.0/compressed/6dxe3w4tsu-{0}-pads3587sz-pads3587sz.gz
+/Users/egoraltukhov/Desktop/projectJKH/GkhCalculator/obj/Debug/net10.0/compressed/6dxe3w4tsu-{0}-zjes61eqpv-zjes61eqpv.gz
