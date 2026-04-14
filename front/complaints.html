@@ -154,21 +154,43 @@
 
 </section>
 </div>
+
+  <section class="mt-12">
+    <div class="card">
+        <h2 class="text-lg font-bold mb-4">Способы подачи жалобы</h2>
+
+        <ol class="space-y-3 text-sm">
+            <li>
+                1. Через сайт ГИС ЖКХ 
+                (<a href="https://dom.gosuslugi.ru/#!/no-privileges" 
+                    class="text-[var(--primary)] hover:underline" target="_blank">
+                    dom.gosuslugi.ru
+                </a>) — в разделе «Направить обращение или жалобу», документ регистрируется и направляется по необходимому направлению
+            </li>
+
+            <li>
+                2. Лично в офисе управляющей компании
+            </li>
+
+            <li>
+                3. Через сайт управляющей компании
+            </li>
+        </ol>
+    </div>
+</section>
+
 </main>
 
 <script>
 
-// аккордеон
 document.querySelectorAll('.category-header').forEach(header => {
     header.addEventListener('click', () => {
         const content = header.nextElementSibling;
 
-        // закрыть все остальные
         document.querySelectorAll('.category-content').forEach(c => {
             if (c !== content) c.classList.add('hidden');
         });
 
-        // переключить текущий
         content.classList.toggle('hidden');
     });
 });
