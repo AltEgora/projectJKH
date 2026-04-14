@@ -54,7 +54,7 @@
             <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
                 Грязная вода из крана
                 <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
-                    <b>Шаблон заявления</b><a href="/docs/water/dirty/template.doc">Скачать</a>
+                    <b>Шаблон заявления</b><a href="/docs/water/dirty/template.doc" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
                 </div>
                 <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
                     <b>Пример заявления</b><a href="/docs/water/dirty/example.doc" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
@@ -66,7 +66,7 @@
                     <b>Шаблон заявления</b><a href="/docs/water/plug/template.doc" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
                 </div>
                 <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
-                    <b>Пример заявления</b><a href="/docs/water/plug/example.doc">Скачать</a>
+                    <b>Пример заявления</b><a href="/docs/water/plug/example.doc" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
                 </div>
             </div>
         </div>
@@ -152,24 +152,44 @@
         </div>
     </div>
 
-
 </section>
 </div>
+  
+  <section class="mt-12">
+    <div class="card">
+        <h2 class="text-lg font-bold mb-4">Способы подачи жалобы</h2>
+
+        <ol class="space-y-3 text-sm">
+            <li>
+                1. Через сайт ГИС ЖКХ 
+                (<a href="https://dom.gosuslugi.ru/#!/no-privileges" 
+                    class="text-[var(--primary)] hover:underline" target="_blank">
+                    dom.gosuslugi.ru
+                </a>) — в разделе «Направить обращение или жалобу», документ регистрируется и направляется по необходимому направлению
+            </li>
+
+            <li>
+                2. Лично в офисе управляющей компании
+            </li>
+
+            <li>
+                3. Через сайт управляющей компании
+            </li>
+        </ol>
+    </div>
+</section>
 </main>
 
 <script>
 
-// аккордеон
 document.querySelectorAll('.category-header').forEach(header => {
     header.addEventListener('click', () => {
         const content = header.nextElementSibling;
 
-        // закрыть все остальные
         document.querySelectorAll('.category-content').forEach(c => {
             if (c !== content) c.classList.add('hidden');
         });
 
-        // переключить текущий
         content.classList.toggle('hidden');
     });
 });
