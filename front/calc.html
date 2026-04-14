@@ -175,6 +175,30 @@
         border-radius: 12px;
         border: 1px solid #edf2f7;
     }
+
+    .calc-epd-wrap {
+        margin-top: 1.25rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e2e8f0;
+    }
+
+    .calc-epd-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 20px;
+        background: var(--primary);
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 10px;
+        transition: opacity 0.2s ease, transform 0.15s ease;
+    }
+
+    .calc-epd-link:hover {
+        opacity: 0.92;
+        color: #fff;
+    }
     
     @media (max-width: 600px) {
         .tab-bar { flex-direction: column; }
@@ -679,6 +703,19 @@ const statusTranslations = {
     underpay: "<span style='color: red;'>В квитанции меньше</span>"
 };
 
+var EPD_INFO_URL = "http://pro-jkh.ru/consumer/epd";
+
+function htmlEpdResultFooter() {
+    return (
+        "<p class=\"calc-epd-wrap\">" +
+        "<a href=\"" +
+        EPD_INFO_URL +
+        "\" class=\"calc-epd-link\" target=\"_blank\" rel=\"noopener noreferrer\">" +
+        "Подробнее про ЕПД" +
+        "</a></p>"
+    );
+}
+
 var VALID_TABS = ["general", "cold", "hot", "heat"];
 
 function showTab(name, fromHash) {
@@ -822,7 +859,8 @@ async function send() {
         "Газ: " + r.breakdown.gas.toFixed(2) + " ₽<br>" +
         "Обращение с ТКО (на жильца): " + r.breakdown.waste.toFixed(2) + " ₽<br>" +
         "ОДН (оценка): " + r.breakdown.odn.toFixed(2) + " ₽<br>" +
-        "Капитальный ремонт: " + r.breakdown.capitalRepair.toFixed(2) + " ₽";
+        "Капитальный ремонт: " + r.breakdown.capitalRepair.toFixed(2) + " ₽" +
+        htmlEpdResultFooter();
 }
 
 function neutralProfile() {
@@ -969,6 +1007,8 @@ async function sendSpecial(mode) {
         "<p><b>Ваша сумма:</b> " + lc.receiptLineAmount.toFixed(2) + " ₽<br>" +
         "<b>Разница:</b> " + lc.difference.toFixed(2) + " ₽<br>" +
         "<b>Статус:</b> " + (statusTranslations[st] || st) + "</p>";
+
+    html += htmlEpdResultFooter();
 
     document.getElementById(resultEl).innerHTML = html;
 }
