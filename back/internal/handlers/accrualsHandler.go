@@ -9,7 +9,7 @@ import (
 func AccrualsHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Got request on accruals page")
 
-	tmpl, err := template.ParseFiles("/app/front/accruals.html", "/app/front/base.html")
+	tmpl, err := template.ParseFiles("/app/front/calc.html", "/app/front/base.html")
 
 	if err != nil {
 		fmt.Printf("Error while templating: %s\n", err)

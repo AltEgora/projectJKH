@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ЖКХ — Тверь: калькулятор</title>
-
+<title>{{.Title}}   </title>
+{{define "style"}}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
 
     :root {
         --primary: #da822a;
@@ -284,10 +284,11 @@
         text-decoration: underline;
     }
 </style>
+{{end}}
 
 </head>
 <body>
-
+<!--
 <nav class="site-nav" aria-label="Основное меню">
     <div class="site-nav-inner">
         <div class="site-nav-left">
@@ -303,7 +304,9 @@
             <a href="#nav-contacts" class="site-nav-link" data-site="contacts">Контакты</a>
         </div>
     </div>
-</nav>
+</nav> -->
+
+{{define "content"}}
 
 <div id="calculator-root">
 
@@ -314,10 +317,10 @@
 <div class="gkh-panel">
 
 <div id="gkh-tab-bar" class="tab-bar" role="tablist">
-    <button type="button" class="tab-btn active" data-tab="general" role="tab">Общий</button>
-    <button type="button" class="tab-btn" data-tab="cold" role="tab">Холодная вода</button>
-    <button type="button" class="tab-btn" data-tab="hot" role="tab">Горячая вода</button>
-    <button type="button" class="tab-btn" data-tab="heat" role="tab">Отопление</button>
+    <a href="/accruals#"><button type="button" class="tab-btn active" data-tab="general" role="tab">Общий</button></a>
+    <a href="/accruals#cold"><button type="button" class="tab-btn" data-tab="cold" role="tab">Холодная вода</button></a>
+    <a href="/accruals#hot"><button type="button" class="tab-btn" data-tab="hot" role="tab">Горячая вода</button></a>
+    <a href="/accruals#heat"><button type="button" class="tab-btn" data-tab="heat" role="tab">Отопление</button></a>
 </div>
 
 <!-- ========== ОБЩИЙ ========== -->
@@ -963,6 +966,6 @@ window.addEventListener("hashchange", function () {
     applyHashRoute();
 });
 </script>
-
+{{end}}
 </body>
 </html>
