@@ -1,19 +1,21 @@
-{{define "style"}}{{end}}
+{{define "styles"}}{{end}}
 
-{{define "content"}}
+
+{{define "home"}}
 
 <header class="py-16 px-4 text-center text-white"
         style="background: linear-gradient(to right, var(--primary), var(--primary-light));">
 
     <h1 class="text-4xl font-extrabold mb-4">
-        Единый портал ЖКХ сервисов
+        Единый сервис ПроЖКХ г. Тверь
     </h1>
 
     <p class="opacity-90 max-w-2xl mx-auto">
-        Найдите тарифы, подайте жалобу или проверьте начисления в один клик
+        Найдите тарифы, получите ответы на частые вопросы, составьте жалобу или легко проверьте начисления
     </p>
 
     <div class="mt-8 max-w-3xl mx-auto relative">
+        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
         <input 
             type="text"
             placeholder="Поиск"
@@ -119,13 +121,15 @@
     <aside class="space-y-6 sticky top-24 h-fit">
 
         <a href="/consumer" class="card flex justify-between items-center"
-           style="background: var(--button); color: white;">
+            class="card flex justify-between items-center transition hover:shadow-lg"
+            style="background: linear-gradient(135deg, var(--button), var(--button-light)); color: white;">
             <span>Справочник потребителя</span>
             <i data-lucide="chevron-right"></i>
         </a>
 
         <a href="/complaints" class="card flex justify-between items-center"
-           style="background: var(--button); color: white;">
+            class="card flex justify-between items-center transition hover:shadow-lg"
+            style="background: linear-gradient(135deg, var(--button), var(--button-light)); color: white;">
             <span>Сформировать жалобу</span>
             <i data-lucide="chevron-right"></i>
         </a>
@@ -144,7 +148,7 @@
                     Новости ЖКХ
                 </h2>
 
-                <a href="/news" target="_blank"
+                <a href="/news.html" target="_blank"
                    class="text-[var(--primary)] text-sm">
                     Все новости
                 </a>
