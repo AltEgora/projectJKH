@@ -17,7 +17,7 @@ func AccrualsHandler(w http.ResponseWriter, req *http.Request) {
 
 	err = tmpl.ExecuteTemplate(w, "base", data{
 		Active: "accruals",
-		Title:  "Справочник потребителя",
+		Title:  "Калькулятор ЖКХ",
 	})
 
 	if err != nil {

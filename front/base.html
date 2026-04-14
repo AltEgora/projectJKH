@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-{{template "style" .}}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{.Title}}</title>
@@ -67,10 +66,11 @@ body { font-family: 'Inter', sans-serif;
 }
 
 .button {
-    background: linear-gradient(to right, var(--button), var(--button-light));
+    background: linear-gradient(135deg, var(--button), var(--button-light));
 }
-
 </style>
+
+{{template "styles" .}}
 
 </head>
 
@@ -105,7 +105,7 @@ body { font-family: 'Inter', sans-serif;
 
             <a href="/complaints"
                class="{{if eq .Active "complaints"}}text-[var(--primary)]{{else}}hover:text-[var(--primary)]{{end}}">
-               Жалобы
+               Подать жалобу
             </a>
 
             <a href="/accruals"
@@ -131,55 +131,4 @@ lucide.createIcons();
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style>
-
-    .btn-search:hover {
-        background: var(--primary);
-        color: white;
-        box-shadow: 0 0 20px rgba(218, 130, 42, 0.5);
-        transform: translateY(-1px);
-    }
-
-    #search-result {
-        display: none;
-        animation: fadeInSlide 0.4s ease-out forwards;
-    }
-
-    @keyframes fadeInSlide {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .map-container {
-        width: 100%;
-        height: 650px;
-        border-radius: 16px;
-        overflow: hidden;
-        border: 1px solid var(--border);
-    }
-</style>
-
-
-<!-- go template -->
-
 {{end}}
-

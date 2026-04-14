@@ -1,4 +1,4 @@
-{{define "style"}}
+{{define "styles"}}
 
 <style>
     body {
@@ -6,10 +6,10 @@
         background-color: var(--bg);
         margin: 0;
         padding-bottom: 100px;
-        color: #0067f7;
+        color: #334155;
     }
 
-        .content-container {
+    .content-container {
         max-width: 850px;
         margin: 0 auto;
     }
@@ -48,6 +48,20 @@
         animation: fadeIn 0.4s forwards;
     }
 
+    .back-btn {
+            background: var(--card);
+            color: var(--text);
+            padding: 8px 16px;
+            font-weight: 600;
+            transition: all 0.1s ease;
+        }
+
+    .back-btn:hover {
+        box-shadow:
+            0 0 0 4px var(--primary-light),
+            0 6px 16px rgba(0,0,0,0.1);
+    }
+
     @keyframes fadeIn {
         from { opacity: 0; }
         to { opacity: 1; }
@@ -61,6 +75,13 @@
 {{end}}
 
 {{define "content"}}
+
+<div class="max-w-[1600px] mx-auto px-4 sm:px-8 pt-6">
+    <a href="/" class="back-btn flex items-center gap-2 w-fit rounded-full">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Назад
+    </a>
+</div>
 
 <div class="content-container px-6">
     

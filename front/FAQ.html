@@ -1,4 +1,4 @@
-{{define "style"}}
+{{define "styles"}}
 <style>
     .card {
         background: var(--card);
@@ -8,9 +8,6 @@
         transition: 0.2s;
     }
 
-    .search-input:focus {
-        box-shadow: 0 0 0 4px rgba(218, 130, 42, 0.2);
-    }
 </style>
 
 {{end}}
@@ -21,13 +18,13 @@
 <header class="py-12 px-4 bg-white border-b">
     <div class="max-w-4xl mx-auto text-center">
         <h1 class="text-4xl font-extrabold mb-8 text-[var(--text)]">Помощь и ответы на вопросы</h1>
-      <p class="text-gray-500 mb-8">Найдите интересующий вас вопрос из списка</p>
+      <p class="text-gray-500 mb-8">Найдите интересующий вас вопрос</p>
         <div class="relative">
             <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
             <input 
                 type="text" 
-                placeholder="Поиск по ключевым словам (например, квитанция, счетчики...)" 
-                class="search-input w-full py-4 pl-12 pr-6 rounded-xl border border-[var(--border)] outline-none text-lg"
+                placeholder="Поиск" 
+                class="w-full py-4 pl-12 pr-6 rounded-full border border-[var(--border)] outline-none focus:border-[var(--primary)]"
             >
         </div>
     </div>
@@ -46,14 +43,14 @@
                 <div class="faq-item cursor-pointer">
                     <h3 class="font-bold text-lg mb-2">Как оспорить начисления в квитанции?</h3>
                     <p class="text-gray-600 text-sm leading-relaxed">
-                        Вам необходимо обратиться в Вашу управляющую компанию с письменным заявлением о перерасчете. Если УК отказывает — подавайте жалобу в ГЖИ через наш раздел <a class="font-bold" href="/complaints">Жалобы</a>.
+                        Вам необходимо обратиться в Вашу управляющую компанию с письменным заявлением о перерасчете. Если УК отказывает — подавайте жалобу в ГЖИ через наш раздел <a href="/complaints" target="_blank">Подать жалобу</a>.
                     </p>
                 </div>
 
                 <div class="faq-item cursor-pointer">
                     <h3 class="font-bold text-lg mb-2">Соседи затопили квартиру: что делать?</h3>
                     <p class="text-gray-600 text-sm leading-relaxed">
-                        Вызовите аварийную службу (номера можно посмотреть <a class="font-bold" href="/">тут</a>). Просите составления акта о заливе квартиры и вызовите независимых экспертов для оценки ущерба. Если виноваты соседи, а не Управляющая Компания, нужно направить соседям письменную претензию с требованием возместить вред, причинённый имуществу. В случае отказа можно обратиться в суд с иском. 
+                        Вызовите аварийную службу (номера можно <a href="/" target="_blank">посмотреть тут</a>). Просите составления акта о заливе квартиры и вызовите независимых экспертов для оценки ущерба. Если виноваты соседи, а не Управляющая Компания, нужно направить соседям письменную претензию с требованием возместить вред, причинённый имуществу. В случае отказа можно обратиться в суд с иском. 
                     </p>
                 </div>
 
@@ -67,7 +64,7 @@
                 <div class="faq-item cursor-pointer">
                     <h3 class="font-bold text-lg mb-2">Как получить льготы на оплату ЖКХ?</h3>
                     <p class="text-gray-600 text-sm leading-relaxed">
-                        Льготы предоставляются ветеранам, инвалидам, многодетным семьям и другим категориям граждан. Оформить их можно через МФЦ или портал Госуслуг.
+                        Льготы предоставляются ветеранам, инвалидам, многодетным семьям и другим категориям граждан. Оформить их можно через МФЦ или <a href="https://dom.gosuslugi.ru/#!/main" target="_blank">портал Госуслуг</a>.
                     </p>
                 </div>
             </div>
@@ -75,9 +72,9 @@
 
         <aside class="space-y-6">
             
-            <a href="/consumer" class="block">
+            <a href="/consumer" class="block" target="_blank">
     <div class="p-8 rounded-2xl text-white relative overflow-hidden group cursor-pointer" 
-         style="background: linear-gradient(135deg, var(--button), #7228558e);">
+         style="background: linear-gradient(135deg, var(--button), var(--button-light));">
         <div class="relative z-10">
             <div class="bg-white/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 <i data-lucide="shield-check" class="w-8 h-8 text-white"></i>
@@ -103,20 +100,24 @@
                        rel="noopener noreferrer" 
                        class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 group transition-colors">
                         <div class="flex items-center gap-3">
-                            <i data-lucide="file-text" class="w-4 h-4 text-gray-400"></i>
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i data-lucide="file-text" class="w-4 h-4 text-gray-400"></i>
+                            </div>
                             <span class="text-sm">Жилищный кодекс РФ</span>
                         </div>
-                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-[var(--primary)]"></i>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-[var(--primary)] shrink-0"></i>
                     </a>
                     <a href="https://login.consultant.ru/link/?req=doc&base=LAW&n=522272&dst=100001%2C-1&date=06.04.2026&demo=2" 
                        target="_blank" 
                        rel="noopener noreferrer" 
                        class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 group transition-colors">
                         <div class="flex items-center gap-3">
-                            <i data-lucide="file-text" class="w-4 h-4 text-gray-400"></i>
-                            <span class="text-sm">Постановление Правительства №354 (О предоставлении коммунальных услуг)</span>
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i data-lucide="landmark" class="w-4 h-4 text-gray-400"></i>
+                            </div>
+                            <span class="text-sm">Постановление №354 (о предоставлении коммунальных услуг)</span>
                         </div>
-                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-[var(--primary)]"></i>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-[var(--primary)] shrink-0"></i>
                     </a>
                     <a href="https://login.consultant.ru/link/?req=doc&base=LAW&n=515330&dst=100001%2C-1&date=06.04.2026&demo=2" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 group transition-colors"
                        target="_blank">
@@ -124,7 +125,7 @@
                             <i data-lucide="scale" class="w-4 h-4 text-gray-400"></i>
                             <span class="text-sm">Права потребителей услуг ЖКХ</span>
                         </div>
-                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-[var(--primary)]"></i>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-[var(--primary)] shrink-0"></i>
                     </a>
                 </div>
             </div>
