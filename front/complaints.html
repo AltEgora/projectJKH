@@ -1,0 +1,197 @@
+{{define "content"}}
+
+<header class="py-12 px-4 text-center">
+    <h1 class="text-4xl font-extrabold mb-2">Конструктор жалоб и обращений</h1>
+    <p class="text-gray-500 mb-8">Выберите проблему и сформируйте юридически грамотный документ</p>
+    
+    <div class="max-w-2xl mx-auto relative">
+        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+        <input type="text" 
+               placeholder="Поиск" 
+               class="w-full py-4 pl-12 pr-6 rounded-full border border-[var(--border)] outline-none focus:border-[var(--primary)]">
+    </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 gap-4 items-start">
+
+        <section class="space-y-4">
+
+    <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 text-center lg:text-left">
+        Категории проблем
+    </h2>
+
+    <!-- ОТОПЛЕНИЕ -->
+    <div class="card">
+        <div class="flex justify-between items-center cursor-pointer category-header">
+            <span class="flex items-center gap-2 font-bold text-lg"> <i data-lucide="thermometer"></i>Отопление</span>
+            <i data-lucide="chevron-down"></i>
+        </div>
+
+        <div class="mt-4 space-y-2 hidden category-content">
+            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
+                Отсутствие отопления
+                <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <b>Шаблон заявления</b><a href="/docs/heat/no_heat/template.doc" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
+                </div>
+                <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <b>Пример заявления</b><a href="/docs/heat/no_heat/example.doc" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ВОДОСНАБЖЕНИЕ -->
+    <div class="card">
+        <div class="flex justify-between items-center cursor-pointer category-header">
+            <span class="flex items-center gap-2 font-bold text-lg"> <i data-lucide="droplet"></i>Водоснабжение</span>
+            <i data-lucide="chevron-down"></i>
+        </div>
+
+        <div class="mt-4 space-y-2 hidden category-content">
+            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
+                Грязная вода из крана
+                <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <b>Шаблон заявления</b><a href="/docs/water/dirty/template.doc" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
+                </div>
+                <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <b>Пример заявления</b><a href="/docs/water/dirty/example.doc" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
+                </div>
+            </div>
+            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
+                Засор канализации
+                <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <b>Шаблон заявления</b><a href="/docs/water/plug/template.doc" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
+                </div>
+                <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <b>Пример заявления</b><a href="/docs/water/plug/example.doc" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- НЕПРАВЛЬНЫЙ РАСЧЕТЫ В КЫИТАНЦИИ -->
+    <div class="card">
+        <div class="flex justify-between items-center cursor-pointer category-header">
+            <span class="flex items-center gap-2 font-bold text-lg"> <i data-lucide="sheet"></i>Неправильные расчеты в квитанции</span>
+            <i data-lucide="chevron-down"></i>
+        </div>
+
+        <div class="mt-4 space-y-2 hidden category-content">
+            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
+                Неправильный расчет горячего водоснабжения
+                <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <b>Шаблон заявления</b><a href="/docs/cvit/hot_water/Шаблон жалобы в УК.docx" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
+                </div>
+                <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <b>Пример заявления</b><a href="/docs/cvit/hot_water/Пример жалобы в УК.docx" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ЭЛЕКТРИЧЕСТВО -->
+    <div class="card">
+        <div class="flex justify-between items-center cursor-pointer category-header">
+            <span class="flex items-center gap-2 font-bold text-lg"> <i data-lucide="zap"></i>Электричество</span>
+            <i data-lucide="chevron-down"></i>
+        </div>
+
+        <div class="mt-4 space-y-2 hidden category-content">
+            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
+                Отсутствие электричества
+                <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <b>Шаблон заявления</b><a href="/docs/electro/no_electro/template.doc" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
+                </div>
+                <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <b>Пример заявления</b><a href="/docs/electro/no_electro/example.doc" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ОБЩЕЕ ИМУЩЕСТВО -->
+    <div class="card">
+        <div class="flex justify-between items-center cursor-pointer category-header">
+            <span class="flex items-center gap-2 font-bold text-lg"> <i data-lucide="home"></i>Общее имущество</span>
+            <i data-lucide="chevron-down"></i>
+        </div>
+
+        <div class="mt-4 space-y-2 hidden category-content">
+            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
+                Ненадлежащая уборка подъезда и территории
+                <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <b>Шаблон заявления</b><a href="/docs/property/podezd/template.doc" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
+                </div>
+                <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <b>Пример заявления</b><a href="/docs/property/podezd/example.doc"  class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
+                </div>
+            </div>
+            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
+                Затопление (соседи или крыша)
+                <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <b>Шаблон заявления</b><a href="/docs/property/flood/template.doc" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
+                </div>
+                <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <b>Пример заявления</b><a href="/docs/property/flood/example.doc"  class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
+                </div>
+            </div>
+            <div class="p-3 border rounded-lg cursor-pointer hover:border-[var(--primary)]">
+                Неисправность лифта
+                <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <b>Шаблон заявления</b><a href="/docs/property/lift/template.doc" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
+                </div>
+                <div class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 group transition-colors">
+                    <b>Пример заявления</b><a href="/docs/property/lift/example.doc" class="px-5 py-2 border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:bg-[var(--hover)] transition">Скачать</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+</div>
+  
+  <section class="mt-12">
+    <div class="card">
+        <h2 class="text-lg font-bold mb-4">Способы подачи жалобы</h2>
+
+        <ol class="space-y-3 text-sm">
+            <li>
+                1. Через сайт ГИС ЖКХ 
+                (<a href="https://dom.gosuslugi.ru/#!/no-privileges" 
+                    class="text-[var(--primary)] hover:underline" target="_blank">
+                    dom.gosuslugi.ru
+                </a>) — в разделе «Направить обращение или жалобу», документ регистрируется и направляется по необходимому направлению
+            </li>
+
+            <li>
+                2. Лично в офисе управляющей компании
+            </li>
+
+            <li>
+                3. Через сайт управляющей компании
+            </li>
+        </ol>
+    </div>
+</section>
+</main>
+
+<script>
+
+document.querySelectorAll('.category-header').forEach(header => {
+    header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+
+        document.querySelectorAll('.category-content').forEach(c => {
+            if (c !== content) c.classList.add('hidden');
+        });
+
+        content.classList.toggle('hidden');
+    });
+});
+</script>
+
+{{end}}
