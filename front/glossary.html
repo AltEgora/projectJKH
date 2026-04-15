@@ -1,0 +1,215 @@
+{{define "styles"}}
+<style>
+    .column-wrapper {
+        max-width: var(--column-width);
+        margin: 30px auto 0;
+    }
+
+    .main-column {
+        background-color: var(--card);
+
+        border-left: 2px solid var(--primary);  
+        border-right: 2px solid var(--primary); 
+
+        border-top: 2px solid var(--primary); 
+        border-top-left-radius: var(--column-radius);
+        border-top-right-radius: var(--column-radius);
+
+        min-height: calc(100vh - 30px);
+        padding-bottom: 60px;
+    }
+
+    .content-text p {
+        margin-bottom: 1.2rem;
+        line-height: 1.7;
+        color: #363038;
+    }
+
+    .term {
+        font-weight: 700;
+        color: var(--text);
+    }
+
+    .letter {
+        font-size: 22px;
+        font-weight: 800;
+        margin-top: 40px;
+        margin-bottom: 10px;
+        color: var(--primary);
+    }
+
+    .back-btn {
+        background: var(--card);
+        color: var(--text);
+        padding: 8px 16px;
+        font-weight: 600;
+        transition: all 0.1s ease;
+    }
+
+    .back-btn:hover {
+        box-shadow:
+            0 0 0 4px var(--primary-light),
+            0 6px 16px rgba(0,0,0,0.1);
+    }
+</style>
+{{end}}
+
+{{define "content"}}
+
+<div class="max-w-[1600px] mx-auto px-4 sm:px-8 pt-6">
+    <a href="/consumer" class="back-btn flex items-center gap-2 w-fit rounded-full">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Назад
+    </a>
+</div>
+
+<div class="column-wrapper">
+    <div class="main-column px-8 md:px-16 py-12">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-extrabold tracking-tight">
+                Словарь ЖКХ
+            </h1>
+            <div class="h-1 w-20 bg-[var(--primary)] mx-auto mt-4 rounded-full"></div>
+        </header>
+
+        <article class="content-text text-lg">
+
+            <div class="letter">А</div>
+
+            <p><span class="term">Аварийно-диспетчерская служба (АДС)</span> — круглосуточная служба УК или РСО. Принимает заявки, фиксирует их и отправляет специалистов при авариях (нет воды, засор, запах газа и т.д.).</p>
+
+            <p><span class="term">Акт о нарушении</span> — документ, который фиксирует некачественную услугу (например, холодные батареи). Нужен для перерасчёта.</p>
+
+            <p><span class="term">Арендатор</span> — человек, снимающий жильё. Платит по договору аренды, но может требовать нормальные коммунальные услуги от УК или РСО.</p>
+
+
+            <div class="letter">Б</div>
+
+            <p><span class="term">БТИ</span> — организация, которая делает обмеры квартир и ведёт технический учёт недвижимости.</p>
+
+
+            <div class="letter">В</div>
+
+            <p><span class="term">Внутриподъездная проводка</span> — электрика в подъезде. За неё отвечает УК или ТСЖ.</p>
+
+            <p><span class="term">Водоотведение</span> — канализация, то есть отвод использованной воды.</p>
+
+
+            <div class="letter">Г</div>
+
+            <p><span class="term">Газоснабжение</span> — подача газа в квартиру. Опасный ресурс, требует контроля специалистов.</p>
+
+
+            <div class="letter">Д</div>
+
+            <p><span class="term">Диспетчерская служба</span> — принимает заявки от жителей, регистрирует их и сообщает сроки решения.</p>
+
+            <p><span class="term">Договор социального найма</span> — договор с муниципалитетом на проживание в государственной квартире.</p>
+
+
+            <div class="letter">Е</div>
+
+            <p><span class="term">ЕИРЦ</span> — центр, который собирает платежи за ЖКУ. За качество услуг не отвечает.</p>
+
+
+            <div class="letter">Ж</div>
+
+            <p><span class="term">Жилищная субсидия</span> — помощь от государства, если коммуналка слишком дорогая (обычно больше 22% дохода).</p>
+
+
+            <div class="letter">З</div>
+
+            <p><span class="term">Защита прав потребителей</span> — возможность требовать качественные услуги, перерасчёт и компенсации.</p>
+
+            <p><span class="term">Зона ответственности</span> — граница, кто за что отвечает (УК, РСО, собственник).</p>
+
+
+            <div class="letter">К</div>
+
+            <p><span class="term">Компенсация морального вреда</span> — деньги за неудобства и ущерб (например, если затопили квартиру).</p>
+
+            <p><span class="term">КР на СОИ</span> — ресурсы на содержание дома (свет в подъезде, лифт и т.д.).</p>
+
+            <p><span class="term">ККТ</span> — кассовая техника. При оплате должны выдавать чек.</p>
+
+            <p><span class="term">Крупногабаритные отходы</span> — мебель и техника. Вывозятся отдельно.</p>
+
+
+            <div class="letter">Л</div>
+
+            <p><span class="term">Лифтовое хозяйство</span> — всё оборудование лифта. Отвечает УК или подрядчик.</p>
+
+
+            <div class="letter">М</div>
+
+            <p><span class="term">МКД</span> — многоквартирный дом с общим имуществом (подъезды, крыша, двор).</p>
+
+
+            <div class="letter">Н</div>
+
+            <p><span class="term">Наниматель</span> — человек, живущий по договору соцнайма.</p>
+
+            <p><span class="term">Нежилое помещение</span> — магазины, офисы в доме. Их владельцы тоже платят за ЖКУ.</p>
+
+            <p><span class="term">Норматив потребления</span> — расчётное потребление, если нет счётчика.</p>
+
+
+            <div class="letter">О</div>
+
+            <p><span class="term">Общее имущество</span> — всё вне квартиры: подъезд, крыша, трубы, двор.</p>
+
+            <p><span class="term">Общее собрание собственников (ОСС)</span> — главный орган управления домом.</p>
+
+            <p><span class="term">ОДПУ</span> — общий счётчик на дом.</p>
+
+            <p><span class="term">ОДН</span> — старое название КР на СОИ.</p>
+
+
+            <div class="letter">П</div>
+
+            <p><span class="term">Пени</span> — штраф за просрочку оплаты.</p>
+
+            <p><span class="term">Перепланировка</span> — изменение квартиры (стены, санузел). Требует согласования.</p>
+
+            <p><span class="term">Перерасчёт</span> — уменьшение платы при ошибках или плохом качестве услуг.</p>
+
+            <p><span class="term">Поверка счётчика</span> — проверка его точности.</p>
+
+            <p><span class="term">Предельные индексы</span> — максимальный рост тарифов.</p>
+
+            <p><span class="term">Прямой договор с РСО</span> — оплата ресурсов напрямую поставщику.</p>
+
+
+            <div class="letter">Р</div>
+
+            <p><span class="term">Региональная тарифная комиссия</span> — устанавливает тарифы.</p>
+
+            <p><span class="term">РСО</span> — поставщик ресурсов (вода, тепло, свет).</p>
+
+
+            <div class="letter">С</div>
+
+            <p><span class="term">Сантехнические работы</span> — ремонт внутри квартиры. Делает собственник.</p>
+
+            <p><span class="term">Спецсчёт капремонта</span> — отдельный счёт дома на капремонт.</p>
+
+
+            <div class="letter">Т</div>
+
+            <p><span class="term">Тариф</span> — цена за ресурс (вода, свет, тепло).</p>
+
+            <p><span class="term">ВДГО</span> — обслуживание газового оборудования. Обязательно.</p>
+
+
+            <div class="letter">У</div>
+
+            <p><span class="term">УК</span> — управляющая компания. Отвечает за дом.</p>
+
+            <p><span class="term">Учёт ресурсов</span> — измерение потребления (по счётчикам).</p>
+
+        </article>
+    </div>
+</div>
+
+{{end}}
