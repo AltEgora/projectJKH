@@ -14,14 +14,16 @@
         Найдите тарифы, получите ответы на частые вопросы, составьте жалобу или легко проверьте начисления
     </p>
 
-    <div class="mt-8 max-w-3xl mx-auto relative">
-        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
-        <input 
+    <form id="home-search-form" class="mt-8 max-w-3xl mx-auto relative" action="/search" method="GET">
+        <i id="home-search-icon" data-lucide="search" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none transition-opacity duration-150"></i> 
+        <input
+            id="home-search-input"
+            name="q"
             type="text"
             placeholder="Поиск"
-            class="w-full py-4 px-6 rounded-full text-black outline-none"
+            class="w-full py-4 px-6 pr-12 rounded-full text-black outline-none"
         >
-    </div>
+    </form>
 </header>
 
 <!-- MAIN -->
@@ -195,5 +197,26 @@
     </section>
 
 </main>
+
+<script>
+(function () {
+    var searchForm = document.getElementById("home-search-form");
+    var searchInput = document.getElementById("home-search-input");
+    if (!searchForm || !searchInput) {
+        return;
+    }
+
+    searchForm.addEventListener("submit", function (event) {
+        if (String(searchInput.value || "").trim()) {
+            return;
+        }
+        event.preventDefault();
+        searchInput.classList.add("ring-2", "ring-red-300");
+        setTimeout(function () {
+            searchInput.classList.remove("ring-2", "ring-red-300");
+        }, 800);
+    });
+})();
+</script>
 
 {{end}}
