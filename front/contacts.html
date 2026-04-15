@@ -128,16 +128,43 @@ lucide.createIcons();
 
 const ukDatabase = {
     "арсения степанова 52": {
-        name: "ООО УК «Заволжье-Групп»",
+        name: "ООО РУМЯНЦЕВО",
         ukAddress: "г. Тверь, ул. Горького, 10",
         phone: "+7 (4822) 55-66-77",
         mail: "zav-group69@mail.ru"
     }
 };
 
+function normalizeAddress(rawInput) {
+    let text = rawInput
+        .toLowerCase()
+        .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ' ')
+        .replace(/([a-zа-яё])(\d)/gi, '$1 $2')
+        .replace(/(\d)([a-zа-яё])/gi, '$1 $2')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+    text = removeStopWords(text);
+
+    return text;
+}
+
+const STOP_WORDS = new Set([
+    "улица", "ул", "ул.", 
+    "дом", "д", "д.",
+    "квартира", "кв", "кв."
+]);
+
+function removeStopWords(text) {
+    return text
+        .split(" ")
+        .filter(w => !STOP_WORDS.has(w))
+        .join(" ");
+}
+
 function findUK() {
     const rawInput = document.getElementById('address-input').value;
-    const cleanInput = rawInput.toLowerCase().replace(/,/g, '').trim();
+    const cleanInput = normalizeAddress(rawInput);
     const resultBlock = document.getElementById('search-result');
     const mapFrame = document.getElementById('main-map');
     
