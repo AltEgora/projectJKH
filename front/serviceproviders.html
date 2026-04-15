@@ -1,0 +1,204 @@
+{{define "styles"}}
+<style>
+    .column-wrapper {
+        max-width: var(--column-width);
+        margin: 30px auto 0;
+    }
+
+    .main-column {
+        background-color: var(--card);
+
+        border-left: 2px solid var(--primary);  
+        border-right: 2px solid var(--primary); 
+
+        border-top: 2px solid var(--primary); 
+        border-top-left-radius: var(--column-radius);
+        border-top-right-radius: var(--column-radius);
+
+        min-height: calc(100vh - 30px);
+        padding-bottom: 60px;
+    }
+
+    .content-text p {
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+        color: #363038;
+    }
+
+    .content-text ul {
+        margin-bottom: 1.5rem;
+        padding-left: 1.2rem;
+        list-style-type: disc;
+    }
+
+    .content-text li {
+        margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+        font-weight: 700;
+        font-size: 1.25rem;
+        margin: 2.5rem 0 1rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 6px;
+    }
+
+    .highlight-box {
+        margin-top: 2rem;
+        padding: 20px;
+        border-left: 4px solid var(--primary);
+        background: #fff7ed;
+        border-radius: 12px;
+    }
+</style>
+{{end}}
+
+{{define "content"}}
+
+<div class="max-w-[1600px] mx-auto px-4 sm:px-8 pt-6">
+    <a href="/consumer" class="back-btn flex items-center gap-2 w-fit rounded-full">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Назад
+    </a>
+</div>
+
+<div class="column-wrapper">
+    <div class="main-column px-8 md:px-16 py-12">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-extrabold tracking-tight">
+                Поставщики услуг и основные органы контроля в сфере ЖКХ
+            </h1>
+            <div class="h-1 w-20 bg-[var(--primary)] mx-auto mt-4 rounded-full"></div>
+        </header>
+
+        <article class="content-text text-lg">
+
+            <p>
+                Система жилищно-коммунального хозяйства включает множество участников, и не всегда очевидно, кто именно отвечает за конкретную проблему — будь то холодные батареи или плохое состояние подъезда. Чтобы понимать, куда обращаться, важно разделять зоны ответственности.
+            </p>
+
+            <h2 class="section-title">Потребители: чьи права защищает закон</h2>
+
+            <p>Потребителями коммунальных услуг являются:</p>
+
+            <ul>
+                <li>
+                    <strong>Граждане</strong> (собственники, наниматели, арендаторы). На них распространяется 
+                    <a href="https://www.consultant.ru/document/cons_doc_LAW_305/" class="text-[var(--primary)] hover:underline" target="_blank">
+                        Закон «О защите прав потребителей»
+                    </a>.
+                </li>
+                <li>
+                    <strong>Юридические лица</strong> (например, магазины в доме). Для них основным документом является 
+                    <a href="https://www.consultant.ru/document/cons_doc_LAW_51057/" class="text-[var(--primary)] hover:underline" target="_blank">
+                        Жилищный кодекс РФ
+                    </a>.
+                </li>
+            </ul>
+
+            <div class="highlight-box">
+                Если вы арендуете квартиру, жаловаться нужно не собственнику, а исполнителю — УК или РСО. Но оплачиваете услуги по условиям договора аренды.
+            </div>
+
+            <h2 class="section-title">Поставщики услуг: с кого спрашивать</h2>
+
+            <p>Есть четыре основных типа организаций:</p>
+
+            <p><strong>1. Управляющая компания (УК)</strong></p>
+            <p>
+                Работает по лицензии (ст. 192 ЖК РФ). Отвечает за содержание дома и часто — за коммунальные услуги.
+                По всем бытовым проблемам сначала обращаются именно в УК.
+            </p>
+
+            <p><strong>2. ТСЖ (Товарищество Собственников Жилья), ЖК (Жилищный Кооператив), ЖСК (Жилищно-Строительный Кооператив)</strong></p>
+            
+            <p>ТСЖ — Товарищество Собственников Жилья (некоммерческая организация собственников для управления домом).</p>
+            <p>ЖК — Жилищный Кооператив (добровольное объединение для приобретения/управления жильем).</p>
+            <p>ЖСК — Жилищно-Строительный Кооператив (объединение для строительства и управления домом).</p>
+            <p>
+                Это способ управления домом, при котором собственники квартир не нанимают стороннюю управляющую компанию, а создают свою собственную организацию. Проще говоря, соседи объединяются и сами решают, как содержать свой дом.
+                В этом случае председатель ТСЖ и правление выполняют те же функции, что и руководитель УК: заключают договоры с РСО (водоканалом, теплосетями), нанимают дворников и сантехников, собирают платежи.
+
+            </p> 
+
+            <p>
+                <u>Важно:</u> ТСЖ не производит ресурсы, а только закупает их. За качество воды, тепла и электричества отвечают РСО.
+            </p>
+
+            <p><strong>3. Ресурсоснабжающие организации (РСО)</strong></p>
+            <p>
+                Поставляют воду, тепло, электричество и газ. Отвечают за ресурс до границы дома.
+            </p>
+
+            <p>
+                Если проблема в одной квартире — это зона УК. Если во всём доме — это уже РСО.
+            </p>
+
+            <p><strong>4. Региональный оператор по ТКО</strong></p>
+            <p>
+                Отвечает за вывоз мусора. Если мусор не вывезли — к нему. Если грязно вокруг контейнеров — чаще к УК или муниципалитету.
+            </p>
+
+            <h2 class="section-title">Органы власти: куда жаловаться</h2>
+
+            <p><strong>1. Федеральный уровень</strong></p>
+            <p>
+                Устанавливает правила для всей страны: Жилищный кодекс и правила оказания услуг 
+                (<a href="https://www.consultant.ru/document/cons_doc_LAW_114247/" class="text-[var(--primary)] hover:underline" target="_blank">Постановление № 354</a>).
+            </p>
+
+            <p>
+                Нормативная база: 
+                <a href="https://www.consultant.ru/document/cons_doc_LAW_51057/a954b54f1a0ca48fa0ecadb7bd0fbc1fffc50eaf/" class="text-[var(--primary)] hover:underline" target="_blank">
+                    ст. 12 ЖК РФ
+                </a>.
+            </p>
+
+            <p><strong>2. Региональный уровень</strong></p>
+            <p>
+                Устанавливает тарифы, нормативы и контролирует работу УК через Государственную жилищную инспекцию (ГЖИ).
+            </p>
+
+            <p>
+                Если УК не реагирует или нарушает правила — обращаться нужно именно в ГЖИ.
+            </p>
+
+            <p>
+                Нормативная база: 
+                <a href="https://www.consultant.ru/document/cons_doc_LAW_51057/f287d4cefd76d9cae08334ce924d3c748be52fed/" class="text-[var(--primary)] hover:underline" target="_blank">
+                    ст. 13 ЖК РФ
+                </a>.
+            </p>
+
+            <p><strong>3. Муниципальный уровень</strong></p>
+            <p>
+                Занимается муниципальным жильём и организационными вопросами.
+            </p>
+
+            <p>
+                Нормативная база: 
+                <a href="https://www.consultant.ru/document/cons_doc_LAW_51057/f7cf276b178652f1dc8307fe08b512a0b53ab1ef/" class="text-[var(--primary)] hover:underline" target="_blank">
+                    ст. 14 ЖК РФ
+                </a>.
+            </p>
+
+            <div class="highlight-box">
+                Для большинства собственников главный надзорный орган — это Государственная жилищная инспекция (ГЖИ).
+            </div>
+
+            <h2 class="section-title">Итог</h2>
+
+            <p>
+                В ЖКХ всё построено на разделении ответственности. Потребитель обращается к исполнителю (УК, ТСЖ, РСО) в зависимости от проблемы, а государство контролирует соблюдение правил.
+            </p>
+
+            <p>
+                Чтобы защитить свои права, важно правильно определить, кто отвечает за проблему, и зафиксировать нарушение письменно. В большинстве случаев ключевым органом для жалоб является ГЖИ.
+            </p>
+
+        </article>
+    </div>
+</div>
+
+{{end}}
