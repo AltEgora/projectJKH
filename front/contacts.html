@@ -135,28 +135,61 @@ const ukDatabase = {
     }
 };
 
-function findUK() {
+async function fetchUKInfo(houseId) {
+            const requestData = {
+                address: houseId
+            };
+
+            const response = await fetch('/api/gis', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestData)
+            });
+
+            if (!response.ok) {
+                /*if (response.status === 404) {
+                    throw new Error('Дом с таким ID не найден');
+                } else if (response.status === 400) {
+                    throw new Error('Неверный формат ID');
+                } else {
+                    throw new Error(`Ошибка сервера: ${response.status}`);
+                }*/
+                console.warn(response)
+               return "";
+            }
+
+            const data = await response.json();
+            console.log(data)
+
+            return data;
+        }
+
+async function findUK() {
     const rawInput = document.getElementById('address-input').value;
     const cleanInput = rawInput.toLowerCase().replace(/,/g, '').trim();
     const resultBlock = document.getElementById('search-result');
     const mapFrame = document.getElementById('main-map');
     
+    const data = await fetchUKInfo(cleanInput);
+
     let foundData = null;
     for (let key in ukDatabase) {
         if (cleanInput.includes(key)) { foundData = ukDatabase[key]; break; }
     }
 
-    if (foundData) {
-        document.getElementById('uk-name').innerText = foundData.name;
-        document.getElementById('uk-address').innerText = foundData.ukAddress;
-        document.getElementById('uk-phone').innerText = foundData.phone;
-        document.getElementById('uk-mail').innerText = foundData.mail;
+    if (data) {
+        document.getElementById('uk-name').innerText = data.name;
+        document.getElementById('uk-address').innerText = data.address;
+        document.getElementById('uk-phone').innerText = data.phones[0];
+        document.getElementById('uk-mail').innerText = data.emails[0];
         resultBlock.style.display = 'block';
 
-        const query = encodeURIComponent(foundData.ukAddress);
-        mapFrame.src = `https://yandex.ru/map-widget/v1/?text=${query}&z=16`;
+        //const query = encodeURIComponent(foundData.ukAddress);
+        mapFrame.src = `https://yandex.ru/map-widget/v1/?text=${data.address}&z=16`;
     } else {
-        alert("Попробуйте: Арсения Степанова, 52");
+        alert("Попробуйте другой аддресс");
     }
 }
 

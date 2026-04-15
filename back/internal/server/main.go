@@ -34,6 +34,8 @@ func NewApp(addr string) *http.Server {
 	rout.HandleFunc("/search", handlers.SearchHandler).Methods("GET")
 	//rout.HandleFunc("/calc", handlers.CalcHandler).Methods("GET")
 
+	rout.HandleFunc("/api/gis", handlers.GisHandler).Methods("POST")
+
 	return &http.Server{
 		Handler: rout,
 		Addr:    addr,
