@@ -119,11 +119,15 @@ func resolveSearchRoute(query string) string {
 	sewerPos := firstTokenPrefixPosition(tokens, []string{"водоотвед", "канализ", "сток"})
 	gasPos := firstTokenPrefixPosition(tokens, []string{"газ", "газоснаб"})
 	electricityPos := firstTokenPrefixPosition(tokens, []string{"электро", "электр", "свет", "квт"})
+	wastePos := firstTokenPrefixPosition(tokens, []string{"тко", "мусор", "отход", "тверьспец", "спецавто"})
 
 	if tariffIntentPos >= 0 {
 		bestUtilityPos := minPositive(
 			minPositive(hotPos, coldPos),
-			minPositive(minPositive(heatPos, sewerPos), minPositive(gasPos, electricityPos)),
+			minPositive(
+				minPositive(minPositive(heatPos, sewerPos), minPositive(gasPos, electricityPos)),
+				wastePos,
+			),
 		)
 		if bestUtilityPos == -1 || tariffIntentPos <= bestUtilityPos {
 			topic := bestTariffTopic([]topicMatch{
@@ -133,6 +137,7 @@ func resolveSearchRoute(query string) string {
 				{position: sewerPos, topic: "sewer"},
 				{position: gasPos, topic: "gas"},
 				{position: electricityPos, topic: "electricity"},
+				{position: wastePos, topic: "waste"},
 			})
 			if topic != "" {
 				return "/tariffs#" + topic

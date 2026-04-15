@@ -80,6 +80,8 @@
         border: 1px solid var(--border);
         transition: all 0.3s ease;
         cursor: pointer;
+        text-decoration: none;
+        box-sizing: border-box;
     }
 
     .calc-button:hover {
@@ -213,9 +215,9 @@
                 <br><br>
                 <a href="http://publication.pravo.gov.ru/document/6901202512190031?index=4" class="doc-link" target="_blank">Приказ о стоимости отопления</a>
 
-                <button class="calc-button" onclick="event.stopPropagation();">
+                <a href="/accruals#heat" class="calc-button" onclick="event.stopPropagation();">
                     <i data-lucide="calculator" class="w-4 h-4"></i> Рассчитать отопление
-                </button>
+                </a>
             </div>
         </div>
     </div>
