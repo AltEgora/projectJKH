@@ -29,7 +29,7 @@ func ServiceprovidersHandler(w http.ResponseWriter, req *http.Request) {
 	}
 
 	err = tmpl.ExecuteTemplate(w, "base",
-		dataEpd{
+		dataServiceproviders{
 			States: states,
 			Active: "serviceproviders",
 			Title:  "Поставщики услуг и органы контроля",
