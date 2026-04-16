@@ -14,7 +14,7 @@ type dataEpd struct {
 	Title  string
 }
 
-func EpdHandler(w http.ResponseWriter, req *http.Request) {
+func GlossaryHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Got request on glossary page")
 
 	tmpl, err := template.ParseFiles("/app/front/glossary.html", "/app/front/base.html")
