@@ -57,14 +57,14 @@
             <div class="card shadow-sm">
                 <div class="flex items-center gap-3 mb-6 text-[var(--primary)]">
                     <i data-lucide="search" class="w-6 h-6"></i>
-                    <h3 class="text-xl font-bold text-[var(--text)]">Поиск правляющей компании</h3>
+                    <h3 class="text-xl font-bold text-[var(--text)]">Поиск управляющей компании</h3>
                 </div>
                 
                 <div class="space-y-4">
                     <div class="relative">
                         <i data-lucide="map-pin" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
                         <input type="text" id="address-input" 
-                               placeholder="Скворцова Степанова, 14" 
+                               placeholder="Формат ввода: Скворцова Степанова, д. 14" 
                                class="w-full pl-10 pr-4 py-3 border-2 border-slate-100 rounded-xl outline-none focus:border-[var(--primary)] transition-all bg-slate-50/50">
                     </div>
 
@@ -172,7 +172,7 @@ function removeStopWords(text) {
 
 async function findUK() {
     const rawInput = document.getElementById('address-input').value;
-    const cleanInput = rawInput.toLowerCase().replace(/,/g, '').trim();
+    //const cleanInput = rawInput.toLowerCase().replace(/,/g, '').trim();
     const resultBlock = document.getElementById('search-result');
     const mapFrame = document.getElementById('main-map');
 
@@ -190,7 +190,7 @@ async function findUK() {
         const response = await fetch('/api/gis', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ address: cleanInput })
+            body: JSON.stringify({ address: rawInput })
         });
         
         const data = await response.json();
