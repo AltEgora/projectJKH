@@ -55,6 +55,21 @@ var searchRules = []searchRule{
 		Roots:  []string{"епд", "единый", "платеж", "документ", "расшифров", "квитанц"},
 	},
 	{
+		Route:  "/consumer/jku",
+		Weight: 11,
+		Roots:  []string{"жку", "коммунал", "услуг", "что это", "структур"},
+	},
+	{
+		Route:  "/consumer/serviceproviders",
+		Weight: 11,
+		Roots:  []string{"поставщик", "поставщики", "контрол", "орган", "качество", "рсо", "ресурсоснаб"},
+	},
+	{
+		Route:  "/consumer/glossary",
+		Weight: 11,
+		Roots:  []string{"глоссар", "термин", "аббревиатур", "словар"},
+	},
+	{
 		Route:  "/consumer",
 		Weight: 7,
 		Roots:  []string{"потребител", "справочник", "права", "жкх", "жку"},
