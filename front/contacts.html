@@ -32,6 +32,10 @@
         overflow: hidden;
         border: 1px solid var(--border);
     }
+
+    .explonation{
+        color: grey;
+    }
 </style>
 {{end}}
 
@@ -67,6 +71,10 @@
                     <button onclick="findUK()" class="w-full btn-search py-3.5 rounded-xl font-bold text-sm tracking-wide uppercase">
                         Найти УК
                     </button>
+
+                    <div class="explonation">
+                        *информация предоставлена сервисом ГИС ЖКХ
+                    </div>
 
                     <div id="search-result" class="mt-6 p-5 bg-orange-50/50 border border-orange-100 rounded-2xl">
                         <div class="text-[var(--primary)] font-bold text-[10px] uppercase mb-1">Управляющая компания:</div>
