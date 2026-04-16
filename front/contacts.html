@@ -172,7 +172,7 @@ function removeStopWords(text) {
 
 async function findUK() {
     const rawInput = document.getElementById('address-input').value;
-    //const cleanInput = rawInput.toLowerCase().replace(/,/g, '').trim();
+    const cleanInput = rawInput.toLowerCase().replace(/,/g, '').trim();
     const resultBlock = document.getElementById('search-result');
     const mapFrame = document.getElementById('main-map');
 
