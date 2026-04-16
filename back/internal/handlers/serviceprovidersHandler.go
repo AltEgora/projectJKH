@@ -8,13 +8,13 @@ import (
 	"net/http"
 )
 
-type dataEpd struct {
+type dataServiceproviders struct {
 	States []domain.State
 	Active string
 	Title  string
 }
 
-func EpdHandler(w http.ResponseWriter, req *http.Request) {
+func ServiceprovidersHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Got request on serviceproviders page")
 
 	tmpl, err := template.ParseFiles("/app/front/serviceproviders.html", "/app/front/base.html")
