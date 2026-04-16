@@ -29,7 +29,7 @@ func GlossaryHandler(w http.ResponseWriter, req *http.Request) {
 	}
 
 	err = tmpl.ExecuteTemplate(w, "base",
-		dataEpd{
+		dataGlossary{
 			States: states,
 			Active: "glossary",
 			Title:  "Глоссарий ЖКХ",
