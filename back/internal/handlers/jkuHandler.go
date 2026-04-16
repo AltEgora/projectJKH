@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-type dataEpd struct {
+type dataJku struct {
 	States []domain.State
 	Active string
 	Title  string
