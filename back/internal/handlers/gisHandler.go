@@ -27,7 +27,7 @@ func GisHandler(w http.ResponseWriter, req *http.Request) {
 	}
 	defer req.Body.Close()
 
-	uk, err := gis.GetUK(reqData.Addr)
+	uk, err := gis.GetUK("обл Тверская, " + reqData.Addr)
 	if err != nil {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(500)

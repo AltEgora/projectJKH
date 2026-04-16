@@ -15,6 +15,7 @@ type App struct {
 // Constructor for App
 func NewApp(addr string) *http.Server {
 	rout := mux.NewRouter()
+	rout.StrictSlash(true)
 
 	//File server. Maybe unused in future.
 	//Now needs for .scc

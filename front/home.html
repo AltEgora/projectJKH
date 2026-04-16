@@ -1,605 +1,331 @@
-{{define "styles"}}{{end}}
+    {{define "styles"}}{{end}}
 
 
-{{define "content"}} 
+    {{define "content"}}
 
-<header class="py-16 px-4 text-center text-white"
-        style="background: linear-gradient(to right, var(--primary), var(--primary-light));">
+    <header class="py-16 px-4 text-center text-white"
+            style="background: linear-gradient(to right, var(--primary), var(--primary-light));">
 
-    <h1 class="text-4xl font-extrabold mb-4">
-        Единый сервис ПроЖКХ г. Тверь
-    </h1>
+        <h1 class="text-4xl font-extrabold mb-4">
+            Единый сервис ПроЖКХ г. Тверь
+        </h1>
 
-    <p class="opacity-90 max-w-2xl mx-auto">
-        Найдите тарифы, получите ответы на частые вопросы, составьте жалобу или легко проверьте начисления
-    </p>
+        <p class="opacity-90 max-w-2xl mx-auto">
+            Найдите тарифы, получите ответы на частые вопросы, составьте жалобу или легко проверьте начисления
+        </p>
 
-    <form id="home-search-form" class="mt-8 max-w-3xl mx-auto relative" action="/search" method="GET" autocomplete="off">
-        <i id="home-search-icon" data-lucide="search" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none transition-opacity duration-150"></i>
-        <input
-            id="home-search-input"
-            name="q"
-            type="text"
-            inputmode="search"
-            autocomplete="off"
-            placeholder="Поиск"
-            class="w-full py-4 px-6 pr-12 rounded-full text-black outline-none"
-            aria-autocomplete="list"
-            aria-controls="search-suggest"
-            aria-expanded="false"
-        >
-        <div id="search-suggest" class="absolute left-0 right-0 top-full z-40 mt-2 hidden max-h-80 overflow-y-auto rounded-2xl border border-white/20 bg-white text-left text-sm text-black shadow-xl" role="listbox"></div>
-    </form>
-</header>
+        <div class="mt-8 max-w-3xl mx-auto relative">
+            <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+            <input 
+                id="search"
+                type="text"
+                placeholder="Поиск"
+                class="w-full py-4 px-6 rounded-full text-black outline-none"
+            >
+            <div id="results" class="mt-4 bg-white text-black rounded-xl shadow"></div>
+        </div>
+    </header>
 
-<!-- MAIN -->
-<main class="max-w-7xl mx-auto px-4 py-12 space-y-8">
+    <!-- MAIN -->
+    <main class="max-w-7xl mx-auto px-4 py-12 space-y-8">
 
-    <!-- ВЕРХ: район + кнопки -->
-    <div class="grid lg:grid-cols-3 gap-8">
+        <!-- ВЕРХ: район + кнопки -->
+        <div class="grid lg:grid-cols-3 gap-8">
 
-        <!-- ДАННЫЕ О РАЙОНЕ  -->
-        <section class="lg:col-span-2">
+            <!-- ДАННЫЕ О РАЙОНЕ  -->
+            <section class="lg:col-span-2">
 
-          <div class="card !p-8 shadow-sm">
-                <div class="flex items-center gap-3 mb-6 text-[var(--button)]">
-                    <i data-lucide="shield-alert" class="w-6 h-6"></i>
-                    <h3 class="text-xl font-bold text-[var(--text)]">Экстренные номера</h3>
-                </div>
-                
-                <div class="space-y-3">
-                    <div class="flex justify-between items-center p-4 bg-[var(--button)]/5 rounded-xl border border-[var(--button)]/10">
-                        <div>
-                            <div class="font-bold text-[var(--text)]">Служба спасения</div>
-                            <div class="text-[10px] uppercase tracking-wider text-gray-500">Единый номер</div>
-                        </div>
-                        <div class="text-2xl font-black text-[var(--button)]">112</div>
+            <div class="card !p-8 shadow-sm">
+                    <div class="flex items-center gap-3 mb-6 text-[var(--button)]">
+                        <i data-lucide="shield-alert" class="w-6 h-6"></i>
+                        <h3 class="text-xl font-bold text-[var(--text)]">Экстренные номера</h3>
                     </div>
+                    
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center p-4 bg-[var(--button)]/5 rounded-xl border border-[var(--button)]/10">
+                            <div>
+                                <div class="font-bold text-[var(--text)]">Служба спасения</div>
+                                <div class="text-[10px] uppercase tracking-wider text-gray-500">Единый номер</div>
+                            </div>
+                            <div class="text-2xl font-black text-[var(--button)]">112</div>
+                        </div>
 
+                        <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                            <div>
+                                <div class="font-bold text-[var(--text)]">Единая дежурно-диспетчерская служба (ЕДДС)</div>
+                                <div class="text-xs text-gray-500">Круглосуточный прием сообщений о ЧС</div>
+                            </div>
+                            <div class="font-bold text-[var(--button)] text-lg">48-00-00</div>
+                        </div>
+
+                        <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                            <div>
+                                <div class="font-bold text-[var(--text)]">Аварийная газовая служба</div>
+                                <div class="text-xs text-gray-500">Единый номер аварийной газовой службы в России</div>
+                            </div>
+                            <div class="font-bold text-[var(--button)] text-lg">104</div>
+                        </div>
+                    
                     <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
-                        <div>
-                            <div class="font-bold text-[var(--text)]">Единая дежурно-диспетчерская служба (ЕДДС)</div>
-                            <div class="text-xs text-gray-500">Круглосуточный прием сообщений о ЧС</div>
+                            <div>
+                                <div class="font-bold text-[var(--text)]">Отопление и горячая вода</div>
+                                <div class="text-xs text-gray-500">ООО «Тверская генерация»</div>
+                            </div>
+                            <div class="font-bold text-[var(--button)] text-lg">78-00-00</div>
                         </div>
-                        <div class="font-bold text-[var(--button)] text-lg">48-00-00</div>
+                    
+                    <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                            <div>
+                                <div class="font-bold text-[var(--text)]"> Холодная вода и канализация</div>
+                                <div class="text-xs text-gray-500">ООО «Тверь Водоканал»</div>
+                            </div>
+                            <div class="font-bold text-[var(--button)] text-lg">333-555</div>
+                        </div>
+                    
+                    <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                            <div>
+                                <div class="font-bold text-[var(--text)]"> Электроснабжение</div>
+                                <div class="text-xs text-gray-500">АтомЭнергоСбыт</div>
+                            </div>
+                            <div class="font-bold text-[var(--button)] text-lg">48-30-13</div>
+                        </div>
+                    
+                    <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                            <div>
+                                <div class="font-bold text-[var(--text)]">Региональный оператор по вывозу мусора</div>
+                                <div class="text-xs text-gray-500">ООО «Тверьспецавтохозяйство»</div>
+                            </div>
+                            <div class="font-bold text-[var(--button)] text-lg">8-800-250-99-48</div>
+                        </div>
+                    
+                    <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                            <div>
+                                <div class="font-bold text-[var(--text)]">Аварийно-спасательный отряд МЧС</div>
+                                <div class="text-xs text-gray-500">Единый номер аварийной газовой службы в России</div>
+                            </div>
+                            <div class="font-bold text-[var(--button)] text-lg">290-54-60, 287-54-60</div>
+                        </div>
+                    
+                    <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                            <div>
+                                <div class="font-bold text-[var(--text)]">ЕДДС города</div>
+                                <div class="text-xs text-gray-500">Если нет точных контактов УК</div>
+                            </div>
+                            <div class="font-bold text-[var(--button)] text-lg">48-00-00</div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- СПРАВА: кнопки -->
+        <aside class="space-y-6 sticky top-24 h-fit">
+
+            <a href="/consumer" class="card flex justify-between items-center"
+                class="card flex justify-between items-center transition hover:shadow-lg"
+                style="background: linear-gradient(135deg, var(--button), var(--button-light)); color: white;">
+                <span>Справочник потребителя</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+            <a href="/complaints" class="card flex justify-between items-center"
+                class="card flex justify-between items-center transition hover:shadow-lg"
+                style="background: linear-gradient(135deg, var(--button), var(--button-light)); color: white;">
+                <span>Сформировать жалобу</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+        </aside>
+
+        </div>
+
+
+        <section>
+            <div class="card">
+
+                <div class="flex justify-between mb-6">
+                    <h2 class="text-2xl font-bold flex gap-2 items-center">
+                        <i data-lucide="newspaper" style="color: var(--primary)"></i>
+                        Новости ЖКХ Тверь
+                    </h2>
+
+                    <a href="/news" target="_blank"
+                    class="text-[var(--primary)] text-sm">
+                        Все новости
+                    </a>
+                </div>
+
+                <div class="space-y-6">
+
+                    <div>
+                        <div style="border-left: 4px solid var(--button); padding-left: 12px;">
+
+                            <div class="flex gap-2 mb-2 text-sm">
+                                <span style="color: gray;">01.04.2026</span>
+                            </div>
+
+                            <h3 class="font-bold text-lg mb-2">
+                                Отключение электроэнергии
+                            </h3>
+
+                            <p style="color: gray;">
+                                АО «Тверьгорэлектро» информирует жителей областного центра о проведении плановых ремонтных работ на электросетях...
+                            </p>
+
+                        </div>
                     </div>
 
-                    <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
-                        <div>
-                            <div class="font-bold text-[var(--text)]">Аварийная газовая служба</div>
-                            <div class="text-xs text-gray-500">Единый номер аварийной газовой службы в России</div>
+                    <div>
+                    <div style="border-left: 4px solid var(--button); padding-left: 12px;">
+                        <div class="text-sm mb-2" style="color: gray;">
+                        <span style="color: gray;">30.03.2026</span>
                         </div>
-                        <div class="font-bold text-[var(--button)] text-lg">104</div>
+                        <h3 class="font-bold text-lg mb-2">
+                            Александр Новак и Виталий Королев обсудили модернизацию теплоснабжения Твери и газификацию Верхневолжья
+                        </h3>
+                        <p style="color: gray;">
+                            Главные темы: повышение надёжности теплоснабжения областной столицы, газификация Верхневолжья и модернизация объектов ЖКХ...
+                        </p>
                     </div>
-                  
-                  <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
-                        <div>
-                            <div class="font-bold text-[var(--text)]">Отопление и горячая вода</div>
-                            <div class="text-xs text-gray-500">ООО «Тверская генерация»</div>
-                        </div>
-                        <div class="font-bold text-[var(--button)] text-lg">78-00-00</div>
-                    </div>
-                  
-                  <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
-                        <div>
-                            <div class="font-bold text-[var(--text)]"> Холодная вода и канализация</div>
-                            <div class="text-xs text-gray-500">ООО «Тверь Водоканал»</div>
-                        </div>
-                        <div class="font-bold text-[var(--button)] text-lg">333-555</div>
-                    </div>
-                  
-                  <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
-                        <div>
-                            <div class="font-bold text-[var(--text)]"> Электроснабжение</div>
-                            <div class="text-xs text-gray-500">АтомЭнергоСбыт</div>
-                        </div>
-                        <div class="font-bold text-[var(--button)] text-lg">48-30-13</div>
-                    </div>
-                  
-                  <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
-                        <div>
-                            <div class="font-bold text-[var(--text)]">Региональный оператор по вывозу мусора</div>
-                            <div class="text-xs text-gray-500">ООО «Тверьспецавтохозяйство»</div>
-                        </div>
-                        <div class="font-bold text-[var(--button)] text-lg">8-800-250-99-48</div>
-                    </div>
-                  
-                  <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
-                        <div>
-                            <div class="font-bold text-[var(--text)]">Аварийно-спасательный отряд МЧС</div>
-                            <div class="text-xs text-gray-500">Единый номер аварийной газовой службы в России</div>
-                        </div>
-                        <div class="font-bold text-[var(--button)] text-lg">290-54-60, 287-54-60</div>
-                    </div>
-                  
-                  <div class="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
-                        <div>
-                            <div class="font-bold text-[var(--text)]">ЕДДС города</div>
-                            <div class="text-xs text-gray-500">Если нет точных контактов УК</div>
-                        </div>
-                        <div class="font-bold text-[var(--button)] text-lg">48-00-00</div>
-                    </div>
+                </div>
 
                 </div>
+
             </div>
 
         </section>
 
-        <!-- СПРАВА: кнопки -->
-    <aside class="space-y-6 sticky top-24 h-fit">
-
-        <a href="/consumer" class="card flex justify-between items-center"
-            class="card flex justify-between items-center transition hover:shadow-lg"
-            style="background: linear-gradient(135deg, var(--button), var(--button-light)); color: white;">
-            <span>Справочник потребителя</span>
-            <i data-lucide="chevron-right"></i>
-        </a>
-
-        <a href="/complaints" class="card flex justify-between items-center"
-            class="card flex justify-between items-center transition hover:shadow-lg"
-            style="background: linear-gradient(135deg, var(--button), var(--button-light)); color: white;">
-            <span>Сформировать жалобу</span>
-            <i data-lucide="chevron-right"></i>
-        </a>
-
-    </aside>
-
-    </div>
-
-
-    <section>
-        <div class="card">
-
-            <div class="flex justify-between mb-6">
-                <h2 class="text-2xl font-bold flex gap-2 items-center">
-                    <i data-lucide="newspaper" style="color: var(--primary)"></i>
-                    Новости ЖКХ
-                </h2>
-
-                <a href="/news" target="_blank"
-                   class="text-[var(--primary)] text-sm">
-                    Все новости
-                </a>
-            </div>
-
-            <div class="space-y-6">
-
-                <div>
-                    <div style="border-left: 4px solid var(--button); padding-left: 12px;">
-
-                        <div class="flex gap-2 mb-2 text-sm">
-                            <span style="color: gray;">01.04.2026</span>
-                        </div>
-
-                        <h3 class="font-bold text-lg mb-2">
-                            Отключение электроэнергии
-                        </h3>
-
-                        <p style="color: gray;">
-                            АО «Тверьгорэлектро» информирует жителей областного центра о проведении плановых ремонтных работ на электросетях...
-                        </p>
-
-                    </div>
-                </div>
-
-                <div>
-                  <div style="border-left: 4px solid var(--button); padding-left: 12px;">
-                    <div class="text-sm mb-2" style="color: gray;">
-                      <span style="color: gray;">30.03.2026</span>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2">
-                        Александр Новак и Виталий Королев обсудили модернизацию теплоснабжения Твери и газификацию Верхневолжья
-                    </h3>
-                    <p style="color: gray;">
-                        Главные темы: повышение надёжности теплоснабжения областной столицы, газификация Верхневолжья и модернизация объектов ЖКХ...
-                    </p>
-                </div>
-              </div>
-
-            </div>
-
-        </div>
-
+    <section class="mt-8 text-center text-xs opacity-70">
+        Сайт носит информационный характер. Материалы не являются официальной юридической консультацией.
     </section>
 
-</main>
+    </main>
+
 
 <script>
-(function () {
-    var searchForm = document.getElementById("home-search-form");
-    var searchInput = document.getElementById("home-search-input");
-    var suggestBox = document.getElementById("search-suggest");
-    var icon = document.getElementById("home-search-icon");
-    if (!searchForm || !searchInput || !suggestBox) {
+const pages = [
+    {
+        title: "Новости",
+        url: "/news",
+        content: "новости нвоость"
+    },
+    {
+        title: "Справочник потребителя",
+        url: "/consumer",
+        content: "жкх права тарифы услуги платежи справочник ЕПД нарушение права"
+    },
+    {
+        title: "Как оспорить начисления",
+        url: "/faq",
+        content: "оспорить начисления квитанция перерасчет управляющая компания"
+    },
+    {
+        title: "Затопление квартиры",
+        url: "/faq",
+        content: "затопили соседи залив акт ущерб"
+    },
+    {
+        title: "Смена счетчиков",
+        url: "/faq",
+        content: "счетчики кто меняет собственник"
+    },
+    {
+        title: "Льготы на оплату ЖКХ",
+        url: "/faq",
+        content: "льготы льгота жкх ЖКХ комуналка"
+    },
+    {
+        title: "Важные документы",
+        url: "/faq",
+        content: "документы жилищный кодекс закон постановление"
+    },
+    {
+        title: "Отсутствие отопления",
+        url: "/complaints",
+        content: "нет отопления холод батареи жалоба"
+    },
+    {
+        title: "Грязная вода из крана",
+        url: "/complaints",
+        content: "вода грязь кран течет"
+    },
+    {
+        title: "Засор канализации",
+        url: "/complaints",
+        content: "засор грязь канализация мусор засорился канал"
+    },
+    {
+        title: "Неправильный расчет горячего водоснабжения",
+        url: "/complaints",
+        content: "неправильно расчет квитанция ошибка вода горячая"
+    },
+    {
+        title: "Отсутсвие электричества",
+        url: "/complaints",
+        content: "электричесво электричества нет"
+    },
+    {
+        title: "Ненадлежащая уборка подъезда и территории",
+        url: "/complaints",
+        content: "плохо уборка подъезд территория дом убираются некачественно"
+    },
+    {
+        title: "Затопление (соседи или крыша)",
+        url: "/complaints",
+        content: "затопили соседи крыша"
+    },
+    {
+        title: "Неисправность лифта",
+        url: "/complaints",
+        content: "лифт сломался не работает"
+    },
+    {
+        title: "Калькулятор",
+        url: "/accruals",
+        content: "калькулятор посчитать высчитать квитанция вода отопление"
+    },
+];
+
+document.getElementById("search").addEventListener("input", function() {
+    const query = this.value.toLowerCase().trim();
+    const resultsDiv = document.getElementById("results");
+
+    const words = query.split(" ");
+
+    if (!query) {
+        resultsDiv.innerHTML = "";
         return;
     }
 
-    var debounceMs = 240;
-    var timer = null;
-    var seq = 0;
-    var categoryOrder = ["Тарифы", "Начисления", "Разделы"];
-
-    var STOP = {
-        и: 1, в: 1, во: 1, на: 1, по: 1, к: 1, ко: 1, с: 1, со: 1, о: 1, об: 1, от: 1, до: 1, за: 1, у: 1, из: 1, для: 1
-    };
-
-    var SUGGEST_RULES = [
-        { category: "Тарифы", title: "Тарифы (все услуги)", url: "/tariffs", weight: 8, roots: ["тариф", "стоим", "цен", "руб", "поставщик", "норматив"] },
-        { category: "Тарифы", title: "Тариф: холодное водоснабжение", url: "/tariffs#cold", weight: 14, roots: ["холод", "хвс", "водоканал"] },
-        { category: "Тарифы", title: "Тариф: горячее водоснабжение", url: "/tariffs#hot", weight: 14, roots: ["горяч", "гвс", "бойлер", "нагрев"] },
-        { category: "Тарифы", title: "Тариф: отопление", url: "/tariffs#heat", weight: 14, roots: ["отопл", "тепл", "батар", "радиатор", "обогрев", "гкал"] },
-        { category: "Тарифы", title: "Тариф: водоотведение", url: "/tariffs#sewer", weight: 14, roots: ["водоотвед", "канализ", "сток"] },
-        { category: "Тарифы", title: "Тариф: газ", url: "/tariffs#gas", weight: 14, roots: ["газ", "газоснаб"] },
-        { category: "Тарифы", title: "Тариф: электроэнергия", url: "/tariffs#electricity", weight: 14, roots: ["электро", "электр", "свет", "квт"] },
-        { category: "Тарифы", title: "Тариф: ТКО", url: "/tariffs#waste", weight: 14, roots: ["тко", "мусор", "отход", "отходы", "тверьспец", "спецавто"] },
-        { category: "Начисления", title: "Калькулятор: общий расчёт", url: "/accruals", weight: 4, roots: ["начисл", "калькул", "расчет", "рассчит", "платеж", "сумм"] },
-        { category: "Начисления", title: "Калькулятор: холодная вода", url: "/accruals#cold", weight: 16, roots: ["холод", "хвс", "водоканал", "счетчик", "счетч", "куб"] },
-        { category: "Начисления", title: "Калькулятор: горячая вода", url: "/accruals#hot", weight: 16, roots: ["горяч", "гвс", "бойлер", "нагрев", "генерац", "гкал"] },
-        { category: "Начисления", title: "Калькулятор: отопление", url: "/accruals#heat", weight: 16, roots: ["отопл", "тепл", "батар", "радиатор", "обогрев", "гкал"] },
-        { category: "Разделы", title: "Вопросы и ответы", url: "/faq", weight: 11, roots: ["вопрос", "ответ", "почему", "зачем", "как", "кто", "что", "когда", "сосед", "затоп", "льгот", "оспор", "помощ"] },
-        { category: "Разделы", title: "Подать жалобу", url: "/complaints", weight: 10, roots: ["жалоб", "претенз", "обращен", "отказ", "наруш", "гжи", "бездеи", "неправ"] },
-        { category: "Разделы", title: "Найти УК и контакты", url: "/contacts", weight: 9, roots: ["контакт", "телефон", "адрес", "ук", "управля", "авар", "диспетч", "найти"] },
-        { category: "Разделы", title: "Новости", url: "/news", weight: 6, roots: ["новост", "событ"] },
-        { category: "Разделы", title: "Справочник потребителя", url: "/consumer", weight: 7, roots: ["потребител", "справочник", "права", "жкх", "жку"] },
-        { category: "Разделы", title: "ЕПД и платёжный документ", url: "/consumer/epd", weight: 10, roots: ["епд", "единый", "платеж", "документ", "расшифров", "квитанц"] }
-    ];
-
-    var PAGE_TOPICS = [
-        { title: "Новости", url: "/news", content: "новости нвоость" },
-        { title: "Справочник потребителя", url: "/consumer", content: "жкх права тарифы услуги платежи справочник ЕПД нарушение права" },
-        { title: "Как оспорить начисления", url: "/faq", content: "оспорить начисления квитанция перерасчет управляющая компания" },
-        { title: "Затопление квартиры", url: "/faq", content: "затопили соседи залив акт ущерб" },
-        { title: "Смена счётчиков воды", url: "/faq", content: "счетчики кто меняет собственник" },
-        { title: "Льготы на оплату ЖКХ", url: "/faq", content: "льготы льгота жкх ЖКХ комуналка" },
-        { title: "Важные документы", url: "/faq", content: "документы жилищный кодекс закон постановление" },
-        { title: "Отсутствие отопления", url: "/complaints", content: "нет отопления холод батареи жалоба" },
-        { title: "Грязная вода из крана", url: "/complaints", content: "вода грязь кран течет" },
-        { title: "Засор канализации", url: "/complaints", content: "засор грязь канализация мусор засорился канал" },
-        { title: "Неправильный расчёт горячего водоснабжения", url: "/complaints", content: "неправильно расчет квитанция ошибка вода горячая" },
-        { title: "Отсутствие электричества", url: "/complaints", content: "электричесво электричества нет" },
-        { title: "Ненадлежащая уборка подъезда и территории", url: "/complaints", content: "плохо уборка подъезд территория дом убираются некачественно" },
-        { title: "Затопление (соседи или крыша)", url: "/complaints", content: "затопили соседи крыша" },
-        { title: "Неисправность лифта", url: "/complaints", content: "лифт сломался не работает" },
-        { title: "Калькулятор: общий расчёт", url: "/accruals", content: "калькулятор посчитать высчитать квитанция вода отопление" }
-    ];
-
-    function topicCategory(url) {
-        if (url.indexOf("/accruals") === 0) {
-            return "Начисления";
-        }
-        return "Разделы";
+    if (!query) {
+        resultsDiv.innerHTML = "";
+        return;
     }
 
-    function scorePageTopic(page, query, tokens) {
-        var q = normalizeText(query);
-        var content = normalizeText(page.content);
-        var title = normalizeText(page.title);
-        if (!q || q.length < 2) {
-            return 0;
-        }
-        if (content.indexOf(q) >= 0 || title.indexOf(q) >= 0) {
-            return 560;
-        }
-        var best = 0;
-        for (var i = 0; i < tokens.length; i++) {
-            var t = tokens[i];
-            if (t.length < 2) {
-                continue;
-            }
-            if (content.indexOf(t) >= 0 || title.indexOf(t) >= 0) {
-                var s = 450 - i * 10;
-                if (s > best) {
-                    best = s;
-                }
-            }
-        }
-        return best;
+    const results = pages.filter(p =>
+        p.content.includes(query) || p.title.toLowerCase().includes(query)
+    );
+
+    if (results.length === 0) {
+        resultsDiv.innerHTML = "<div class='p-4'>Ничего не найдено</div>";
+        return;
     }
 
-    function firstWordReady(raw) {
-        var t = String(raw || "").trim();
-        if (!t) {
-            return false;
-        }
-        var first = t.split(/\s+/)[0];
-        return first.length >= 2;
-    }
-
-    function normalizeText(source) {
-        var s = String(source || "")
-            .toLowerCase()
-            .trim()
-            .replace(/ё/g, "е")
-            .replace(/[^a-zа-я0-9\s-]/gi, " ");
-        return s.replace(/\s+/g, " ").trim();
-    }
-
-    function tokenize(source) {
-        var normalized = normalizeText(source);
-        if (!normalized) {
-            return [];
-        }
-        var parts = normalized.split(/\s+/);
-        var seen = {};
-        var tokens = [];
-        for (var i = 0; i < parts.length; i++) {
-            var t = parts[i];
-            if (t.length < 2 || STOP[t]) {
-                continue;
-            }
-            if (seen[t]) {
-                continue;
-            }
-            seen[t] = 1;
-            tokens.push(t);
-        }
-        return tokens;
-    }
-
-    function tokenMatchesRoot(token, root) {
-        if (token.indexOf(root) === 0) {
-            return true;
-        }
-        return token.length >= 4 && root.indexOf(token) === 0;
-    }
-
-    function firstTokenPrefixPosition(tokens, prefixes) {
-        for (var i = 0; i < tokens.length; i++) {
-            for (var p = 0; p < prefixes.length; p++) {
-                if (tokens[i].indexOf(prefixes[p]) === 0) {
-                    return i;
-                }
-            }
-        }
-        return -1;
-    }
-
-    function scoreRuleRow(row, tokens) {
-        var score = 0;
-        var matchedRoots = 0;
-        for (var r = 0; r < row.roots.length; r++) {
-            var root = row.roots[r];
-            var matchPos = -1;
-            for (var i = 0; i < tokens.length; i++) {
-                if (tokenMatchesRoot(tokens[i], root)) {
-                    matchPos = i;
-                    break;
-                }
-            }
-            if (matchPos >= 0) {
-                matchedRoots++;
-                var bonus = matchPos < 5 ? 5 - matchPos : 0;
-                score += row.weight + bonus;
-            }
-        }
-        if (matchedRoots === 0) {
-            return 0;
-        }
-        return score + matchedRoots * 2;
-    }
-
-    function enrichPairs(addItem, tokens) {
-        var pair = 220;
-        if (firstTokenPrefixPosition(tokens, ["горяч", "гвс"]) >= 0) {
-            addItem("Тариф: горячее водоснабжение", "/tariffs#hot", "Тарифы", pair);
-            addItem("Калькулятор: горячая вода", "/accruals#hot", "Начисления", pair);
-        }
-        if (firstTokenPrefixPosition(tokens, ["холод", "хвс"]) >= 0) {
-            addItem("Тариф: холодное водоснабжение", "/tariffs#cold", "Тарифы", pair);
-            addItem("Калькулятор: холодная вода", "/accruals#cold", "Начисления", pair);
-        }
-        if (firstTokenPrefixPosition(tokens, ["отопл", "тепл", "батар", "радиатор"]) >= 0) {
-            addItem("Тариф: отопление", "/tariffs#heat", "Тарифы", pair);
-            addItem("Калькулятор: отопление", "/accruals#heat", "Начисления", pair);
-        }
-        if (firstTokenPrefixPosition(tokens, ["водоотвед", "канализ", "сток"]) >= 0) {
-            addItem("Тариф: водоотведение", "/tariffs#sewer", "Тарифы", pair);
-        }
-        if (firstTokenPrefixPosition(tokens, ["газ", "газоснаб"]) >= 0) {
-            addItem("Тариф: газ", "/tariffs#gas", "Тарифы", pair);
-        }
-        if (firstTokenPrefixPosition(tokens, ["электро", "электр", "свет", "квт"]) >= 0) {
-            addItem("Тариф: электроэнергия", "/tariffs#electricity", "Тарифы", pair);
-        }
-        if (firstTokenPrefixPosition(tokens, ["тко", "мусор", "отход", "отходы", "тверьспец", "спецавто"]) >= 0) {
-            addItem("Тариф: ТКО", "/tariffs#waste", "Тарифы", pair);
-        }
-    }
-
-    function buildLocalSuggestions(query) {
-        var tokens = tokenize(query);
-        if (!tokens.length) {
-            return [];
-        }
-
-        var bucket = {};
-        function addItem(title, url, category, sc) {
-            var k = url + "\t" + title;
-            if (!bucket[k] || bucket[k].score < sc) {
-                bucket[k] = { title: title, url: url, category: category, score: sc };
-            }
-        }
-
-        var hasSpecificFaq = false;
-        var hasSpecificComplaint = false;
-        for (var pi = 0; pi < PAGE_TOPICS.length; pi++) {
-            var p = PAGE_TOPICS[pi];
-            var ps = scorePageTopic(p, query, tokens);
-            if (ps <= 0) {
-                continue;
-            }
-            addItem(p.title, p.url, topicCategory(p.url), ps);
-            if (p.url === "/faq") {
-                hasSpecificFaq = true;
-            }
-            if (p.url === "/complaints") {
-                hasSpecificComplaint = true;
-            }
-        }
-
-        for (var ri = 0; ri < SUGGEST_RULES.length; ri++) {
-            var row = SUGGEST_RULES[ri];
-            if (row.url === "/faq" && row.title === "Вопросы и ответы" && hasSpecificFaq) {
-                continue;
-            }
-            if (row.url === "/complaints" && row.title === "Подать жалобу" && hasSpecificComplaint) {
-                continue;
-            }
-            var s = scoreRuleRow(row, tokens);
-            if (s <= 0) {
-                continue;
-            }
-            addItem(row.title, row.url, row.category, s);
-        }
-
-        enrichPairs(addItem, tokens);
-
-        var list = [];
-        for (var key in bucket) {
-            if (Object.prototype.hasOwnProperty.call(bucket, key)) {
-                list.push(bucket[key]);
-            }
-        }
-        list.sort(function (a, b) {
-            if (b.score !== a.score) {
-                return b.score - a.score;
-            }
-            return a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
-        });
-        if (list.length > 14) {
-            list = list.slice(0, 14);
-        }
-        return list.map(function (x) {
-            return { title: x.title, url: x.url, category: x.category };
-        });
-    }
-
-    function syncIcon() {
-        if (!icon) {
-            return;
-        }
-        icon.style.opacity = String(searchInput.value || "").trim() ? "0" : "1";
-    }
-
-    function hideSuggest() {
-        suggestBox.classList.add("hidden");
-        suggestBox.innerHTML = "";
-        searchInput.setAttribute("aria-expanded", "false");
-    }
-
-    function escapeHtml(s) {
-        return String(s)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;");
-    }
-
-    function renderSuggestions(items) {
-        if (!items || !items.length) {
-            suggestBox.innerHTML =
-                "<div class=\"px-4 py-3 text-gray-600 leading-relaxed\">" +
-                "<span class=\"font-semibold text-[var(--text)]\">Ничего не найдено.</span> " +
-                "Попробуйте изменить запрос или сформулировать его иначе — например, короче или другими словами." +
-                "</div>";
-            suggestBox.classList.remove("hidden");
-            searchInput.setAttribute("aria-expanded", "true");
-            return;
-        }
-
-        var groups = {};
-        items.forEach(function (it) {
-            var c = it.category || "Другое";
-            if (!groups[c]) {
-                groups[c] = [];
-            }
-            groups[c].push(it);
-        });
-
-        var html = "";
-        categoryOrder.forEach(function (cat) {
-            var list = groups[cat];
-            if (!list || !list.length) {
-                return;
-            }
-            html +=
-                "<div class=\"border-b border-gray-100 px-3 py-2 text-xs font-bold uppercase tracking-wide text-gray-500\">" +
-                escapeHtml(cat) +
-                "</div>";
-            list.forEach(function (it) {
-                html +=
-                    "<a role=\"option\" href=\"" +
-                    escapeHtml(it.url) +
-                    "\" class=\"block border-b border-gray-50 px-4 py-3 last:border-0 hover:bg-amber-50\">" +
-                    "<span class=\"font-semibold text-[var(--text)]\">" +
-                    escapeHtml(it.title) +
-                    "</span>" +
-                    "</a>";
-            });
-        });
-
-        Object.keys(groups).forEach(function (cat) {
-            if (categoryOrder.indexOf(cat) !== -1) {
-                return;
-            }
-            html +=
-                "<div class=\"border-b border-gray-100 px-3 py-2 text-xs font-bold uppercase tracking-wide text-gray-500\">" +
-                escapeHtml(cat) +
-                "</div>";
-            groups[cat].forEach(function (it) {
-                html +=
-                    "<a role=\"option\" href=\"" +
-                    escapeHtml(it.url) +
-                    "\" class=\"block border-b border-gray-50 px-4 py-3 last:border-0 hover:bg-amber-50\">" +
-                    "<span class=\"font-semibold text-[var(--text)]\">" +
-                    escapeHtml(it.title) +
-                    "</span>" +
-                    "</a>";
-            });
-        });
-
-        suggestBox.innerHTML = html;
-        suggestBox.classList.remove("hidden");
-        searchInput.setAttribute("aria-expanded", "true");
-    }
-
-    searchInput.addEventListener("input", function () {
-        syncIcon();
-        clearTimeout(timer);
-        var q = String(searchInput.value || "");
-        if (!firstWordReady(q)) {
-            hideSuggest();
-            return;
-        }
-        var mySeq = ++seq;
-        timer = setTimeout(function () {
-            if (mySeq !== seq) {
-                return;
-            }
-            renderSuggestions(buildLocalSuggestions(q));
-        }, debounceMs);
-    });
-
-    document.addEventListener("click", function (ev) {
-        if (!searchForm.contains(ev.target)) {
-            hideSuggest();
-        }
-    });
-
-    searchForm.addEventListener("submit", function (event) {
-        hideSuggest();
-        if (String(searchInput.value || "").trim()) {
-            return;
-        }
-        event.preventDefault();
-        searchInput.classList.add("ring-2", "ring-red-300");
-        setTimeout(function () {
-            searchInput.classList.remove("ring-2", "ring-red-300");
-        }, 800);
-    });
-
-    syncIcon();
-})();
+    resultsDiv.innerHTML = results.map(p => `
+        <a href="${p.url}" 
+            class="block p-4 rounded-xl transition"
+            style="
+                background: rgba(236, 183, 38, 0.4);
+                color: var(--text);
+            "
+            onmouseover="this.style.background='rgba(236, 183, 38, 0.9)'"
+            onmouseout="this.style.background='rgba(236, 183, 38, 0.4)'"
+        >
+            <b>${p.title}</b>
+        </a>
+    `).join("");
+});
 </script>
 
 {{end}}

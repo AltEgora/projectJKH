@@ -53,14 +53,14 @@
             <div class="card shadow-sm">
                 <div class="flex items-center gap-3 mb-6 text-[var(--primary)]">
                     <i data-lucide="search" class="w-6 h-6"></i>
-                    <h3 class="text-xl font-bold text-[var(--text)]">Поиск управляющей компании</h3>
+                    <h3 class="text-xl font-bold text-[var(--text)]">Поиск правляющей компании</h3>
                 </div>
                 
                 <div class="space-y-4">
                     <div class="relative">
                         <i data-lucide="map-pin" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
                         <input type="text" id="address-input" 
-                               placeholder="Арсения Степанова, 52" 
+                               placeholder="Скворцова Степанова, 14" 
                                class="w-full pl-10 pr-4 py-3 border-2 border-slate-100 rounded-xl outline-none focus:border-[var(--primary)] transition-all bg-slate-50/50">
                     </div>
 
@@ -127,70 +127,112 @@
 lucide.createIcons();
 
 const ukDatabase = {
-    "арсения степанова 52": {
-        name: "ООО УК «Заволжье-Групп»",
-        ukAddress: "г. Тверь, ул. Горького, 10",
-        phone: "+7 (4822) 55-66-77",
-        mail: "zav-group69@mail.ru"
+    "скворцова степанова 14": {
+        name: "ООО \"ЖУК\"",
+        ukAddress: "г. Тверь, ул. Трехсвятская, д. 35б",
+        phone: "+7 910 937-87-89",
+        mail: "zhuk.uk@bk.ru"
     }
 };
 
-async function fetchUKInfo(houseId) {
-            const requestData = {
-                address: houseId
-            };
+function normalizeAddress(rawInput) {
+    let text = rawInput
+        .toLowerCase()
+        .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ' ')
+        .replace(/([a-zа-яё])(\d)/gi, '$1 $2')
+        .replace(/(\d)([a-zа-яё])/gi, '$1 $2')
+        .replace(/\s+/g, ' ')
+        .trim();
 
-            const response = await fetch('/api/gis', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(requestData)
-            });
+    text = removeStopWords(text);
 
-            if (!response.ok) {
-                /*if (response.status === 404) {
-                    throw new Error('Дом с таким ID не найден');
-                } else if (response.status === 400) {
-                    throw new Error('Неверный формат ID');
-                } else {
-                    throw new Error(`Ошибка сервера: ${response.status}`);
-                }*/
-                console.warn(response)
-               return "";
-            }
+    return text;
+}
 
-            const data = await response.json();
-            console.log(data)
+const STOP_WORDS = new Set([
+    "улица", "ул", "ул.", 
+    "дом", "д", "д.",
+    "квартира", "кв", "кв."
+]);
 
-            return data;
-        }
+function removeStopWords(text) {
+    return text
+        .split(" ")
+        .filter(w => !STOP_WORDS.has(w))
+        .join(" ");
+}
 
 async function findUK() {
     const rawInput = document.getElementById('address-input').value;
     const cleanInput = rawInput.toLowerCase().replace(/,/g, '').trim();
     const resultBlock = document.getElementById('search-result');
     const mapFrame = document.getElementById('main-map');
+
+    const searchButton = document.getElementsByClassName('btn-search')[0];
+
+    searchButton.disabled = true;
+    searchButton.textContent = 'Идёт поиск...';
     
-    const data = await fetchUKInfo(cleanInput);
-
-    let foundData = null;
-    for (let key in ukDatabase) {
-        if (cleanInput.includes(key)) { foundData = ukDatabase[key]; break; }
+    if (!cleanInput) {
+        alert('Введите адрес');
+        return;
     }
+    
+    try {
+        const response = await fetch('/api/gis', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ address: cleanInput })
+        });
+        
+        const data = await response.json();
+        
+        // Проверяем на ошибку
+        if (data.error) {
+            alert("УК не найдена");
+            resultBlock.style.display = 'none';
 
-    if (data) {
-        document.getElementById('uk-name').innerText = data.name;
-        document.getElementById('uk-address').innerText = data.address;
-        document.getElementById('uk-phone').innerText = data.phones[0];
-        document.getElementById('uk-mail').innerText = data.emails[0];
+            searchButton.disabled = false;
+            searchButton.textContent = 'Найти УК';
+            return;
+        }
+        
+        // Заполняем поля данными
+        document.getElementById('uk-name').innerText = data.name || 'Не указано';
+        document.getElementById('uk-address').innerText = data.address || 'Не указано';
+        
+        // Телефоны (массив)
+        const phonesStr = data.phones && data.phones.length > 0 
+            ? data.phones.join(', ') 
+            : 'Не указано';
+        document.getElementById('uk-phone').innerText = phonesStr;
+        
+        // Email (массив)
+        const emailsStr = data.emails && data.emails.length > 0 
+            ? data.emails.join(', ') 
+            : 'Не указано';
+        document.getElementById('uk-mail').innerText = emailsStr;
+        
+        // Показываем блок с результатами
         resultBlock.style.display = 'block';
-
-        //const query = encodeURIComponent(foundData.ukAddress);
-        mapFrame.src = `https://yandex.ru/map-widget/v1/?text=${data.address}&z=16`;
-    } else {
-        alert("Попробуйте другой аддресс");
+        
+        // Обновляем карту
+        if (data.address) {
+            const query = encodeURIComponent(data.address);
+            mapFrame.src = `https://yandex.ru/map-widget/v1/?text=${query}&z=16`;
+            //searchButton.disabled = false;
+            //searchButton.textContent = 'Найти УК';
+        }
+        
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Ошибка соединения с сервером');
+        resultBlock.style.display = 'none';
+        searchButton.disabled = false;
+        searchButton.textContent = 'Найти УК';
     }
+    searchButton.disabled = false;
+    searchButton.textContent = 'Найти УК';
 }
 
 const regionsData = {

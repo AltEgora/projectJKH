@@ -80,8 +80,6 @@
         border: 1px solid var(--border);
         transition: all 0.3s ease;
         cursor: pointer;
-        text-decoration: none;
-        box-sizing: border-box;
     }
 
     .calc-button:hover {
@@ -105,7 +103,7 @@
 
 <main class="max-w-3xl mx-auto px-4 pb-20 space-y-4">
 
-    <div class="tariff-card" data-topic="cold">
+    <div class="tariff-card">
         <div class="flex justify-between items-center">
             <div class="flex gap-5 items-center">
                 <div class="price-badge bg-blue-50 text-blue-600">
@@ -129,14 +127,14 @@
                 <br><br>
                 <a href="http://publication.pravo.gov.ru/document/6901202512180019" class="doc-link" target="_blank">Приказ о стоимости холодного водоснабжения</a>
                 
-                <a href="/accruals#cold"><button class="calc-button" onclick="event.stopPropagation();">
+                <a href="/accruals#cold"> <button class="calc-button" onclick="event.stopPropagation();">
                     <i data-lucide="calculator" class="w-4 h-4"></i> Рассчитать холодное водоснабжение
                 </button></a>
             </div>
         </div>
     </div>
 
-    <div class="tariff-card" data-topic="hot">
+    <div class="tariff-card">
         <div class="flex justify-between items-center">
             <div class="flex gap-5 items-center">
                 <div class="price-badge bg-red-50 text-red-600">
@@ -166,7 +164,7 @@
         </div>
     </div>
 
-    <div class="tariff-card" data-topic="sewer">
+    <div class="tariff-card">
         <div class="flex justify-between items-center">
             <div class="flex gap-5 items-center">
                 <div class="price-badge bg-cyan-50 text-cyan-600">
@@ -187,14 +185,14 @@
                 <br><br>
                 <a href="http://publication.pravo.gov.ru/document/6901202512180019" class="doc-link" target="_blank">Приказ о стоимости водоотведения</a>
 
-                <button class="calc-button" onclick="event.stopPropagation();">
+                <!--<button class="calc-button" onclick="event.stopPropagation();">
                     <i data-lucide="calculator" class="w-4 h-4"></i> Рассчитать водоотведение
-                </button>
+                </button>-->
             </div>
         </div>
     </div>
 
-    <div class="tariff-card" data-topic="heat">
+    <div class="tariff-card">
         <div class="flex justify-between items-center">
             <div class="flex gap-5 items-center">
                 <div class="price-badge bg-purple-50 text-purple-600">
@@ -215,14 +213,14 @@
                 <br><br>
                 <a href="http://publication.pravo.gov.ru/document/6901202512190031?index=4" class="doc-link" target="_blank">Приказ о стоимости отопления</a>
 
-                <a href="/accruals#heat" class="calc-button" onclick="event.stopPropagation();">
+                <a href="/accruals#heat"><button class="calc-button" onclick="event.stopPropagation();">
                     <i data-lucide="calculator" class="w-4 h-4"></i> Рассчитать отопление
-                </a>
+                </button></a>
             </div>
         </div>
     </div>
 
-    <div class="tariff-card" data-topic="gas">
+    <div class="tariff-card">
         <div class="flex justify-between items-center">
             <div class="flex gap-5 items-center">
                 <div class="price-badge bg-orange-50 text-orange-600">
@@ -243,14 +241,14 @@
 
                 <a href="http://publication.pravo.gov.ru/document/6901202512290011" target="_blank" class="doc-link">Приказ о стоимости газа</a>
 
-                <button class="calc-button" onclick="event.stopPropagation();">
+                <!--<button class="calc-button" onclick="event.stopPropagation();">
                     <i data-lucide="calculator" class="w-4 h-4"></i> Рассчитать газ
-                </button>
+                </button>-->
             </div>
         </div>
     </div>
 
-    <div class="tariff-card" data-topic="electricity">
+    <div class="tariff-card">
         <div class="flex justify-between items-center">
             <div class="flex gap-5 items-center">
                 <div class="price-badge bg-yellow-50 text-yellow-600">
@@ -269,14 +267,14 @@
 
                 <a href="http://publication.pravo.gov.ru/document/6901202512290009" target="_blank" class="doc-link">Приказ о стоимости электроэнергии</a>
 
-                <button class="calc-button" onclick="event.stopPropagation();">
+                <!--<button class="calc-button" onclick="event.stopPropagation();">
                     <i data-lucide="calculator" class="w-4 h-4"></i> Рассчитать электроэнергию
-                </button>
+                </button>-->
             </div>
         </div>
     </div>
 
-    <div class="tariff-card" data-topic="waste">
+    <div class="tariff-card">
         <div class="flex justify-between items-center">
             <div class="flex gap-5 items-center">
                 <div class="price-badge bg-emerald-50 text-emerald-600">
@@ -297,9 +295,9 @@
                 <br>
                 <a href="http://publication.pravo.gov.ru/document/6901202512220005?index=2" target="_blank" class="doc-link">Приказ о стоимости ТКО</a>
 
-                <button class="calc-button" onclick="event.stopPropagation();">
+                <!--<button class="calc-button" onclick="event.stopPropagation();">
                     <i data-lucide="calculator" class="w-4 h-4"></i> Рассчитать ТКО
-                </button>
+                </button>-->
             </div>
         </div>
     </div>
@@ -307,27 +305,11 @@
 </main>
 
 <script>
-    (function () {
-        const cards = document.querySelectorAll('.tariff-card');
-
-        function openCardByTopic(topic) {
-            if (!topic) return false;
-            const card = document.querySelector('.tariff-card[data-topic="' + topic + '"]');
-            if (!card) return false;
-            card.classList.add('active');
-            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            return true;
-        }
-
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                card.classList.toggle('active');
-            });
+    document.querySelectorAll('.tariff-card').forEach(card => {
+        card.addEventListener('click', () => {
+            card.classList.toggle('active');
         });
-
-        const hashTopic = (window.location.hash || '').replace('#', '').toLowerCase();
-        openCardByTopic(hashTopic);
-    })();
+    });
 </script>
 
 {{end}}
